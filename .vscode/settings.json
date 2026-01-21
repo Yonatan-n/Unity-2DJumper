@@ -67,5 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "2DJumper.slnx"
+    "dotnet.defaultSolution": "2DJumper.slnx",
+    "editor.formatOnSave": true
 }
