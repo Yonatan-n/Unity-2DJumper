@@ -24,6 +24,8 @@ public class GroundSpawner : MonoBehaviour
     }
     void SpawnFloor()
     {
+        // TODO: make the floorFab move left always, destory outside of screen
+        // create new ones on the left fo keep the floor going
         // var minY = transform.position.y - offsetY;
         // var maxY = transform.position.y + offsetY;
         // var randomY = Random.Range(minY, maxY);

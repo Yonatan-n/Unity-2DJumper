@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     AudioSource audioSource;
     [SerializeField] float jumpForce = 20f;
+    [SerializeField] float maxJumpSpeed = 20f;
     [SerializeField] AudioClip jump;
     [SerializeField] AudioClip shoot;
     [SerializeField] AudioClip reload;
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
     public void Jump()
     {
         rb.AddForceY(jumpForce, ForceMode2D.Impulse);
+        rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed);
         PlaySound(jump);
     }
 
