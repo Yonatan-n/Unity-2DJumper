@@ -1,16 +1,25 @@
 bullet: <a href="https://www.flaticon.com/free-icons/bullet" title="bullet icons">Bullet icons created by Rudiyana - Flaticon</a>
 pistol: <a href="https://www.flaticon.com/free-icons/gun" title="gun icons">Gun icons created by shmai - Flaticon</a>
+revolver: <a href="https://www.flaticon.com/free-icons/revolver" title="revolver icons">Revolver icons created by shmai - Flaticon</a>
+ak: <a href="https://www.flaticon.com/free-icons/gun" title="gun icons">Gun icons created by Freepik - Flaticon</a>
+mp5: <a href="https://www.flaticon.com/free-icons/weapon" title="weapon icons">Weapon icons created by max.icons - Flaticon</a>
+glock: <a href="https://www.flaticon.com/free-icons/pistol" title="pistol icons">Pistol icons created by Freepik - Flaticon</a>
+hk usp? <a href="https://www.flaticon.com/free-icons/gun" title="gun icons">Gun icons created by DinosoftLabs - Flaticon</a>
+black sunglasses: <a href="https://www.flaticon.com/free-icons/sunglasses" title="sunglasses icons">Sunglasses icons created by Freepik - Flaticon</a>
+gay sunglasses: <a href="https://www.flaticon.com/free-icons/sunglasses" title="sunglasses icons">Sunglasses icons created by Freepik - Flaticon</a>
+cool color glasses: <a href="https://www.flaticon.com/free-icons/sunglasses" title="sunglasses icons">Sunglasses icons created by Freepik - Flaticon</a>
+heart glasses: <a href="https://www.flaticon.com/free-icons/sunglasses" title="sunglasses icons">Sunglasses icons created by Freepik - Flaticon</a>
+chef hat: <a href="https://www.flaticon.com/free-icons/chef-hat" title="chef hat icons">Chef hat icons created by Freepik - Flaticon</a>
+party hat: <a href="https://www.flaticon.com/free-icons/party-hat" title="party hat icons">Party hat icons created by Freepik - Flaticon</a>
+wizard hat: <a href="https://www.flaticon.com/free-icons/witch-hat" title="witch hat icons">Witch hat icons created by Luvdat - Flaticon</a>
+chrismas hat: <a href="https://www.flaticon.com/free-icons/christmas" title="christmas icons">Christmas icons created by Vectors Market - Flaticon</a>
 
-background, player, enemies etc: https://kenney.nl/assets/jumper-pack
 
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">Pixabay</a>
-
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">Pixabay</a>
-
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6462">freesound_community</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6462">Pixabay</a>
-
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6008">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6008">Pixabay</a>
-
 Sound Effect by <a href="https://pixabay.com/users/thellywellyn-48832362/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=370533">TheLlywellyn</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=370533">Pixabay</a>
-
 Sound Effect by <a href="https://pixabay.com/users/u_nfmiq7z9as-53653139/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=449809">u_nfmiq7z9as</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=449809">Pixabay</a>
+
+background, player, enemies etc: https://kenney.nl/assets/jumper-pack

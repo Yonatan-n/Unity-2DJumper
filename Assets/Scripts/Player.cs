@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
     private void SetupBindings()
     {
         jumpAction = new InputAction("Press", InputActionType.Button);
-        jumpAction.AddBinding("<Touchscreen>/primaryTouch/press");
         // jumpAction.AddBinding("<Mouse>/leftButton");
         jumpAction.AddBinding("<Keyboard>/space");
         jumpAction.Enable();
