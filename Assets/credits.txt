@@ -1,0 +1,16 @@
+bullet: <a href="https://www.flaticon.com/free-icons/bullet" title="bullet icons">Bullet icons created by Rudiyana - Flaticon</a>
+pistol: <a href="https://www.flaticon.com/free-icons/gun" title="gun icons">Gun icons created by shmai - Flaticon</a>
+
+background, player, enemies etc: https://kenney.nl/assets/jumper-pack
+
+Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">Pixabay</a>
+
+Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">Pixabay</a>
+
+Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6462">freesound_community</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6462">Pixabay</a>
+
+Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6008">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6008">Pixabay</a>
+
+Sound Effect by <a href="https://pixabay.com/users/thellywellyn-48832362/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=370533">TheLlywellyn</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=370533">Pixabay</a>
+
+Sound Effect by <a href="https://pixabay.com/users/u_nfmiq7z9as-53653139/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=449809">u_nfmiq7z9as</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=449809">Pixabay</a>
