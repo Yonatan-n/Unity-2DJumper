@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip hurt;
     [SerializeField] Button JumpBtn;
     [SerializeField] Button ShootBtn;
+    [SerializeField] GameObject Bullet;
+    [SerializeField] GameObject BulletPos;
+
 
 
     void Start()
@@ -53,12 +56,15 @@ public class Player : MonoBehaviour
         rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed);
         PlaySound(jump);
     }
-
+    void SpawnBullet()
+    {
+        PlaySound(shoot);
+        Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
+    }
     public void Shoot()
     {
         Debug.Log("shoot: bang");
-        PlaySound(shoot);
-
+        SpawnBullet();
     }
 
     void Update()

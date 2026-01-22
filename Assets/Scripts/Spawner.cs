@@ -43,6 +43,7 @@ public class Spawner : MonoBehaviour
         obstacleMapKeys = obstacleMap.Keys.ToListPooled();
         obstacles = new List<GameObject>();
         spawnRandomObstacle();
+        // TODO:
         // add enemies
         // shoot enemies
         // HUD for lives, mag, coins, distance, best distance
@@ -63,7 +64,14 @@ public class Spawner : MonoBehaviour
         // LATER: unlock 2nd female rabbit + small rabbit kids,they can be a sort of permanently extra lives for free
         // LATER: when you hit something they will die lol
         // LATER: fix the background floor jumping mid section
-        //  
+
+        //  powerups
+        // double jump
+        // more lives
+        // FMJ bullet, can shoot trought multiple enemies and obstacles
+        // faster reload?
+        // jump down crush? like hold the button and then kill what you land on
+        // 
     }
 
     void setNextSpawnRate()
