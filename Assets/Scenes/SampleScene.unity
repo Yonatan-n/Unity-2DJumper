@@ -1565,12 +1565,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   barrelPrefab: {fileID: 8111632324343503752, guid: 316628b40408e5e49a58397ec8540a3d, type: 3}
+  treePrefab: {fileID: 8111632324343503752, guid: 05a7512488c661349b87af5c14598071, type: 3}
+  carPrefab: {fileID: 8111632324343503752, guid: 53f3548761be8d040b227f4c26e688b5, type: 3}
   barrelsSprites:
   - {fileID: -8568042794190644651, guid: dbbda487ef7f5b547936f3d27a4b8180, type: 3}
   - {fileID: 1720866271940004694, guid: 3b6b3a51efde7a148985c814e692f024, type: 3}
   - {fileID: -1887690132832601127, guid: 9afed107ce222aa419b894b1945b154f, type: 3}
-  treesSprites: []
-  carsSprites: []
+  treesSprites:
+  - {fileID: 2310490550986242536, guid: cb8623d568ff90140b29f57cc6a5a3ca, type: 3}
+  - {fileID: 7590223468099640162, guid: 1e3608573cd33c942819109998e9a3fd, type: 3}
+  - {fileID: -1909455774080299054, guid: bdcf8c7dbcba37740a91ffca72f8e040, type: 3}
+  - {fileID: -8667466294985060184, guid: 9082cf0697b7a2846b01755c48c10382, type: 3}
+  carsSprites:
+  - {fileID: -8030835215644163416, guid: 9d48ca7faf2d02b45b301b43cbbacf61, type: 3}
   spawnRate: 3
   deadZone: -45
 --- !u!4 &1418599275
