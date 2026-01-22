@@ -73,5 +73,11 @@ public class Player : MonoBehaviour
             PlaySound(hurt);
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // change later
+            PlaySound(hurt);
+            Destroy(collision.gameObject);
+        }
     }
 }
