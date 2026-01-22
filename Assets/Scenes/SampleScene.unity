@@ -515,52 +515,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235771216}
   m_CullTransparentMesh: 1
---- !u!1 &335034362
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 335034363}
-  - component: {fileID: 335034364}
-  m_Layer: 0
-  m_Name: Floor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &335034363
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 335034362}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.06, y: -13.76, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &335034364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 335034362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 950376f68222f7448be14424297520d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  floorFab: {fileID: 7488746198663958455, guid: 953cde416d8e018408a08371006c93e4, type: 3}
-  spawnRate: 1
 --- !u!1 &503736010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1535,59 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1418599273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1418599275}
+  - component: {fileID: 1418599274}
+  m_Layer: 0
+  m_Name: ObstaclesSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1418599274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418599273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec703b68126be841aa5ff61ab211702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  barrelPrefab: {fileID: 8111632324343503752, guid: 316628b40408e5e49a58397ec8540a3d, type: 3}
+  barrelsSprites:
+  - {fileID: -8568042794190644651, guid: dbbda487ef7f5b547936f3d27a4b8180, type: 3}
+  - {fileID: 1720866271940004694, guid: 3b6b3a51efde7a148985c814e692f024, type: 3}
+  - {fileID: -1887690132832601127, guid: 9afed107ce222aa419b894b1945b154f, type: 3}
+  treesSprites: []
+  carsSprites: []
+  spawnRate: 3
+  deadZone: -45
+--- !u!4 &1418599275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418599273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 35.6, y: -11.16, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1444866469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,53 +1773,6 @@ Transform:
   - {fileID: 1342588639}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1480486063
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1480486065}
-  - component: {fileID: 1480486064}
-  m_Layer: 0
-  m_Name: PipeSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1480486064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480486063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5f712343c499194d861d03298edc075, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  pipe: {fileID: 2659086732750945318, guid: fac5deec065eaaf44a8ad47a10e1ba45, type: 3}
-  spawnRate: 2
-  offsetY: 10
---- !u!4 &1480486065
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480486063}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.8, y: -0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1502108743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,7 +1941,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundMover
   quarter: {fileID: 109371839}
-  speed: 4
 --- !u!4 &1591076720
 Transform:
   m_ObjectHideFlags: 0
@@ -2873,9 +2832,8 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1894491316}
-  - {fileID: 1480486065}
   - {fileID: 1461763884}
   - {fileID: 1964977524}
   - {fileID: 1100914808}
-  - {fileID: 335034363}
   - {fileID: 1591076720}
+  - {fileID: 1418599275}

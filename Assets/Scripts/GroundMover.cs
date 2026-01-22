@@ -3,7 +3,7 @@ using UnityEngine;
 public class GroundMover : MonoBehaviour
 {
     [SerializeField] GameObject quarter;
-    [SerializeField] float speed = 4;
+    static public float speed = 8;
     float backgroundHalfWidth;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
