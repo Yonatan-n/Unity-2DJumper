@@ -72,6 +72,21 @@ public class Spawner : MonoBehaviour
         // faster reload?
         // jump down crush? like hold the button and then kill what you land on
         // 
+
+        // main menu
+        // have skins/eqimpents page, to buy, and equipe different stuff hats etc
+        // have the rabbit with a speach bubble say good advice like "eat you veggies!", "stay in school!"
+        // drink more water! stay hydraded!
+        // it is recomended to get about 7-8 hours of sleep each night to improve brain functions
+        // go outside, touch the grass, ain't that nice!
+        // always stay please, and thank you. thank you!
+
+        // and after you unlock the first gun he will also say the firearms safty rules "keep your finger off the trigger until you are ready to fire" etc
+        // be sure to keep you gun lubrecated and well maintaiend to prevent malfunctions!
+        // god I love the blood
+        // .45 - god's caliber
+        //   
+
     }
 
     void setNextSpawnRate()
