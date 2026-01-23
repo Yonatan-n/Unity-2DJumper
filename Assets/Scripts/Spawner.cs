@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] List<Sprite> barrelsSprites;
     [SerializeField] List<Sprite> treesSprites;
-    [SerializeField] List<Sprite> carsSprites;
+    [SerializeField] List<GameObject> carsPrefabs;
     [SerializeField] float spawnRateMin = 2;
     [SerializeField] float spawnRateMax = 6;
     private float spawnRate;
@@ -38,7 +38,7 @@ public class Spawner : MonoBehaviour
         {
             {barrelPrefab, barrelsSprites},
             {treePrefab, treesSprites},
-            {carPrefab, carsSprites},
+            {carPrefab, null},
         };
         obstacleMapKeys = obstacleMap.Keys.ToListPooled();
         obstacles = new List<GameObject>();
@@ -92,21 +92,16 @@ public class Spawner : MonoBehaviour
     void setNextSpawnRate()
     {
         spawnRate = Random.Range(spawnRateMin, spawnRateMax + 1);
-
-    }
-    Sprite getRandomSprite(List<Sprite> list)
-    {
-        return list[Random.Range(0, list.Count)];
     }
 
-    GameObject SelectRandomFab()
+    public static T ChooseRandom<T>(IList<T> collection)
     {
-        return obstacleMapKeys[Random.Range(0, obstacleMapKeys.Count)];
+        return collection[Random.Range(0, collection.Count)];
     }
 
-    GameObject SelectRandomEnemy()
+    public static bool RandomBool()
     {
-        return enemiesPrefabs[Random.Range(0, enemiesPrefabs.Count)];
+        return Random.value > 0.5f;
     }
     void spawnRandomObstacle()
     {
@@ -116,15 +111,24 @@ public class Spawner : MonoBehaviour
         if (randomNumberPrecentage < enemyPercentage)
         {
             // spawn enemy
-            randomFab = SelectRandomEnemy();
+            randomFab = ChooseRandom(enemiesPrefabs);
         }
         else
         {
             // spawn obstacle
-            randomFab = SelectRandomFab();
-            var sr = randomFab.GetComponent<SpriteRenderer>();
-            sr.sprite = getRandomSprite(obstacleMap[randomFab]);
-
+            randomFab = ChooseRandom(obstacleMapKeys);
+            if (randomFab == carPrefab)
+            {
+                randomFab = ChooseRandom(carsPrefabs);
+                var sr = randomFab.GetComponent<SpriteRenderer>();
+                sr.flipX = RandomBool();
+            }
+            else
+            {
+                var sr = randomFab.GetComponent<SpriteRenderer>();
+                sr.sprite = ChooseRandom(obstacleMap[randomFab]);
+                sr.flipX = RandomBool();
+            }
         }
         // var position = new Vector3(transform.position.x, randomY, 0);
         var obs = Instantiate(randomFab, transform.position, transform.rotation);

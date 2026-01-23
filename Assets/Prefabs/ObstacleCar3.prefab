@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 48721001568532403}
   - component: {fileID: 5013530479360749065}
   - component: {fileID: 1484727779481655107}
-  - component: {fileID: 6122904610680145341}
   - component: {fileID: 5470112299340769942}
+  - component: {fileID: 5157697131472148141}
   m_Layer: 0
-  m_Name: ObstacleTree
+  m_Name: ObstacleCar3
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2310490550986242536, guid: cb8623d568ff90140b29f57cc6a5a3ca, type: 3}
+  m_Sprite: {fileID: -3597829955925279110, guid: fa85fdc8c4613454cbf42b688df3d779, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,8 +121,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6122904610680145341
-BoxCollider2D:
+--- !u!114 &5470112299340769942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8111632324343503752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faef63d2b34f4fb43a542130d3761ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!60 &5157697131472148141
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -159,23 +171,66 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 4.92}
+    oldSize: {x: 5.12, y: 2.2}
     newSize: {x: 4.11, y: 5.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.61, y: 4.28}
-  m_EdgeRadius: 0
---- !u!114 &5470112299340769942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8111632324343503752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faef63d2b34f4fb43a542130d3761ec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_Points:
+    m_Paths:
+    - - {x: -1.13, y: -0.76}
+      - {x: 1.26, y: -0.76}
+      - {x: 1.3299999, y: -0.65999997}
+      - {x: 1.42, y: -0.72999996}
+      - {x: 1.48, y: -0.9}
+      - {x: 1.63, y: -1.04}
+      - {x: 1.77, y: -1.1}
+      - {x: 2.03, y: -1.1}
+      - {x: 2.1699998, y: -1.03}
+      - {x: 2.27, y: -0.91999996}
+      - {x: 2.35, y: -0.78999996}
+      - {x: 2.36, y: -0.68}
+      - {x: 2.36, y: -0.64}
+      - {x: 2.49, y: -0.7}
+      - {x: 2.56, y: -0.68}
+      - {x: 2.56, y: -0.44}
+      - {x: 2.49, y: -0.25}
+      - {x: 2.44, y: -0.13}
+      - {x: 2.44, y: 0.04}
+      - {x: 2.35, y: 0.22}
+      - {x: 2.26, y: 0.25}
+      - {x: 2.1599998, y: 0.24}
+      - {x: 2.05, y: 0.32}
+      - {x: 1.74, y: 0.48}
+      - {x: 1.42, y: 0.57}
+      - {x: 1.29, y: 0.59}
+      - {x: 1.13, y: 0.59}
+      - {x: 1, y: 0.78}
+      - {x: 0.81, y: 0.96999997}
+      - {x: 0.65, y: 1.03}
+      - {x: 0.37, y: 1.0799999}
+      - {x: 0.06, y: 1.1}
+      - {x: -0.41, y: 1.1}
+      - {x: -0.64, y: 1.0799999}
+      - {x: -0.93, y: 1.04}
+      - {x: -1.16, y: 0.95}
+      - {x: -1.37, y: 0.84999996}
+      - {x: -1.55, y: 0.74}
+      - {x: -1.91, y: 0.42999998}
+      - {x: -2.3899999, y: -0.06}
+      - {x: -2.49, y: -0.22999999}
+      - {x: -2.53, y: -0.37}
+      - {x: -2.56, y: -0.47}
+      - {x: -2.56, y: -0.61}
+      - {x: -2.4299998, y: -0.68}
+      - {x: -2.32, y: -0.71}
+      - {x: -2.26, y: -0.71}
+      - {x: -2.04, y: -0.82}
+      - {x: -1.9799999, y: -0.90999997}
+      - {x: -1.8399999, y: -1.04}
+      - {x: -1.7099999, y: -1.1}
+      - {x: -1.43, y: -1.1}
+      - {x: -1.22, y: -0.95}
+      - {x: -1.1999999, y: -0.9}
+  m_UseDelaunayMesh: 1

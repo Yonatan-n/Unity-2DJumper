@@ -4,18 +4,42 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 12;
     [SerializeField] float deadZone = 33f;
+    Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += Vector3.right * moveSpeed * Time.deltaTime;
-        if (transform.position.x > deadZone)
+        rb.MovePosition(rb.position + Vector2.right * moveSpeed * Time.fixedDeltaTime);
+        if (rb.position.x > deadZone)
         {
             Destroy(gameObject);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // bullets should not penetrate obstacles, but should kill enemies
+        // FMJ can go through multiple enemies
+        if (tag == "BulletFMJ")
+        {
+            // destroy multiple enemies
+        }
+        else
+        {
+            // normal bullet, only 1 enemy
+
+        }
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            // blood particles
+            Destroy(other.gameObject);
+        }
+        // yellow partials
+        Destroy(gameObject);
     }
 }
