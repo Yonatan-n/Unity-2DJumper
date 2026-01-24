@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.EnhancedTouch;
+using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 public class Player : MonoBehaviour
 {
 
@@ -12,8 +13,6 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpForce = 20f;
     [SerializeField] float maxJumpSpeed = 20f;
     [SerializeField] AudioClip jump;
-    [SerializeField] AudioClip shoot;
-    [SerializeField] AudioClip reload;
     [SerializeField] AudioClip hurt;
     [SerializeField] Button JumpBtn;
     [SerializeField] Button ShootBtn;
@@ -29,6 +28,8 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         JumpBtn.onClick.AddListener(Jump);
         ShootBtn.onClick.AddListener(Shoot);
+        GameManager.Instance.updateAllCounters();
+
     }
 
     private void SetupBindings()
@@ -56,16 +57,38 @@ public class Player : MonoBehaviour
         rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed);
         PlaySound(jump);
     }
-    void SpawnBullet()
-    {
-        PlaySound(shoot);
-        Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
-    }
+
     public void Shoot()
     {
+        PlaySound(GameManager.Instance.gun.ShootSound);
+        Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
         Debug.Log("shoot: bang");
-        SpawnBullet();
+        if (--GameManager.Instance.Ammo == 0)
+        {
+            StartCoroutine(PerformReload());
+        }
     }
+    IEnumerator PerformReload()
+    {
+        var gun = GameManager.Instance.gun;
+        GameManager.Instance.GreyOutInAmmo(true);
+        ShootBtn.interactable = false;
+        // block icon and shoot button
+        // start to play sound 
+        // throw gun and catch
+        // after waitinf for sound and wepon catch, unblock ui, change counter
+
+        // wait for the shoot to finish
+        yield return new WaitForSeconds(0.2f);
+        PlaySound(gun.reloadSound);
+
+        yield return new WaitForSeconds(gun.reloadTimeSeconds); // Wait for the specified time
+        GameManager.Instance.GreyOutInAmmo(false);
+        ShootBtn.interactable = true;
+        // Code to execute after the delay
+        Debug.Log("Function executed after " + gun.reloadTimeSeconds + " seconds!");
+    }
+
 
     void Update()
     {

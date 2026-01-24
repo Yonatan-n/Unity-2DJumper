@@ -16,6 +16,11 @@ barrel oil: <a href="https://www.flaticon.com/free-icons/barrel" title="barrel i
 tree: <a href="https://www.flaticon.com/free-icons/tree" title="tree icons">Tree icons created by Vectors Market - Flaticon</a>
 car red: <a href="https://www.flaticon.com/free-icons/car" title="car icons">Car icons created by Vectors Market - Flaticon</a>
 van: <a href="https://www.flaticon.com/free-icons/transport" title="transport icons">Transport icons created by Vectors Market - Flaticon</a>
+key: <a href="https://www.flaticon.com/free-icons/key" title="key icons">Key icons created by Freepik - Flaticon</a>
+heart: <a href="https://www.flaticon.com/free-icons/heart" title="heart icons">Heart icons created by Kiranshastry - Flaticon</a>
+rifle bullet: <a href="https://www.flaticon.com/free-icons/bullet" title="bullet icons">Bullet icons created by Freepik - Flaticon</a>
+coin: <a href="https://www.flaticon.com/free-icons/coin" title="coin icons">Coin icons created by Freepik - Flaticon</a>
+lock: <a href="https://www.flaticon.com/free-icons/lock" title="lock icons">Lock icons created by Pixel perfect - Flaticon</a>
 
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">Pixabay</a>
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">Pixabay</a>
@@ -23,6 +28,10 @@ Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6008">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6008">Pixabay</a>
 Sound Effect by <a href="https://pixabay.com/users/thellywellyn-48832362/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=370533">TheLlywellyn</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=370533">Pixabay</a>
 Sound Effect by <a href="https://pixabay.com/users/u_nfmiq7z9as-53653139/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=449809">u_nfmiq7z9as</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=449809">Pixabay</a>
+Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6889">freesound_community</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6889">Pixabay</a>
+Sound Effect by <a href="https://pixabay.com/users/dev_guy-47631885/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=389472">adam katutis</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=389472">Pixabay</a>
+Sound Effect by <a href="https://pixabay.com/users/magiaz-10236927/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=407328">Mauricio Póvoa</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=407328">Pixabay</a>
+Sound Effect by <a href="https://pixabay.com/users/bunny_cube98-49455455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=316890">bunny_cube98</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=316890">Pixabay</a>
 
 background, player, enemies etc: https://kenney.nl/assets/jumper-pack
 floor: <a href="https://www.freepik.com/free-vector/seamless-ground-grass-cross-sections-landscaping_188006625.htm#fromView=keyword&page=1&position=0&uuid=c3d02ad5-ac13-4f0f-8bfb-5ea7cfeaf620&query=Ground">Image by svstudioart on Freepik</a>

@@ -71,5 +71,8 @@
     "editor.formatOnSave": true,
     "github.copilot.chat.agent.autoFix": false,
     "github.copilot.editor.enableCodeActions": false,
-    "github.copilot.chat.claudeCode.enabled": false
+    "github.copilot.chat.claudeCode.enabled": false,
+    "cSpell.words": [
+        "Behaviour"
+    ]
 }

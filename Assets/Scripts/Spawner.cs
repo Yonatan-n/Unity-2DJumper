@@ -44,8 +44,6 @@ public class Spawner : MonoBehaviour
         obstacles = new List<GameObject>();
         spawnRandomObstacle();
         // TODO:
-        // add enemies
-        // shoot enemies
         // HUD for lives, mag, coins, distance, best distance
 
         // Then,
