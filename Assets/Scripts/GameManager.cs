@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Gun gun;
-    public int Lives;
+    public int lives;
     public GameObject LivesCounter;
-    public int Ammo;
+    public int ammo;
     public GameObject AmmoCounter;
-    public int Coins;
+    public int coins;
     public GameObject CoinsCounter;
     [SerializeField] AudioClip reload1911;
     [SerializeField] AudioClip fire1911;
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip reloadAK;
     [SerializeField] AudioClip fireAK;
 
-    public IReadOnlyList<Gun> Guns;
+    public IReadOnlyList<Gun> guns;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -40,19 +40,17 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Guns = new[]{
+        guns = new[]{
             new Gun(GunType.C_1911, 7, 2.5f, reload1911, fire1911),
             new Gun(GunType.Revolver, 5, 4f, reloadRevolver, fireRevolver),
             new Gun(GunType.Glonk, 15, 3f, reloadGlonk, fireGlonk),
             new Gun(GunType.AK, 30, 3f, reloadAK, fireAK),
         };
 
-        gun = Guns[0];
+        gun = guns[0];
         reloadAmmo();
-        Coins = 0;
-        Lives = 1;
-
-
+        coins = 0;
+        lives = 1;
     }
 
     public void updateAllCounters()
@@ -74,14 +72,40 @@ public class GameManager : MonoBehaviour
         img.color = color;
         text.color = color;
     }
-
+    public int Ammo
+    {
+        get { return ammo; }
+        set
+        {
+            ammo = value;
+            updateAmmo();
+        }
+    }
+    public int Coins
+    {
+        get { return coins; }
+        set
+        {
+            coins = value;
+            updateCoins();
+        }
+    }
+    public int Lives
+    {
+        get { return lives; }
+        set
+        {
+            lives = value;
+            updateLives();
+        }
+    }
     public void reloadAmmo()
     {
-        Ammo = gun.BulletCount;
+        ammo = gun.BulletCount;
     }
     public void updateAmmo()
     {
-        updateCounter(AmmoCounter, Ammo);
+        updateCounter(AmmoCounter, ammo);
     }
     public void updateLives()
     {
