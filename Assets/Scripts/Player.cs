@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] Button ShootBtn;
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject BulletPos;
+    [SerializeField] GameObject GunObj;
 
 
 
@@ -35,16 +36,20 @@ public class Player : MonoBehaviour
     private void SetupBindings()
     {
         jumpAction = new InputAction("Press", InputActionType.Button);
-        // jumpAction.AddBinding("<Mouse>/leftButton");
         jumpAction.AddBinding("<Keyboard>/space");
         jumpAction.Enable();
         jumpAction.performed += InputDoJump;
 
     }
+
     void PlaySound(AudioClip clip)
     {
-        // audioSource.clip = clip;
         audioSource.PlayOneShot(clip);
+    }
+    void PlayAnimation()
+    {
+        var animator = GunObj.GetComponent<Animator>();
+        animator.Play("Gun1911Reload");
     }
     void InputDoJump(InputAction.CallbackContext context)
     {
@@ -80,6 +85,10 @@ public class Player : MonoBehaviour
 
         // wait for the shoot to finish
         yield return new WaitForSeconds(0.2f);
+        // start the animation
+        PlayAnimation();
+        // start the sound clip so it will end with the animation
+        // yield return new WaitForSeconds(2.5f - gun.reloadSound.length);
         PlaySound(gun.reloadSound);
 
         yield return new WaitForSeconds(gun.reloadTimeSeconds); // Wait for the specified time

@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
             reloadAmmo();
             updateAmmo();
         }
-        var color = start ? Color.black : Color.white;
+        var color = start ? Color.gray : Color.white;
         var img = AmmoCounter.GetComponentInChildren<Image>();
         var text = AmmoCounter.GetComponentInChildren<TextMeshProUGUI>();
         img.color = color;
