@@ -1,9 +1,16 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PauseGame : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuPanel;
+    [SerializeField] Button resumeBtn;
+    [SerializeField] Button mainMenuBtn;
+    [SerializeField] Button jumpBtn;
+    [SerializeField] Button shootBtn;
+
     public static bool isGamePaused = false;
     public static PauseGame Instance { get; private set; }
 
@@ -19,6 +26,15 @@ public class PauseGame : MonoBehaviour
     {
         Instance.pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
+        Instance.resumeBtn.onClick.AddListener(TogglePaused);
+        Instance.mainMenuBtn.onClick.AddListener(LoadMenu);
+        EnablePlayerButtons(true);
+    }
+
+    private void EnablePlayerButtons(bool isEnabled)
+    {
+        shootBtn.interactable = isEnabled;
+        jumpBtn.interactable = isEnabled;
     }
     public static void TogglePaused()
     {
@@ -29,6 +45,7 @@ public class PauseGame : MonoBehaviour
         Instance.pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
+        Instance.EnablePlayerButtons(true);
     }
 
 
@@ -37,6 +54,7 @@ public class PauseGame : MonoBehaviour
         Instance.pauseMenuPanel.SetActive(true);
         Time.timeScale = 0f;
         isGamePaused = true;
+        Instance.EnablePlayerButtons(false);
     }
 
     public void LoadMenu()

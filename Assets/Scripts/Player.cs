@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 public class Player : MonoBehaviour
@@ -42,11 +41,8 @@ public class Player : MonoBehaviour
         jumpAction.performed += InputDoJump;
 
     }
-    private void PauseButtonHandler()
+    void PauseButtonHandler()
     {
-        var isPaused = PauseGame.isGamePaused;
-        ShootBtn.interactable = isPaused;
-        JumpBtn.interactable = isPaused;
         PauseGame.TogglePaused();
     }
 
@@ -104,11 +100,6 @@ public class Player : MonoBehaviour
         Debug.Log("Function executed after " + gun.reloadTimeSeconds + " seconds!");
     }
 
-
-    void Update()
-    {
-
-    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
