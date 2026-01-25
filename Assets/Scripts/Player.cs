@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip hurt;
     [SerializeField] Button JumpBtn;
     [SerializeField] Button ShootBtn;
+    [SerializeField] Button PauseBtn;
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject BulletPos;
     [SerializeField] GameObject GunObj;
@@ -29,8 +30,8 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         JumpBtn.onClick.AddListener(Jump);
         ShootBtn.onClick.AddListener(Shoot);
+        PauseBtn.onClick.AddListener(PauseButtonHandler);
         GameManager.Instance.updateAllCounters();
-
     }
 
     private void SetupBindings()
@@ -40,6 +41,13 @@ public class Player : MonoBehaviour
         jumpAction.Enable();
         jumpAction.performed += InputDoJump;
 
+    }
+    private void PauseButtonHandler()
+    {
+        var isPaused = PauseGame.isGamePaused;
+        ShootBtn.interactable = isPaused;
+        JumpBtn.interactable = isPaused;
+        PauseGame.TogglePaused();
     }
 
     void PlaySound(AudioClip clip)
