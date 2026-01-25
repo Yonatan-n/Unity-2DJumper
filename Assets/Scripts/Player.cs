@@ -84,14 +84,12 @@ public class Player : MonoBehaviour
         // after waitinf for sound and wepon catch, unblock ui, change counter
 
         // wait for the shoot to finish
-        yield return new WaitForSeconds(0.2f);
+        var waitForShotToFade = 0.8f;
+        yield return new WaitForSeconds(waitForShotToFade);
         // start the animation
         PlayAnimation();
-        // start the sound clip so it will end with the animation
-        // yield return new WaitForSeconds(2.5f - gun.reloadSound.length);
-        PlaySound(gun.reloadSound);
 
-        yield return new WaitForSeconds(gun.reloadTimeSeconds); // Wait for the specified time
+        yield return new WaitForSeconds(gun.reloadTimeSeconds - waitForShotToFade);
         GameManager.Instance.GreyOutInAmmo(false);
         ShootBtn.interactable = true;
         // Code to execute after the delay

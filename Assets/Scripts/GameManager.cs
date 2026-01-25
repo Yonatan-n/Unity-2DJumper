@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         guns = new[]{
-            new Gun(GunType.C_1911, 7, 2.5f, reload1911, fire1911),
+            new Gun(GunType.C_1911, 7, 2.3f, reload1911, fire1911),
             new Gun(GunType.Revolver, 5, 4f, reloadRevolver, fireRevolver),
             new Gun(GunType.Glonk, 15, 3f, reloadGlonk, fireGlonk),
             new Gun(GunType.AK, 30, 3f, reloadAK, fireAK),
