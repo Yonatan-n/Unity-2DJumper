@@ -6704,6 +6704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363250073446ac243b86be13fe82b59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseGame
+  pauseMenuPanel: {fileID: 826567086}
 --- !u!1 &1342588638
 GameObject:
   m_ObjectHideFlags: 0
@@ -7939,7 +7940,7 @@ MonoBehaviour:
   hurt: {fileID: 8300000, guid: c7fbd4ad2d1199643a4ade8e4f57ff79, type: 3}
   JumpBtn: {fileID: 41246030}
   ShootBtn: {fileID: 983832443}
-  PauseBtn: {fileID: 0}
+  PauseBtn: {fileID: 2002132782}
   Bullet: {fileID: 5586060811188544566, guid: 988da0ffc81481c4898ca87d978fde85, type: 3}
   BulletPos: {fileID: 1762848212}
   GunObj: {fileID: 1444866469}
@@ -8402,7 +8403,6 @@ GameObject:
   - component: {fileID: 2002132784}
   - component: {fileID: 2002132783}
   - component: {fileID: 2002132782}
-  - component: {fileID: 2002132785}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -8512,18 +8512,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002132780}
   m_CullTransparentMesh: 1
---- !u!114 &2002132785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002132780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 363250073446ac243b86be13fe82b59c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &2016346716
 GameObject:
   m_ObjectHideFlags: 0

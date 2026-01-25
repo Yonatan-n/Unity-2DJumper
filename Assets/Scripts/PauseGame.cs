@@ -3,12 +3,21 @@ using UnityEngine;
 
 public class PauseGame : MonoBehaviour
 {
-    public static GameObject pauseMenuPanel;
+    [SerializeField] GameObject pauseMenuPanel;
     public static bool isGamePaused = false;
+    public static PauseGame Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+            Destroy(this.gameObject);
+        else
+            Instance = this;
+    }
 
     void Start()
     {
-        pauseMenuPanel.SetActive(false);
+        Instance.pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
     }
     public static void TogglePaused()
@@ -17,7 +26,7 @@ public class PauseGame : MonoBehaviour
     }
     public static void Resume()
     {
-        pauseMenuPanel.SetActive(false);
+        Instance.pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
     }
@@ -25,18 +34,18 @@ public class PauseGame : MonoBehaviour
 
     public static void Pause()
     {
-        pauseMenuPanel.SetActive(true);
+        Instance.pauseMenuPanel.SetActive(true);
         Time.timeScale = 0f;
         isGamePaused = true;
     }
 
-    void LoadMenu()
+    public void LoadMenu()
     {
         Time.timeScale = 1f;
         SceneLoader.LoadSceneByName("MainMenu");
     }
 
-    void QuitGame()
+    public void QuitGame()
     {
         Debug.Log("quit game");
         Application.Quit();
