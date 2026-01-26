@@ -105,6 +105,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            // do falling glass or metal pipe thing lol
+            // maybe 3 options, metal, wood, glass for cars trees and barrels
             PlaySound(hurt);
             Destroy(collision.gameObject);
         }
