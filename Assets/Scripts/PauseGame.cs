@@ -11,7 +11,7 @@ public class PauseGame : MonoBehaviour
     [SerializeField] Button jumpBtn;
     [SerializeField] Button shootBtn;
 
-    public static bool isGamePaused = false;
+    public bool isGamePaused = false;
     public static PauseGame Instance { get; private set; }
 
     private void Awake()
@@ -36,11 +36,11 @@ public class PauseGame : MonoBehaviour
         shootBtn.interactable = isEnabled;
         jumpBtn.interactable = isEnabled;
     }
-    public static void TogglePaused()
+    public void TogglePaused()
     {
         (isGamePaused ? (Action)Resume : Pause)();
     }
-    public static void Resume()
+    public void Resume()
     {
         Instance.pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
@@ -49,7 +49,7 @@ public class PauseGame : MonoBehaviour
     }
 
 
-    public static void Pause()
+    public void Pause()
     {
         Instance.pauseMenuPanel.SetActive(true);
         Time.timeScale = 0f;

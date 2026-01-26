@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     }
     void PauseButtonHandler()
     {
-        PauseGame.TogglePaused();
+        PauseGame.Instance.TogglePaused();
     }
 
     void PlaySound(AudioClip clip)
