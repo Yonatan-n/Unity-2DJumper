@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
     }
     void GameOver()
     {
-        AudioManager.Instance.GameOverSound();
+        AudioManager.Instance.PlayGameOverSound();
         PauseGame.Instance.Pause(PausePanel.showGameOverPanel); // stop buttons, movments for now
         // show gameover ui
     }

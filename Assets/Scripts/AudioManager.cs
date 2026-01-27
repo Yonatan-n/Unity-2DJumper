@@ -4,7 +4,7 @@ public class AudioManager : MonoBehaviour
 {
     // This value will control the master volume for the entire game (range 0 to 1)
     public float masterVolume = 0.1f;//1.0f;
-    public AudioSource audioSource;
+    AudioSource audioSource;
     [SerializeField] AudioClip enemyIsHit;
     [SerializeField] AudioClip gameOver;
     public static AudioManager Instance { get; private set; }
@@ -18,21 +18,23 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
+        Instance.audioSource = GetComponent<AudioSource>();
+        Instance.audioSource.ignoreListenerPause = true;
         SetMasterVolume(masterVolume);
     }
     public void EnemyIsHit()
     {
-        audioSource.PlayOneShot(enemyIsHit);
+        Instance.audioSource.PlayOneShot(enemyIsHit);
     }
 
-    public void GameOverSound()
+    public void PlayGameOverSound()
     {
-        audioSource.PlayOneShot(gameOver);
+        Instance.audioSource.PlayOneShot(gameOver);
     }
 
     public void SetMasterVolume(float volume)
     {
-        masterVolume = volume;
+        Instance.masterVolume = volume;
         AudioListener.volume = masterVolume;
     }
 
