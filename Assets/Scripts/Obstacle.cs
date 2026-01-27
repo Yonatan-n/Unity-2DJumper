@@ -7,7 +7,24 @@ public class Obstacle : MonoBehaviour
     {
 
     }
-
+    void OnDestroy()
+    {
+        CoinsEarned source;
+        if (gameObject.CompareTag("Enemy"))
+        {
+            source = CoinsEarned.Enemy;
+        }
+        else if (gameObject.CompareTag("FlyingEnemy"))
+        {
+            source = CoinsEarned.FlyingEnemy;
+        }
+        else
+        {
+            source = CoinsEarned.Obstacle;
+        }
+        Debug.Log("Obstacle destroyed " + source);
+        GameManager.Instance.earnedCoins(source);
+    }
     void Update()
     {
         var moveSpeed = GroundMover.speed;

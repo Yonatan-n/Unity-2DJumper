@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] AudioClip enemyIsHit;
     [SerializeField] AudioClip gameOver;
+    [SerializeField] AudioClip coins;
     public static AudioManager Instance { get; private set; }
     private void Awake()
     {
@@ -30,6 +31,11 @@ public class AudioManager : MonoBehaviour
     public void PlayGameOverSound()
     {
         Instance.audioSource.PlayOneShot(gameOver);
+    }
+
+    public void CoinPickUp()
+    {
+        Instance.audioSource.PlayOneShot(coins);
     }
 
     public void SetMasterVolume(float volume)

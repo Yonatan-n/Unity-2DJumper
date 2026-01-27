@@ -122,6 +122,12 @@ public class GameManager : MonoBehaviour
         PauseGame.Instance.Pause(PausePanel.showGameOverPanel); // stop buttons, movments for now
         // show gameover ui
     }
+    public void earnedCoins(CoinsEarned earned)
+    {
+        AudioManager.Instance.CoinPickUp();
+        Coins += (int)earned;
+        updateCoins();
+    }
     public void updateCoins()
     {
         updateCounter(CoinsCounter, Coins);
