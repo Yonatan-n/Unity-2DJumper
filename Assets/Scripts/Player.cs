@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] float maxJumpSpeed = 20f;
     [SerializeField] AudioClip jump;
     [SerializeField] AudioClip hurt;
+    [SerializeField] AudioClip coinSound;
     [SerializeField] Button JumpBtn;
     [SerializeField] Button ShootBtn;
     [SerializeField] Button PauseBtn;
@@ -109,12 +110,19 @@ public class Player : MonoBehaviour
             // maybe 3 options, metal, wood, glass for cars trees and barrels
             PlaySound(hurt);
             Destroy(collision.gameObject);
+            GameManager.Instance.Lives--;
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
             // change later
             PlaySound(hurt);
             Destroy(collision.gameObject);
+            GameManager.Instance.Lives--;
         }
+    }
+    public void GetCoins(CoinsEarned type)
+    {
+        GameManager.Instance.coins += (int)type;
+        PlaySound(coinSound);
     }
 }

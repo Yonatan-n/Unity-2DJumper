@@ -45,6 +45,44 @@ public class Spawner : MonoBehaviour
         spawnRandomObstacle();
         // TODO:
         // HUD for lives, mag, coins, distance, best distance
+        // make game over screen / panel
+        // add distance (time * speed maybe)
+        // kil enemy add coins (50)
+        // passed obstecle add coins (10?)
+        // extra live cost 200, 400, 800...
+        // +1 mag cost 150, 300, 600, 1200
+        // double jump cost: 800, 1600, 3200
+        // key: 1000, 2 keys 1800
+        // 1911 costs 1 key (1 by default)
+        // glock costs 2-3 keys
+        // revolver costs 1 key (not sure what is speical about it, maybe double money)
+        // AK consts 4 keys
+        // sunglasses costs 1 key maybe 2 keys for some options
+        // hat costs 1 key maybe 2 keys for some options
+        // after live, coins, add progression to stage color + timer,
+        // then add the store in between stage transitions
+        // STORE item maybe:
+        // every 3 stages it is repeated
+        // 1st store: live, +1 mag, random skin, jump/smash/jetpack/ double coins/
+        // 2nd store: key, +2 mag, double jump
+        // 3rd store: buy 2keys, trade keys for coins (for end game), live, gun unlock
+        //  after that, flying enemies that need to be jump-shooted, they could shoot at the player with some timer and aim indication
+
+        // option page:
+        // volume control
+
+        // gear page:
+        // keys counter
+        // hat hat hat hat
+        // glasses glasses glasses glasses
+        // gun gun gun gun
+        // <button>back to main menu</button>
+
+        // main menu 
+        // new background
+        // rabbit sprite, maybe with a gun
+        // funny random sentences generator (maybe just 10 to start), with speech bubble
+        //
 
         // Then,
         // add magazine size + reload + disable button until it finishes,

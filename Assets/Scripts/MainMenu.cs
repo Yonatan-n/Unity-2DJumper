@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Button play;
     [SerializeField] Button options;
     [SerializeField] Button gear;
+    [SerializeField] Button credits;
     [SerializeField] Button quit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,8 +14,13 @@ public class MainMenu : MonoBehaviour
         play.onClick.AddListener(GoToPlay);
         options.onClick.AddListener(GoToOptions);
         gear.onClick.AddListener(GoToGear);
-        quit.onClick.AddListener(Quit);
+        credits.onClick.AddListener(GoToCredits); // maybe not needed
+        quit.onClick.AddListener(Quit);//
+    }
 
+    void GoToCredits()
+    {
+        SceneLoader.LoadSceneByName("CreditsPage");
     }
 
     void Quit()

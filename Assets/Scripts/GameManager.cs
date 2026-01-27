@@ -49,8 +49,9 @@ public class GameManager : MonoBehaviour
 
         gun = guns[0];
         reloadAmmo();
-        coins = 0;
+        coins = (int)CoinsEarned.Obstacle;
         lives = 1;
+        updateAllCounters();
     }
 
     public void updateAllCounters()
@@ -110,6 +111,16 @@ public class GameManager : MonoBehaviour
     public void updateLives()
     {
         updateCounter(LivesCounter, Lives);
+        if (Lives <= 0)
+        {
+            GameOver();
+        }
+    }
+    void GameOver()
+    {
+        AudioManager.Instance.GameOverSound();
+        PauseGame.Instance.Pause(PausePanel.showGameOverPanel); // stop buttons, movments for now
+        // show gameover ui
     }
     public void updateCoins()
     {
@@ -125,6 +136,13 @@ public class GameManager : MonoBehaviour
     {
 
     }
+}
+
+public enum CoinsEarned
+{
+    Obstacle = 10,
+    Enemy = 50,
+    FlyingEnemy = 100,
 }
 
 public enum GunType

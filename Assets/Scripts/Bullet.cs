@@ -37,6 +37,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             // blood particles
+            AudioManager.Instance.EnemyIsHit();
             Destroy(other.gameObject);
         }
         // yellow partials
