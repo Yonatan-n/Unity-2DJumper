@@ -11,15 +11,15 @@ public class SceneLoader : Singleton<SceneLoader>
     }
     static public void LoadSceneByName(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
-        // Instance.StartCoroutine(Instance.FadeOut(sceneName));
+        // SceneManager.LoadScene(sceneName);
+        Instance.StartCoroutine(Instance.FadeOut(sceneName));
     }
 
     IEnumerator FadeOut(string sceneName)
     {
         Instance.animator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(1.5f);
-        // SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName);
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         while (!operation.isDone)
         {
