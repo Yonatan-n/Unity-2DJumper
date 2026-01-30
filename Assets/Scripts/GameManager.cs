@@ -149,6 +149,7 @@ public enum CoinsEarned
     Obstacle = 10,
     Enemy = 50,
     FlyingEnemy = 100,
+    JumpOver = 10,
 }
 
 public enum GunType

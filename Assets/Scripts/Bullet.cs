@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
         {
             // blood particles
             AudioManager.Instance.EnemyIsHit();
-            Destroy(other.gameObject);
+            Spawner.Instance.ShootObstacleRemove(other.gameObject);
         }
         // yellow partials
         Destroy(gameObject);

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Spawner : Singleton<Spawner>
 {
     [SerializeField] GameObject barrelPrefab;
     [SerializeField] GameObject treePrefab;
@@ -171,7 +171,14 @@ public class Spawner : MonoBehaviour
         obstacles.Add(obs);
         setNextSpawnRate();
     }
-    // Update is called once per frame
+
+    public void ShootObstacleRemove(GameObject obstacle)
+    {
+        var obs = obstacle.GetComponent<Obstacle>();
+        obstacles.Remove(obstacle);
+        obs.Destroyed(true);
+    }
+
     void Update()
     {
         totalTimer += Time.deltaTime; // resets after game over
@@ -195,7 +202,8 @@ public class Spawner : MonoBehaviour
             // if player collieded, no need to destroy, just remove from the list
             if (obstacles[0])
             {
-                Destroy(obstacles[0]);
+                var obs = obstacles[0].GetComponent<Obstacle>();
+                obs.Destroyed(false);
             }
             obstacles.RemoveAt(0);
         }

@@ -7578,7 +7578,7 @@ MonoBehaviour:
   - {fileID: 8111632324343503752, guid: 53f3548761be8d040b227f4c26e688b5, type: 3}
   spawnRateMin: 2
   spawnRateMax: 6
-  deadZone: -45
+  deadZone: -32
 --- !u!4 &1418599275
 Transform:
   m_ObjectHideFlags: 0
@@ -8600,6 +8600,7 @@ MonoBehaviour:
   masterVolume: 0.1
   enemyIsHit: {fileID: 8300000, guid: f723a09c84eeca948ab4740cf32442d5, type: 3}
   gameOver: {fileID: 8300000, guid: d1cf8dbe3a4d40f48829ffedc7012ec9, type: 3}
+  coins: {fileID: 8300000, guid: b0c1c5fe7ca72844cad02335a57f8a05, type: 3}
 --- !u!4 &2016346718
 Transform:
   m_ObjectHideFlags: 0

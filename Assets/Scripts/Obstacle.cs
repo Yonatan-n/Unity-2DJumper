@@ -7,7 +7,7 @@ public class Obstacle : MonoBehaviour
     {
 
     }
-    void OnDestroy()
+    public void Destroyed(bool isShoot)
     {
         CoinsEarned source;
         if (gameObject.CompareTag("Enemy"))
@@ -22,7 +22,12 @@ public class Obstacle : MonoBehaviour
         {
             source = CoinsEarned.Obstacle;
         }
+        if (!isShoot)
+        {
+            source = CoinsEarned.JumpOver;
+        }
         Debug.Log("Obstacle destroyed " + source);
+        Destroy(gameObject);
         GameManager.Instance.earnedCoins(source);
     }
     void Update()

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class PauseGame : MonoBehaviour
+public class PauseGame : Singleton<PauseGame>
 {
     [SerializeField] GameObject pauseMenuPanel;
     [SerializeField] GameObject shopPanel;
@@ -22,15 +22,6 @@ public class PauseGame : MonoBehaviour
 
 
     public bool isGamePaused = false;
-    public static PauseGame Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-            Destroy(this.gameObject);
-        else
-            Instance = this;
-    }
 
     void Start()
     {
@@ -69,7 +60,7 @@ public class PauseGame : MonoBehaviour
     public void Resume(PausePanel panel)
     {
         Time.timeScale = 1f;
-        isGamePaused = false;
+        Instance.isGamePaused = false;
         Instance.EnablePlayerButtons(true);
         if (panel == PausePanel.showPausePanel)
         {
@@ -89,7 +80,7 @@ public class PauseGame : MonoBehaviour
     public void Pause(PausePanel panel)
     {
         Time.timeScale = 0f;
-        isGamePaused = true;
+        Instance.isGamePaused = true;
         Instance.EnablePlayerButtons(false);
         if (panel == PausePanel.showPausePanel)
         {
