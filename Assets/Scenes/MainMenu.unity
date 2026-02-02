@@ -1246,6 +1246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3899f50d6b3bad449077230c1eba2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
+  FadeOutClip: {fileID: 7400000, guid: 50b61f8fb6ece9c48a7a9124616f1da9, type: 2}
+  FadeInClip: {fileID: 7400000, guid: a4ca71bd8fa989f489abf9fda7b737c9, type: 2}
 --- !u!1 &1981980824
 GameObject:
   m_ObjectHideFlags: 0

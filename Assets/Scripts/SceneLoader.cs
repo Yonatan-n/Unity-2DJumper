@@ -5,6 +5,9 @@ using System.Collections;
 public class SceneLoader : Singleton<SceneLoader>
 {
     private Animator animator;
+    [SerializeField] AnimationClip FadeOutClip;
+    [SerializeField] AnimationClip FadeInClip;
+
     void Start()
     {
         Instance.animator = GetComponent<Animator>();
@@ -18,17 +21,20 @@ public class SceneLoader : Singleton<SceneLoader>
     IEnumerator FadeOut(string sceneName)
     {
         Instance.animator.SetTrigger("FadeOut");
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(sceneName);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-        while (!operation.isDone)
+        yield return new WaitForSeconds(FadeOutClip.length + 0.5f);
+        // SceneManager.LoadScene(sceneName);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        operation.allowSceneActivation = false;
+        while (operation.progress < 0.9f)
         {
             // You can update a loading bar here using operation.progress (0 to 0.9)
-            Debug.Log("Loading progress: " + Mathf.Clamp01(operation.progress / 0.9f));
+            Debug.Log("Loading progress: " + operation.progress);
             yield return null; // Wait for the next frame
         }
+        operation.allowSceneActivation = true;
+        yield return null;
         // scene loaded
-        yield return new WaitForSeconds(0.5f);
+        // yield return new WaitForSeconds(0.2f);
         Instance.animator.SetTrigger("FadeIn");
     }
 
