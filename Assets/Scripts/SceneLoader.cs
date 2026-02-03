@@ -10,17 +10,16 @@ public class SceneLoader : Singleton<SceneLoader>
 
     void Start()
     {
-        Instance.animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
-    static public void LoadSceneByName(string sceneName)
+    public void LoadSceneByName(string sceneName)
     {
-        // SceneManager.LoadScene(sceneName);
-        Instance.StartCoroutine(Instance.FadeOut(sceneName));
+        StartCoroutine(FadeOut(sceneName));
     }
 
     IEnumerator FadeOut(string sceneName)
     {
-        Instance.animator.SetTrigger("FadeOut");
+        animator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(FadeOutClip.length + 0.5f);
         // SceneManager.LoadScene(sceneName);
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
@@ -35,7 +34,7 @@ public class SceneLoader : Singleton<SceneLoader>
         yield return null;
         // scene loaded
         // yield return new WaitForSeconds(0.2f);
-        Instance.animator.SetTrigger("FadeIn");
+        animator.SetTrigger("FadeIn");
     }
 
     static public void LoadSceneByIndex(int buildIndex)

@@ -1082,7 +1082,11 @@ MonoBehaviour:
   fireGlonk: {fileID: 8300000, guid: 76eca5cc5b0ec5d49892c3d3bca321c8, type: 3}
   reloadAK: {fileID: 8300000, guid: 0423afab29b7ce44d948966ad0281c9f, type: 3}
   fireAK: {fileID: 8300000, guid: f214026e759549647a4900788252352d, type: 3}
+  ObstaclesSpawner: {fileID: 1418599273}
+  player: {fileID: 924172413}
+  levelEnd: 0
   Meters: {fileID: 1391606488}
+  level: 0
 --- !u!4 &512572711
 Transform:
   m_ObjectHideFlags: 0
@@ -6758,6 +6762,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &924172413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8175422900205222677, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+  m_PrefabInstance: {fileID: 8058393515401712819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &927198821
 GameObject:
   m_ObjectHideFlags: 0

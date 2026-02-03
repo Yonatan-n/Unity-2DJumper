@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     void GoToCredits()
     {
-        SceneLoader.LoadSceneByName("CreditsPage");
+        SceneLoader.Instance.LoadSceneByName("CreditsPage");
     }
 
     void Quit()
@@ -30,17 +30,17 @@ public class MainMenu : MonoBehaviour
 
     void GoToOptions()
     {
-        SceneLoader.LoadSceneByName("OptionsPage");
+        SceneLoader.Instance.LoadSceneByName("OptionsPage");
     }
 
     void GoToPlay()
     {
-        SceneLoader.LoadSceneByName("Runner");
+        SceneLoader.Instance.LoadSceneByName("Runner");
     }
 
     void GoToGear()
     {
-        SceneLoader.LoadSceneByName("GearPage");
+        SceneLoader.Instance.LoadSceneByName("GearPage");
     }
 
     // Update is called once per frame

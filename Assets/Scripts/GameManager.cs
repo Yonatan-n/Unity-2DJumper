@@ -175,6 +175,16 @@ public class GameManager : Singleton<GameManager>
         spawner.DestroyAllObstacles();
         yield return playerScript.ExitRight();
         Debug.Log("player right of scene");
+        SceneLoader.Instance.LoadSceneByName("Shop");
+        // TODO:
+        // fade to black after player exited
+        // new shop scene, keep gamemamenber and audio mangaer
+        // use coins, buy keys, more lives, double jump
+        // fade to black, move to level 2
+        // level 2 is mostly level 1 with minor tweaks:
+        // * darker background for night
+        // * 2K instead of 1K duration
+        // * 40% enemies, instead of 20%
         yield return null;
     }
 }
