@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
 
 
-    void Start()
+    IEnumerator Start()
     {
         SetupBindings();
         rb = GetComponent<Rigidbody2D>();
@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
         JumpBtn.onClick.AddListener(Jump);
         ShootBtn.onClick.AddListener(Shoot);
         PauseBtn.onClick.AddListener(PauseButtonHandler);
+        // AudioManager need to be loaded before GameManager
+        yield return new WaitUntil(() => AudioManager.Instance.IsInitialized);
         GameManager.Instance.updateAllCounters();
     }
 
@@ -124,5 +126,24 @@ public class Player : MonoBehaviour
     {
         GameManager.Instance.coins += (int)type;
         PlaySound(coinSound);
+    }
+
+    public void NextLevel()
+    {
+
+        StartCoroutine(ExitRight());
+    }
+
+    IEnumerator ExitRight()
+    {
+        Camera cam = Camera.main;
+        var speed = 20f;
+        float rightEdge = cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 5f;
+
+        while (transform.position.x < rightEdge)
+        {
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            yield return null;
+        }
     }
 }

@@ -101,8 +101,8 @@ public class PauseGame : Singleton<PauseGame>
 
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
         SceneLoader.LoadSceneByName("MainMenu");
+        Time.timeScale = 1f;
     }
 
     public void QuitGame()

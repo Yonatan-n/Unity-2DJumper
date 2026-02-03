@@ -1,12 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public Gun gun;
-    public int lives;
+    public int lives = 1;
     public GameObject LivesCounter;
     public int ammo;
     public GameObject AmmoCounter;
@@ -22,24 +23,26 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] AudioClip reloadAK;
     [SerializeField] AudioClip fireAK;
-
-    public IReadOnlyList<Gun> guns;
-    public static GameManager Instance { get; private set; }
-
-    private void Awake()
+    [SerializeField] GameObject ObstaclesSpawner;
+    [SerializeField] GameObject player;
+    public bool levelEnd;
+    private float timer;
+    public float Timer
     {
-        if (Instance != null && Instance != this)
+        get { return timer; }
+        set
         {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
+            timer = value;
+            updateMeters();
         }
     }
+    public GameObject Meters;
 
+    public IReadOnlyList<Gun> guns;
+    public int level;
     void Start()
     {
+        level = 1;
         guns = new[]{
             new Gun(GunType.C_1911, 7, 2.3f, reload1911, fire1911),
             new Gun(GunType.Revolver, 5, 4f, reloadRevolver, fireRevolver),
@@ -52,6 +55,22 @@ public class GameManager : MonoBehaviour
         coins = (int)CoinsEarned.Obstacle;
         lives = 1;
         updateAllCounters();
+    }
+
+    public void updateMeters()
+    {
+        if (levelEnd) return;
+        var text = Meters.GetComponentInChildren<TextMeshProUGUI>();
+        text.text = timerToMeters().ToString() + "M";
+    }
+
+    private int timerToMeters()
+    {
+        // change 8 to have nicer scaling for levels
+        // level 1: 0-1,000
+        // level 2 1,000-3,000
+        // level3: 3000-6000
+        return (int)(timer * 8f);
     }
 
     public void updateAllCounters()
@@ -140,7 +159,23 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        timer += Time.deltaTime;
+        updateMeters();
+        if (timerToMeters() >= 50 * level && !levelEnd)
+        {
+            StartCoroutine(NextLevel());
+        }
+    }
 
+    private IEnumerator NextLevel()
+    {
+        levelEnd = true;
+        var spawner = ObstaclesSpawner.GetComponent<Spawner>();
+        var playerScript = player.GetComponent<Player>();
+        spawner.DestroyAllObstacles();
+        playerScript.NextLevel();
+        // ObstaclesSpawner.SetActive(false);
+        yield return null;
     }
 }
 

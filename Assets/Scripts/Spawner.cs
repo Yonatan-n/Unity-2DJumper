@@ -183,7 +183,7 @@ public class Spawner : Singleton<Spawner>
     {
         totalTimer += Time.deltaTime; // resets after game over
         spawnTimer += Time.deltaTime; // resets after each obstacle spawn 
-        if (spawnTimer > spawnRate)
+        if (spawnTimer > spawnRate && !GameManager.Instance.levelEnd)
         {
             spawnRandomObstacle();
             spawnTimer = 0;
@@ -207,5 +207,12 @@ public class Spawner : Singleton<Spawner>
             }
             obstacles.RemoveAt(0);
         }
+    }
+    public void DestroyAllObstacles()
+    {
+        foreach (var obs in obstacles)
+            Destroy(obs);
+        obstacles.Clear();
+
     }
 }
