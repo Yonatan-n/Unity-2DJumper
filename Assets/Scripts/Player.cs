@@ -128,13 +128,8 @@ public class Player : MonoBehaviour
         PlaySound(coinSound);
     }
 
-    public void NextLevel()
-    {
 
-        StartCoroutine(ExitRight());
-    }
-
-    IEnumerator ExitRight()
+    public IEnumerator ExitRight()
     {
         Camera cam = Camera.main;
         var speed = 20f;

@@ -173,8 +173,8 @@ public class GameManager : Singleton<GameManager>
         var spawner = ObstaclesSpawner.GetComponent<Spawner>();
         var playerScript = player.GetComponent<Player>();
         spawner.DestroyAllObstacles();
-        playerScript.NextLevel();
-        // ObstaclesSpawner.SetActive(false);
+        yield return playerScript.ExitRight();
+        Debug.Log("player right of scene");
         yield return null;
     }
 }
