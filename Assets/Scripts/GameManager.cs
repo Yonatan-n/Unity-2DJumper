@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class GameManager : Singleton<GameManager>
+using UnityEngine.SceneManagement;
+public class GameManager : ParentAwareSingleton<GameManager>
 {
     public Gun gun;
     public int lives = 1;
@@ -47,6 +47,15 @@ public class GameManager : Singleton<GameManager>
     public readonly int TOTAL_LEVELS = 3;
 
     void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        InitGame();
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InitGame();
+    }
+    private void InitGame()
     {
         level = 0;
         guns = new[]{
@@ -145,6 +154,7 @@ public class GameManager : Singleton<GameManager>
     }
     void GameOver()
     {
+        levelEnd = true;
         AudioManager.Instance.PlayGameOverSound();
         PauseGame.Instance.Pause(PausePanel.showGameOverPanel); // stop buttons, movments for now
         // show gameover ui
@@ -169,7 +179,9 @@ public class GameManager : Singleton<GameManager>
     {
         timer += Time.deltaTime;
         updateMeters();
-        if (timerToMeters() >= 1000 + (1000 * level) && !levelEnd)
+
+        // if (timerToMeters() >= 1000 + (1000 * level) && !levelEnd)
+        if (timerToMeters() >= 30 && !levelEnd)
         {
             StartCoroutine(FinishCurrentLevel());
         }
@@ -183,12 +195,16 @@ public class GameManager : Singleton<GameManager>
         spawner.DestroyAllObstacles();
         yield return playerScript.ExitRight();
         Debug.Log("player right of scene");
-        SceneLoader.Instance.LoadSceneByName("Shop");
+        playerScript.HideButtons(true);
+        SceneLoader.Instance.JustFadeOut();
         // TODO:
         // fade to black after player exited
-        // new shop scene, keep gamemamenber and audio mangaer
-        // use coins, buy keys, more lives, double jump
-        // fade to black, move to level 2
+        // show a shop model, buy +1 live, +1jump that's it for now
+        // after shop over, fade back to new scene (new background), then animate player 
+        // to enter from the LEFT
+        // then start spawner
+        // also, on load, add more enemies, longer distance, etc
+
         // level 2 is mostly level 1 with minor tweaks:
         // * darker background for night
         // * 2K instead of 1K duration

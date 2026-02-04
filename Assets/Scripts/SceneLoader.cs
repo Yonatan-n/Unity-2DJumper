@@ -37,6 +37,20 @@ public class SceneLoader : Singleton<SceneLoader>
         animator.SetTrigger("FadeIn");
     }
 
+    public void JustFadeOut()
+    {
+        StartCoroutine(LocalFadeOut());
+        IEnumerator LocalFadeOut()
+        {
+            animator.SetTrigger("FadeOut");
+            yield return new WaitForSeconds(FadeOutClip.length + 0.2f);
+            yield return null;
+        }
+        // TODO: make a justFadeIni
+        // animator.SetTrigger("FadeIn");
+
+    }
+
     static public void LoadSceneByIndex(int buildIndex)
     {
         SceneManager.LoadScene(buildIndex);

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class PauseGame : Singleton<PauseGame>
+public class PauseGame : ParentAwareSingleton<PauseGame>
 {
     [SerializeField] GameObject pauseMenuPanel;
     [SerializeField] GameObject shopPanel;

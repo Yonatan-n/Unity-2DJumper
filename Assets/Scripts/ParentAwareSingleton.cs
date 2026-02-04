@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class ParentAwareSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     public static T Instance { get; private set; }
 
@@ -13,8 +13,6 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
 
         Instance = this as T;
-        transform.SetParent(null, true);
-        DontDestroyOnLoad(gameObject); // keep between scenes
     }
 
     // Called by editor only
@@ -22,9 +20,4 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         Instance = null;
     }
-}
-
-public interface ISingleton
-{
-    void EditorReset();
 }
