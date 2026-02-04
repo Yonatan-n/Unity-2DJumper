@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.updateAllCounters();
         resetJumps();
     }
-    public void HideButtons(bool value)
+    public void SetButtons(bool value)
     {
         JumpBtn.gameObject.SetActive(value);
         ShootBtn.gameObject.SetActive(value);

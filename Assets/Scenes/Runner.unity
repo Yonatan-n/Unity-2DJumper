@@ -1090,6 +1090,7 @@ MonoBehaviour:
   - {fileID: 177733068495963623, guid: 451b75bf6b825144dba138564d5b153d, type: 3}
   - {fileID: 177733068495963623, guid: 088ef93fc154434418d8ad742ecef574, type: 3}
   - {fileID: 177733068495963623, guid: c506897f21a3edf4883140db5cdc3ec5, type: 3}
+  SceneTransition: {fileID: 5619236229530213591, guid: 719e034db47f4d149afa6f42ddb08116, type: 3}
   levelEnd: 0
   Meters: {fileID: 1391606488}
   level: 0

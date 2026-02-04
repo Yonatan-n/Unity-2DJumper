@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Spawner : Singleton<Spawner>
+public class Spawner : ParentAwareSingleton<Spawner>
 {
     [SerializeField] GameObject barrelPrefab;
     [SerializeField] GameObject treePrefab;

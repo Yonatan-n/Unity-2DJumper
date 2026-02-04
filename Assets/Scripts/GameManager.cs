@@ -28,6 +28,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     [SerializeField] GameObject player;
     [SerializeField] GameObject CurrentBackground;
     [SerializeField] GameObject[] BackgroundPrefabs;
+    [SerializeField] GameObject SceneTransition;
 
     public bool levelEnd;
     private float timer;
@@ -48,7 +49,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
 
     void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        // SceneManager.sceneLoaded += OnSceneLoaded;
         InitGame();
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -57,6 +58,12 @@ public class GameManager : ParentAwareSingleton<GameManager>
     }
     private void InitGame()
     {
+        var sceneTransition = GameObject.Find("SceneTransition");
+        if (sceneTransition == null) // testing only?
+        {
+            Instantiate(SceneTransition, Vector3.zero, Quaternion.identity);
+        }
+
         level = 0;
         guns = new[]{
             new Gun(GunType.C_1911, 7, 2.3f, reload1911, fire1911),
@@ -191,12 +198,15 @@ public class GameManager : ParentAwareSingleton<GameManager>
     {
         levelEnd = true;
         var spawner = ObstaclesSpawner.GetComponent<Spawner>();
-        var playerScript = player.GetComponent<Player>();
         spawner.DestroyAllObstacles();
+        var playerScript = player.GetComponent<Player>();
+        playerScript.SetButtons(false);
         yield return playerScript.ExitRight();
         Debug.Log("player right of scene");
-        playerScript.HideButtons(true);
-        SceneLoader.Instance.JustFadeOut();
+        // yield return SceneLoader.Instance.FadeOutEnum();
+        PauseGame.Instance.Pause(PausePanel.showShopPanel); // will trigger the next level loading
+        yield return null;
+
         // TODO:
         // fade to black after player exited
         // show a shop model, buy +1 live, +1jump that's it for now
@@ -209,7 +219,6 @@ public class GameManager : ParentAwareSingleton<GameManager>
         // * darker background for night
         // * 2K instead of 1K duration
         // * 40% enemies, instead of 20%
-        yield return null;
     }
     public void LoadNextLevel()
     {
@@ -220,7 +229,9 @@ public class GameManager : ParentAwareSingleton<GameManager>
     {
         levelEnd = false;
         level++;
-        SwitchBackground();
+        SwitchBackground(); // maybe gameManager should handle that? alonge with scaling etc
+        SceneLoader.Instance.JustFadeIn();
+
 
         yield return null;
     }

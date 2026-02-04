@@ -18,6 +18,8 @@ public class PauseGame : ParentAwareSingleton<PauseGame>
     [SerializeField] Button restartGameBtn;
     [SerializeField] Button backToMenuBtn;
     // shop
+    [SerializeField] Button NextLevelBtn;
+
 
 
 
@@ -27,9 +29,9 @@ public class PauseGame : ParentAwareSingleton<PauseGame>
     {
         Instance.pauseMenuPanel.SetActive(false);
         Instance.gameOverPanel.SetActive(false);
+        Instance.shopPanel.SetActive(false);
         Instance.inGamePauseBtn.SetActive(true);
         Instance.isGamePaused = false; // running 
-        // Instance.shopPanel.SetActive(false);
 
         Time.timeScale = 1f;
         // pause panel
@@ -39,6 +41,7 @@ public class PauseGame : ParentAwareSingleton<PauseGame>
         Instance.restartGameBtn.onClick.AddListener(RestartRunner);
         Instance.backToMenuBtn.onClick.AddListener(LoadMenu);
         // shop
+        Instance.NextLevelBtn.onClick.AddListener(StartNextLevel);
         EnablePlayerButtons(true);
     }
     void RestartRunner()
@@ -98,7 +101,12 @@ public class PauseGame : ParentAwareSingleton<PauseGame>
             Instance.inGamePauseBtn.SetActive(false); // no more in game button
         }
     }
-
+    public void StartNextLevel()
+    {
+        Time.timeScale = 1f;
+        Resume(PausePanel.showShopPanel);
+        Debug.Log("start level 2");
+    }
     public void LoadMenu()
     {
         SceneLoader.Instance.LoadSceneByName("MainMenu");

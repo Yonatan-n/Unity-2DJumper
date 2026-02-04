@@ -39,16 +39,23 @@ public class SceneLoader : Singleton<SceneLoader>
 
     public void JustFadeOut()
     {
-        StartCoroutine(LocalFadeOut());
-        IEnumerator LocalFadeOut()
-        {
-            animator.SetTrigger("FadeOut");
-            yield return new WaitForSeconds(FadeOutClip.length + 0.2f);
-            yield return null;
-        }
-        // TODO: make a justFadeIni
-        // animator.SetTrigger("FadeIn");
+        StartCoroutine(FadeOutEnum());
 
+    }
+    public IEnumerator FadeOutEnum()
+    {
+        animator.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(FadeOutClip.length + 0.5f);
+    }
+    public void JustFadeIn()
+    {
+        StartCoroutine(FadeInEnum());
+
+    }
+    public IEnumerator FadeInEnum()
+    {
+        animator.SetTrigger("FadeIn");
+        yield return new WaitForSeconds(FadeInClip.length + 0.2f);
     }
 
     static public void LoadSceneByIndex(int buildIndex)
