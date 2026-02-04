@@ -16,6 +16,15 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         transform.SetParent(null);
         DontDestroyOnLoad(gameObject); // keep between scenes
     }
+
+    // Called by editor only
+    public void EditorReset()
+    {
+        Instance = null;
+    }
 }
 
-
+public interface ISingleton
+{
+    void EditorReset();
+}

@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
 {
     public Gun gun;
     public int lives = 1;
+    public int maxJumps = 1; // can buy more later
     public GameObject LivesCounter;
     public int ammo;
     public GameObject AmmoCounter;
@@ -25,6 +26,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] AudioClip fireAK;
     [SerializeField] GameObject ObstaclesSpawner;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject CurrentBackground;
+    [SerializeField] GameObject[] BackgroundPrefabs;
+
     public bool levelEnd;
     private float timer;
     public float Timer
@@ -40,9 +44,11 @@ public class GameManager : Singleton<GameManager>
 
     public IReadOnlyList<Gun> guns;
     public int level;
+    public readonly int TOTAL_LEVELS = 3;
+
     void Start()
     {
-        level = 1;
+        level = 0;
         guns = new[]{
             new Gun(GunType.C_1911, 7, 2.3f, reload1911, fire1911),
             new Gun(GunType.Revolver, 5, 4f, reloadRevolver, fireRevolver),
@@ -54,7 +60,9 @@ public class GameManager : Singleton<GameManager>
         reloadAmmo();
         coins = (int)CoinsEarned.Obstacle;
         lives = 1;
+        maxJumps = 1;
         updateAllCounters();
+        SwitchBackground();
     }
 
     public void updateMeters()
@@ -161,13 +169,13 @@ public class GameManager : Singleton<GameManager>
     {
         timer += Time.deltaTime;
         updateMeters();
-        if (timerToMeters() >= 50 * level && !levelEnd)
+        if (timerToMeters() >= 1000 + (1000 * level) && !levelEnd)
         {
-            StartCoroutine(NextLevel());
+            StartCoroutine(FinishCurrentLevel());
         }
     }
 
-    private IEnumerator NextLevel()
+    private IEnumerator FinishCurrentLevel()
     {
         levelEnd = true;
         var spawner = ObstaclesSpawner.GetComponent<Spawner>();
@@ -186,6 +194,29 @@ public class GameManager : Singleton<GameManager>
         // * 2K instead of 1K duration
         // * 40% enemies, instead of 20%
         yield return null;
+    }
+    public void LoadNextLevel()
+    {
+        StartCoroutine(LoadNextLevelRoutine());
+    }
+
+    private IEnumerator LoadNextLevelRoutine()
+    {
+        levelEnd = false;
+        level++;
+        SwitchBackground();
+
+        yield return null;
+    }
+
+    void SwitchBackground()
+    {
+        if (CurrentBackground != null)
+            Destroy(CurrentBackground);
+        CurrentBackground = Instantiate(
+            BackgroundPrefabs[level % TOTAL_LEVELS],
+            new Vector3(0, 0, 10), Quaternion.identity
+        );
     }
 }
 

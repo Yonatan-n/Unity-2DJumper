@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 109371842}
   m_Layer: 0
   m_Name: TileLeft
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -914,7 +914,7 @@ GameObject:
   - component: {fileID: 503736012}
   m_Layer: 0
   m_Name: TileLeft
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1069,6 +1069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   lives: 0
+  maxJumps: 0
   LivesCounter: {fileID: 1661571386}
   ammo: 0
   AmmoCounter: {fileID: 342968203}
@@ -1084,6 +1085,11 @@ MonoBehaviour:
   fireAK: {fileID: 8300000, guid: f214026e759549647a4900788252352d, type: 3}
   ObstaclesSpawner: {fileID: 1418599273}
   player: {fileID: 924172413}
+  CurrentBackground: {fileID: 0}
+  BackgroundPrefabs:
+  - {fileID: 177733068495963623, guid: 451b75bf6b825144dba138564d5b153d, type: 3}
+  - {fileID: 177733068495963623, guid: 088ef93fc154434418d8ad742ecef574, type: 3}
+  - {fileID: 177733068495963623, guid: c506897f21a3edf4883140db5cdc3ec5, type: 3}
   levelEnd: 0
   Meters: {fileID: 1391606488}
   level: 0
@@ -7046,7 +7052,7 @@ GameObject:
   - component: {fileID: 1147108793}
   m_Layer: 0
   m_Name: Second
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7295,7 +7301,7 @@ GameObject:
   - component: {fileID: 1351882256}
   m_Layer: 0
   m_Name: TileRight
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7627,7 +7633,7 @@ GameObject:
   - component: {fileID: 1502108745}
   m_Layer: 0
   m_Name: TileRight
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7885,7 +7891,7 @@ GameObject:
   - component: {fileID: 1591076719}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8078,7 +8084,7 @@ GameObject:
   - component: {fileID: 1863914729}
   m_Layer: 0
   m_Name: First
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9144,6 +9150,10 @@ PrefabInstance:
     - target: {fileID: 177733068495963623, guid: 451b75bf6b825144dba138564d5b153d, type: 3}
       propertyPath: m_Name
       value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 177733068495963623, guid: 451b75bf6b825144dba138564d5b153d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6321523796226284410, guid: 451b75bf6b825144dba138564d5b153d, type: 3}
       propertyPath: m_LocalPosition.x

@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject BulletPos;
     [SerializeField] GameObject GunObj;
+    int jumps;
 
 
 
@@ -34,6 +35,12 @@ public class Player : MonoBehaviour
         // AudioManager need to be loaded before GameManager
         yield return new WaitUntil(() => AudioManager.Instance.IsInitialized);
         GameManager.Instance.updateAllCounters();
+        resetJumps();
+    }
+
+    void resetJumps()
+    {
+        jumps = GameManager.Instance.maxJumps;
     }
 
     private void SetupBindings()
@@ -65,6 +72,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
+        if (jumps-- <= 0) return;
         rb.AddForceY(jumpForce, ForceMode2D.Impulse);
         rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed);
         PlaySound(jump);
@@ -106,7 +114,9 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        var tag = collision.gameObject.tag;
+
+        if (tag == "Obstacle")
         {
             // do falling glass or metal pipe thing lol
             // maybe 3 options, metal, wood, glass for cars trees and barrels
@@ -114,14 +124,19 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             GameManager.Instance.Lives--;
         }
-        else if (collision.gameObject.CompareTag("Enemy"))
+        else if (tag == "Enemy")
         {
             // change later
             PlaySound(hurt);
             Destroy(collision.gameObject);
             GameManager.Instance.Lives--;
         }
+        else if (tag == "Ground")
+        {
+            resetJumps();
+        }
     }
+
     public void GetCoins(CoinsEarned type)
     {
         GameManager.Instance.coins += (int)type;
