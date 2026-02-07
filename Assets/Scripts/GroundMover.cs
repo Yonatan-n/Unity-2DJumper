@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class GroundMover : MonoBehaviour
+public class GroundMover : ParentAwareSingleton<GroundMover>
 {
     [SerializeField] GameObject quarter;
-    static public float speed = 8;
+    public float speed = 8;
     float backgroundHalfWidth;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

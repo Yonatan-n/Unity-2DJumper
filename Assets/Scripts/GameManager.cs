@@ -29,6 +29,8 @@ public class GameManager : ParentAwareSingleton<GameManager>
     [SerializeField] GameObject CurrentBackground;
     [SerializeField] GameObject[] BackgroundPrefabs;
     [SerializeField] GameObject SceneTransition;
+    [SerializeField] int levelFactor = 1000;
+    [SerializeField] int levelLength = 1000;
 
     public bool levelEnd;
     private float timer;
@@ -56,15 +58,21 @@ public class GameManager : ParentAwareSingleton<GameManager>
     {
         InitGame();
     }
+    void resetTimer()
+    {
+        timer = 0;
+    }
     private void InitGame()
     {
+        level = 0;
+        levelLength = (level + 1) * levelFactor;
+        resetTimer();
         var sceneTransition = GameObject.Find("SceneTransition");
         if (sceneTransition == null) // testing only?
         {
             Instantiate(SceneTransition, Vector3.zero, Quaternion.identity);
         }
 
-        level = 0;
         guns = new[]{
             new Gun(GunType.C_1911, 7, 2.3f, reload1911, fire1911),
             new Gun(GunType.Revolver, 5, 4f, reloadRevolver, fireRevolver),
@@ -187,8 +195,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
         timer += Time.deltaTime;
         updateMeters();
 
-        // if (timerToMeters() >= 1000 + (1000 * level) && !levelEnd)
-        if (timerToMeters() >= 30 && !levelEnd)
+        if (timerToMeters() >= levelLength && !levelEnd)
         {
             StartCoroutine(FinishCurrentLevel());
         }
@@ -230,9 +237,14 @@ public class GameManager : ParentAwareSingleton<GameManager>
         levelEnd = false;
         level++;
         SwitchBackground(); // maybe gameManager should handle that? alonge with scaling etc
-        SceneLoader.Instance.JustFadeIn();
-
-
+        resetTimer();
+        var spawner = ObstaclesSpawner.GetComponent<Spawner>();
+        spawner.IncreaseEnemyPercentage();
+        GroundMover.Instance.speed += 2;
+        var playerScript = player.GetComponent<Player>();
+        playerScript.SetButtons(true);
+        yield return playerScript.EnterLeft();
+        Debug.Log("player enter form left");
         yield return null;
     }
 

@@ -103,9 +103,9 @@ public class PauseGame : ParentAwareSingleton<PauseGame>
     }
     public void StartNextLevel()
     {
-        Time.timeScale = 1f;
         Resume(PausePanel.showShopPanel);
         Debug.Log("start level 2");
+        GameManager.Instance.LoadNextLevel();
     }
     public void LoadMenu()
     {

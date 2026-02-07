@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject BulletPos;
     [SerializeField] GameObject GunObj;
+    [SerializeField] float StartPositionX = 0f;
     int jumps;
-
 
 
     IEnumerator Start()
@@ -161,4 +161,18 @@ public class Player : MonoBehaviour
             yield return null;
         }
     }
+    public IEnumerator EnterLeft()
+    {
+        Camera cam = Camera.main;
+        var speed = 20f;
+        // set to right of screen
+        transform.position = new Vector3(-34, transform.position.y, transform.position.z);
+        yield return null;
+        while (transform.position.x < StartPositionX)
+        {
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            yield return null;
+        }
+    }
+
 }

@@ -32,16 +32,16 @@ public class Obstacle : MonoBehaviour
     }
     void Update()
     {
-        var moveSpeed = GroundMover.speed;
-        float speedPrecentIncrease;
+        var moveSpeed = GroundMover.Instance.speed;
+        float speedPercentageIncrease;
         if (gameObject.CompareTag("Enemy"))
         {
-            speedPrecentIncrease = 1.3f;
+            speedPercentageIncrease = 1.3f;
         }
         else
         {
-            speedPrecentIncrease = 1f;
+            speedPercentageIncrease = 1f;
         }
-        transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime * speedPrecentIncrease);
+        transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime * speedPercentageIncrease);
     }
 }

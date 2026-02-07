@@ -124,6 +124,10 @@ public class Spawner : ParentAwareSingleton<Spawner>
         //   
 
     }
+    public void IncreaseEnemyPercentage()
+    {
+        enemyPercentage += 20;
+    }
 
     void setNextSpawnRate()
     {
