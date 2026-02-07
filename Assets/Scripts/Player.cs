@@ -151,28 +151,47 @@ public class Player : MonoBehaviour
 
     public IEnumerator ExitRight()
     {
-        Camera cam = Camera.main;
-        var speed = 20f;
-        float rightEdge = cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 5f;
-
-        while (transform.position.x < rightEdge)
-        {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
-            yield return null;
-        }
+        return movePlayerOutOfScreen(false);
     }
     public IEnumerator EnterLeft()
     {
+        return movePlayerOutOfScreen(true);
+    }
+
+    private IEnumerator movePlayerOutOfScreen(bool isLeft)
+    {
         Camera cam = Camera.main;
-        var speed = 20f;
-        // set to right of screen
-        transform.position = new Vector3(-34, transform.position.y, transform.position.z);
-        yield return null;
-        while (transform.position.x < StartPositionX)
+        float startX;
+        float endX;
+        if (isLeft) // exit screen
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            startX = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).x - 5f;
+            endX = StartPositionX;
+        }
+        else
+        {// enter screen
+            startX = transform.position.x;
+            endX = cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 5f;
+        }
+
+        transform.position = new Vector3(startX, transform.position.y, transform.position.z);
+        float duration = 2.0f;
+        float t = 0f;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+            float easedT = Mathf.SmoothStep(0f, 1f, t);
+            float x = Mathf.Lerp(startX, endX, easedT);
+            // keep live Y + Z (jump, gravity, etc.)
+            transform.position = new Vector3(
+                x,
+                transform.position.y,
+                transform.position.z
+            );
             yield return null;
         }
+        transform.position = new Vector3(endX, transform.position.y, transform.position.z);
     }
 
 }
