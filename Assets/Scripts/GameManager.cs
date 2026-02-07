@@ -29,8 +29,9 @@ public class GameManager : ParentAwareSingleton<GameManager>
     [SerializeField] GameObject CurrentBackground;
     [SerializeField] GameObject[] BackgroundPrefabs;
     [SerializeField] GameObject SceneTransition;
-    [SerializeField] int levelFactor = 1000;
-    [SerializeField] int levelLength = 1000;
+    [SerializeField] int levelFactor = 100;
+    [SerializeField] int levelLength = 100;
+    public float SwitchLevelDuration = 2f;
 
     public bool levelEnd;
     private float timer;
@@ -54,10 +55,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
         // SceneManager.sceneLoaded += OnSceneLoaded;
         InitGame();
     }
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        InitGame();
-    }
+
     void resetTimer()
     {
         timer = 0;
@@ -66,7 +64,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     {
         level = 0;
         levelLength = (level + 1) * levelFactor;
-        resetTimer();
+        // levelLength = 75; // remove
         var sceneTransition = GameObject.Find("SceneTransition");
         if (sceneTransition == null) // testing only?
         {
@@ -86,7 +84,8 @@ public class GameManager : ParentAwareSingleton<GameManager>
         lives = 1;
         maxJumps = 1;
         updateAllCounters();
-        SwitchBackground();
+        resetTimer();
+        StartCoroutine(SwitchBackground());
     }
 
     public void updateMeters()
@@ -206,6 +205,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
         levelEnd = true;
         var spawner = ObstaclesSpawner.GetComponent<Spawner>();
         spawner.DestroyAllObstacles();
+        ObstaclesSpawner.SetActive(false);
         var playerScript = player.GetComponent<Player>();
         playerScript.SetButtons(false);
         yield return playerScript.ExitRight();
@@ -236,26 +236,37 @@ public class GameManager : ParentAwareSingleton<GameManager>
     {
         levelEnd = false;
         level++;
-        SwitchBackground(); // maybe gameManager should handle that? alonge with scaling etc
-        resetTimer();
-        var spawner = ObstaclesSpawner.GetComponent<Spawner>();
-        spawner.IncreaseEnemyPercentage();
+        levelLength = (level + 1) * levelFactor;
         GroundMover.Instance.speed += 2;
         var playerScript = player.GetComponent<Player>();
         playerScript.SetButtons(true);
+        yield return SwitchBackground(); // same duration as EnterLeft, don't yield to sync them
         yield return playerScript.EnterLeft();
-        Debug.Log("player enter form left");
-        yield return null;
+        // yield return new WaitForSeconds(SwitchLevelDuration);
+        resetTimer();
+        var spawner = ObstaclesSpawner.GetComponent<Spawner>();
+        spawner.IncreaseEnemyPercentage();
+        ObstaclesSpawner.SetActive(true);
     }
 
-    void SwitchBackground()
+    IEnumerator SwitchBackground()
     {
-        if (CurrentBackground != null)
-            Destroy(CurrentBackground);
-        CurrentBackground = Instantiate(
+        var newBackground = Instantiate(
             BackgroundPrefabs[level % TOTAL_LEVELS],
             new Vector3(0, 0, 10), Quaternion.identity
         );
+        var newBGFade = newBackground.GetComponent<BackgroundFade>();
+        var currentBGFade = CurrentBackground.GetComponent<BackgroundFade>();
+        var duration = SwitchLevelDuration;
+        newBGFade.Fade(0f, 1f, duration);
+        currentBGFade.Fade(1f, 0f, duration);
+        yield return new WaitForSeconds(duration);
+        currentBGFade.StopFade();
+        // after animation is complete
+        if (CurrentBackground != null)
+            Destroy(CurrentBackground);
+        CurrentBackground = newBackground;
+
     }
 }
 

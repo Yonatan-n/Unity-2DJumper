@@ -175,7 +175,7 @@ public class Player : MonoBehaviour
         }
 
         transform.position = new Vector3(startX, transform.position.y, transform.position.z);
-        float duration = 2.0f;
+        float duration = GameManager.Instance.SwitchLevelDuration;
         float t = 0f;
 
         while (t < 1f)

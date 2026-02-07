@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6321523796226284410}
   - component: {fileID: 6956709274274002481}
+  - component: {fileID: 6482105792263809621}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -94,6 +95,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &6482105792263809621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177733068495963623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec3d5ab8ac1668049b95d0885b620b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundFade
 --- !u!1 &684246629468590129
 GameObject:
   m_ObjectHideFlags: 0
