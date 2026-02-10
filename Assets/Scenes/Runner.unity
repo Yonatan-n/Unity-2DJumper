@@ -1228,8 +1228,8 @@ MonoBehaviour:
   - {fileID: 177733068495963623, guid: 088ef93fc154434418d8ad742ecef574, type: 3}
   - {fileID: 177733068495963623, guid: c506897f21a3edf4883140db5cdc3ec5, type: 3}
   SceneTransition: {fileID: 5619236229530213591, guid: 719e034db47f4d149afa6f42ddb08116, type: 3}
-  levelFactor: 100
-  levelLength: 100
+  levelFactor: 1000
+  levelLength: 1000
   SwitchLevelDuration: 2
   extraBulletsBought: 0
   levelEnd: 0
@@ -9191,6 +9191,8 @@ MonoBehaviour:
   enemyIsHit: {fileID: 8300000, guid: f723a09c84eeca948ab4740cf32442d5, type: 3}
   gameOver: {fileID: 8300000, guid: d1cf8dbe3a4d40f48829ffedc7012ec9, type: 3}
   coins: {fileID: 8300000, guid: b0c1c5fe7ca72844cad02335a57f8a05, type: 3}
+  shopNo: {fileID: 8300000, guid: 5b3a1b00c78ff264f99f2657d45ae0ee, type: 3}
+  shopYes: {fileID: 8300000, guid: 577609903822d234fae2687f86d8f76e, type: 3}
 --- !u!4 &2016346718
 Transform:
   m_ObjectHideFlags: 0

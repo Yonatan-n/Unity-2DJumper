@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 public class GameManager : ParentAwareSingleton<GameManager>
 {
     public Gun gun;
@@ -29,8 +29,8 @@ public class GameManager : ParentAwareSingleton<GameManager>
     [SerializeField] GameObject CurrentBackground;
     [SerializeField] GameObject[] BackgroundPrefabs;
     [SerializeField] GameObject SceneTransition;
-    [SerializeField] int levelFactor = 100;
-    [SerializeField] int levelLength = 100;
+    [SerializeField] int levelFactor = 1000;
+    [SerializeField] int levelLength;
     public float SwitchLevelDuration = 2f;
     // ----- SHOP --------
     int? _keys;
@@ -80,10 +80,12 @@ public class GameManager : ParentAwareSingleton<GameManager>
         }
     }
     public GameObject Meters;
+    public GameObject Progress;
 
     public IReadOnlyList<Gun> guns;
     public int level;
     public readonly int TOTAL_LEVELS = 3;
+    private int totalDistance = 0;
 
     void Start()
     {
@@ -131,7 +133,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     {
         if (levelEnd) return;
         var text = Meters.GetComponentInChildren<TextMeshProUGUI>();
-        text.text = timerToMeters().ToString() + "M";
+        text.text = (levelLength - timerToMeters()).ToString() + "M";
     }
 
     private int timerToMeters()
@@ -209,6 +211,8 @@ public class GameManager : ParentAwareSingleton<GameManager>
     {
         levelEnd = true;
         AudioManager.Instance.PlayGameOverSound();
+        var progText = Progress.GetComponent<TextMeshProUGUI>();
+        progText.text = "Ran: " + (totalDistance + timerToMeters()).ToString() + "M";
         PauseGame.Instance.Pause(PausePanel.showGameOverPanel); // stop buttons, movments for now
         // show gameover ui
     }
@@ -274,6 +278,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
 
     private IEnumerator LoadNextLevelRoutine()
     {
+        totalDistance += levelLength;
         levelEnd = false;
         level++;
         levelLength = (level + 1) * levelFactor;
