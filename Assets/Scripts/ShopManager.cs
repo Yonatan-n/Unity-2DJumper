@@ -70,6 +70,11 @@ public class ShopManager : MonoBehaviour
             Destroy(child.gameObject);
 
         var gm = GameManager.Instance;
+        if (gm == null)
+        {
+            Debug.LogWarning("ShopManager: GameManager not ready yet");
+            return;
+        }
         List<ShopItemInstance> items = new()
         {
             // Extra life
