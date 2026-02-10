@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject BulletPos;
     [SerializeField] GameObject GunObj;
-    [SerializeField] float StartPositionX = 0f;
+    public float StartPositionX = 0f;
     int jumps;
 
 
@@ -163,13 +163,13 @@ public class Player : MonoBehaviour
         Camera cam = Camera.main;
         float startX;
         float endX;
-        if (isLeft) // exit screen
+        if (isLeft) // enter
         {
             startX = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).x - 5f;
             endX = StartPositionX;
         }
-        else
-        {// enter screen
+        else // exit
+        {
             startX = transform.position.x;
             endX = cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 5f;
         }

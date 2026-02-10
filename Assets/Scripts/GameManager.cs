@@ -32,6 +32,41 @@ public class GameManager : ParentAwareSingleton<GameManager>
     [SerializeField] int levelFactor = 100;
     [SerializeField] int levelLength = 100;
     public float SwitchLevelDuration = 2f;
+    // ----- SHOP --------
+    int? _keys;
+    public int Keys
+    {
+        get
+        {
+            if (_keys == null)
+                _keys = PlayerPrefs.GetInt("keys");
+            return (int)_keys;
+        }
+        set
+        {
+            _keys = value;
+            PlayerPrefs.SetInt("keys", value);
+        }
+    }
+    private int _movesLeftNumber = 0;
+    public int extraBulletsBought = 0;
+    public readonly int MAX_MOVE_LEFT = 3;
+    public int MoveLeftBought
+    {
+        get { return _movesLeftNumber; }
+        set
+        {
+            _movesLeftNumber = value;
+            var playerScript = player.GetComponent<Player>();
+            playerScript.StartPositionX = _movesLeftNumber switch
+            {
+                1 => -12f,
+                2 => -20f,
+                3 => -28f, // max
+                _ => 0f // else, but really just 0
+            };
+        }
+    }
 
     public bool levelEnd;
     private float timer;
@@ -64,7 +99,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     {
         level = 0;
         levelLength = (level + 1) * levelFactor;
-        // levelLength = 75; // remove
+        // levelLength = 5; // remove
         var sceneTransition = GameObject.Find("SceneTransition");
         if (sceneTransition == null) // testing only?
         {
@@ -85,6 +120,10 @@ public class GameManager : ParentAwareSingleton<GameManager>
         maxJumps = 1;
         updateAllCounters();
         resetTimer();
+        CurrentBackground = Instantiate(
+            BackgroundPrefabs[TOTAL_LEVELS - 1],
+            new Vector3(0, 0, 10), Quaternion.identity
+        );
         StartCoroutine(SwitchBackground());
     }
 
@@ -213,6 +252,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
         // yield return SceneLoader.Instance.FadeOutEnum();
         PauseGame.Instance.Pause(PausePanel.showShopPanel); // will trigger the next level loading
         yield return null;
+        // triggers: ShopManager.start()
 
         // TODO:
         // fade to black after player exited

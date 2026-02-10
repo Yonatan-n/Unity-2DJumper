@@ -8,6 +8,9 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] AudioClip enemyIsHit;
     [SerializeField] AudioClip gameOver;
     [SerializeField] AudioClip coins;
+    [SerializeField] AudioClip shopNo;
+    [SerializeField] AudioClip shopYes;
+
     public bool IsInitialized { get; private set; }
     protected override void Awake()
     {
@@ -24,6 +27,15 @@ public class AudioManager : Singleton<AudioManager>
     public void EnemyIsHit()
     {
         audioSource.PlayOneShot(enemyIsHit);
+    }
+
+    public void ShopNoMoney()
+    {
+        audioSource.PlayOneShot(shopNo);
+    }
+    public void ShopYes()
+    {
+        audioSource.PlayOneShot(shopYes);
     }
 
     public void PlayGameOverSound()
