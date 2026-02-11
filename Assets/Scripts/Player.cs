@@ -39,9 +39,11 @@ public class Player : MonoBehaviour
     }
     public void SetButtons(bool value)
     {
-        JumpBtn.gameObject.SetActive(value);
-        ShootBtn.gameObject.SetActive(value);
-        PauseBtn.gameObject.SetActive(value);
+        Button[] buttons = { JumpBtn, ShootBtn, PauseBtn };
+        foreach (Button btn in buttons)
+        {
+            btn.interactable = value;
+        }
     }
     void resetJumps()
     {
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour
     }
     void PauseButtonHandler()
     {
+        Debug.Log("pause btn");
         PauseGame.Instance.TogglePaused();
     }
 

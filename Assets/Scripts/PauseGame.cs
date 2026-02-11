@@ -8,7 +8,7 @@ public class PauseGame : ParentAwareSingleton<PauseGame>
     [SerializeField] GameObject pauseMenuPanel;
     [SerializeField] GameObject shopPanel;
     [SerializeField] GameObject gameOverPanel;
-    [SerializeField] GameObject inGamePauseBtn;
+    [SerializeField] Button inGamePauseBtn;
     // pause 
     [SerializeField] Button resumeBtn;
     [SerializeField] Button mainMenuBtn;
@@ -30,7 +30,7 @@ public class PauseGame : ParentAwareSingleton<PauseGame>
         Instance.pauseMenuPanel.SetActive(false);
         Instance.gameOverPanel.SetActive(false);
         Instance.shopPanel.SetActive(false);
-        Instance.inGamePauseBtn.SetActive(true);
+        Instance.inGamePauseBtn.interactable = true;
         Instance.isGamePaused = false; // running 
 
         Time.timeScale = 1f;
@@ -72,7 +72,7 @@ public class PauseGame : ParentAwareSingleton<PauseGame>
         else if (panel == PausePanel.showShopPanel)
         {
             Instance.shopPanel.SetActive(false);
-            Instance.inGamePauseBtn.SetActive(true); // show in game button
+            Instance.inGamePauseBtn.interactable = true;
         }
         else if (panel == PausePanel.showGameOverPanel)
         {
@@ -92,13 +92,12 @@ public class PauseGame : ParentAwareSingleton<PauseGame>
         else if (panel == PausePanel.showShopPanel)
         {
             Instance.shopPanel.SetActive(true);
-            Instance.inGamePauseBtn.SetActive(false); // temp hide in game button
-
+            Instance.inGamePauseBtn.interactable = false;
         }
         else if (panel == PausePanel.showGameOverPanel)
         {
             Instance.gameOverPanel.SetActive(true);
-            Instance.inGamePauseBtn.SetActive(false); // no more in game button
+            Instance.inGamePauseBtn.interactable = false;
         }
     }
     public void StartNextLevel()

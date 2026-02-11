@@ -8,6 +8,7 @@ public class BackgroundFade : MonoBehaviour
     void Awake()
     {
         renderers = GetComponentsInChildren<SpriteRenderer>();
+        ScaleBackground();
     }
 
     public Coroutine Fade(float from, float to, float duration)
@@ -49,4 +50,23 @@ public class BackgroundFade : MonoBehaviour
             sr.color = c;
         }
     }
+
+    // scale
+    void ScaleBackground()
+    {
+        SpriteRenderer main = renderers[0];
+        if (main == null || main.sprite == null) return;
+        Camera cam = Camera.main;
+        float worldScreenHeight = cam.orthographicSize * 2f;
+        float worldScreenWidth = worldScreenHeight * cam.aspect;
+        // Use sprite bounds (not renderer bounds)
+        float spriteWidth = main.sprite.bounds.size.x;
+        float spriteHeight = main.sprite.bounds.size.y;
+        float scaleX = worldScreenWidth / spriteWidth;
+        float scaleY = worldScreenHeight / spriteHeight;
+        float totalScale = Mathf.Max(scaleX, scaleY);
+        transform.localScale = new Vector3(totalScale, totalScale, 1f);
+    }
+
 }
+
