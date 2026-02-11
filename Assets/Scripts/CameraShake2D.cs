@@ -4,42 +4,52 @@ using System.Collections;
 public class CameraShake2D : MonoBehaviour
 {
     [Header("Shake Settings")]
-    public float duration = 0.3f;      // How long the shake lasts
-    public float magnitude = 0.2f;     // Maximum offset
 
-    Vector3 originalPos;
+    public float duration = 0.1f;        // How long the recoil lasts
+    public float positionMagnitude = 0.08f; // How far the camera moves
+    public float rotationMagnitude = 2f;    // How much it tilts
+    public float horizontalShake = 0.02f;   // Small x-axis nudge
+    private Vector3 originalPos;
+    private Quaternion originalRot;
 
     void Awake()
     {
         originalPos = transform.localPosition;
+        originalRot = transform.localRotation;
     }
 
     public void Shake()
     {
         StopAllCoroutines(); // Stop previous shake if it's still running
-        StartCoroutine(ShakeCoroutine(duration, magnitude));
+        StartCoroutine(RecoilCoroutine());
     }
 
-    private IEnumerator ShakeCoroutine(float duration, float magnitude)
+    private IEnumerator RecoilCoroutine()
     {
         float elapsed = 0f;
 
         while (elapsed < duration)
         {
-            float progress = elapsed / duration; // 0 → 1
-            float damper = 1.0f - progress;      // fades out
+            float progress = elapsed / duration;          // 0 → 1
+            float damper = 1f - progress;                 // fades out
 
-            // Recoil-like shake: mostly vertical/backward, slight horizontal
-            float x = Random.Range(-0.02f, 0.02f) * magnitude * damper;
-            float y = Random.Range(0.5f, 1f) * magnitude * damper; // push up/back
-            float z = 0;
+            // Smooth positional recoil using sin curve (up then down)
+            float yOffset = Mathf.Sin(progress * Mathf.PI) * positionMagnitude;
+            float xOffset = Random.Range(-horizontalShake, horizontalShake) * damper;
 
-            transform.localPosition = originalPos + new Vector3(x, y, z);
+            transform.localPosition = originalPos + new Vector3(xOffset, yOffset, 0);
+
+            // Small rotational tilt (z-axis) for a punchy feel
+            float zRot = Random.Range(-rotationMagnitude, rotationMagnitude) * damper;
+            transform.localRotation = Quaternion.Euler(0, 0, zRot);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        transform.localPosition = originalPos; // reset
+        // Reset to original
+        transform.localPosition = originalPos;
+        transform.localRotation = originalRot;
     }
+
 }
