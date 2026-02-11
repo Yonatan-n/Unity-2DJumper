@@ -21,11 +21,13 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject BulletPos;
     [SerializeField] GameObject GunObj;
     public float StartPositionX = 0f;
+    Camera _camera;
     int jumps;
 
 
     IEnumerator Start()
     {
+        _camera = Camera.main;
         SetupBindings();
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
@@ -91,6 +93,7 @@ public class Player : MonoBehaviour
         PlaySound(GameManager.Instance.gun.ShootSound);
         Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
         Debug.Log("shoot: bang");
+        _camera.GetComponent<CameraShake2D>().Shake();
         if (--GameManager.Instance.Ammo == 0)
         {
             StartCoroutine(PerformReload());
@@ -163,18 +166,18 @@ public class Player : MonoBehaviour
 
     private IEnumerator movePlayerOutOfScreen(bool isLeft)
     {
-        Camera cam = Camera.main;
+
         float startX;
         float endX;
         if (isLeft) // enter
         {
-            startX = cam.ViewportToWorldPoint(new Vector3(0, 0, 0)).x - 5f;
+            startX = _camera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x - 5f;
             endX = StartPositionX;
         }
         else // exit
         {
             startX = transform.position.x;
-            endX = cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 5f;
+            endX = _camera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 5f;
         }
 
         transform.position = new Vector3(startX, transform.position.y, transform.position.z);

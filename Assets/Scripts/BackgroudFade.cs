@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class BackgroundFade : MonoBehaviour
 {
     SpriteRenderer[] renderers;
@@ -8,7 +9,12 @@ public class BackgroundFade : MonoBehaviour
     void Awake()
     {
         renderers = GetComponentsInChildren<SpriteRenderer>();
-        ScaleBackground();
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "Runner")
+        {
+            // kind of a hack, to leave main menu alone
+            ScaleBackground();
+        }
     }
 
     public Coroutine Fade(float from, float to, float duration)

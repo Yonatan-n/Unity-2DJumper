@@ -3,12 +3,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 12;
-    [SerializeField] float deadZone = 33f;
+    float deadZone;
     Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Camera cam = Camera.main;
+        deadZone = cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 5f;
     }
 
     void FixedUpdate()

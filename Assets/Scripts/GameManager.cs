@@ -29,7 +29,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     [SerializeField] GameObject CurrentBackground;
     [SerializeField] GameObject[] BackgroundPrefabs;
     [SerializeField] GameObject SceneTransition;
-    [SerializeField] int levelFactor = 1000;
+    [SerializeField] int levelFactor = 500;
     [SerializeField] int levelLength;
     public float SwitchLevelDuration = 2f;
     // ----- SHOP --------
@@ -257,19 +257,6 @@ public class GameManager : ParentAwareSingleton<GameManager>
         PauseGame.Instance.Pause(PausePanel.showShopPanel); // will trigger the next level loading
         yield return null;
         // triggers: ShopManager.start()
-
-        // TODO:
-        // fade to black after player exited
-        // show a shop model, buy +1 live, +1jump that's it for now
-        // after shop over, fade back to new scene (new background), then animate player 
-        // to enter from the LEFT
-        // then start spawner
-        // also, on load, add more enemies, longer distance, etc
-
-        // level 2 is mostly level 1 with minor tweaks:
-        // * darker background for night
-        // * 2K instead of 1K duration
-        // * 40% enemies, instead of 20%
     }
     public void LoadNextLevel()
     {
@@ -284,7 +271,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
         levelLength = (level + 1) * levelFactor;
         GroundMover.Instance.speed += 2;
         var playerScript = player.GetComponent<Player>();
-        playerScript.SetButtons(true);
+        playerScript.SetButtons(true); //
         yield return SwitchBackground(); // same duration as EnterLeft, don't yield to sync them
         yield return playerScript.EnterLeft();
         // yield return new WaitForSeconds(SwitchLevelDuration);
@@ -328,3 +315,17 @@ public enum GunType
     C_1911, Glonk, AK, Revolver,
 }
 public record Gun(GunType Type, int BulletCount, float reloadTimeSeconds, AudioClip reloadSound, AudioClip ShootSound);
+
+
+// TODO:
+//DONE fix phone resolution (black bars etc)
+// add background music, looping or multiple songs
+// add player walking animation 
+// add jump/shoot particles effects
+// add shoot screen shake (lol)
+// add gear page shop thing, unlock skins with keys, have the guns be skins for now, no different behavior
+// have the player (rabbit) in the gear and main menu
+// use audio settings slider or number input in options page
+// have 10-20 funny sentences that the rabbit says in the main menu (4 rules of firearms safety, stay in school, etc)
+
+// current resultion width 960, height 600

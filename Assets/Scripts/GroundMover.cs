@@ -2,22 +2,23 @@ using UnityEngine;
 
 public class GroundMover : ParentAwareSingleton<GroundMover>
 {
-    [SerializeField] GameObject quarter;
-    public float speed = 14;
-    float backgroundHalfWidth;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] Transform childA;
+    [SerializeField] Transform childB;
+    public float speed = 14f;
+    float startX, childWidth;
     void Start()
     {
-        backgroundHalfWidth = quarter.GetComponent<SpriteRenderer>().bounds.size.x * 2;
+        // Width of ONE child (which contains 2 tiles)
+        childWidth = childA.GetComponentInChildren<SpriteRenderer>().bounds.size.x * 2f;
+        startX = transform.position.x;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
-        if (transform.position.x < -backgroundHalfWidth)
-        {
-            transform.position = new Vector3(0, transform.position.y, transform.position.z);
-        }
+        float offset = Mathf.Repeat(Time.time * speed, childWidth);
+
+        // Move children based on offset
+        childA.position = new Vector3(startX - offset, childA.position.y, childA.position.z);
+        childB.position = new Vector3(startX - offset + childWidth, childB.position.y, childB.position.z);
     }
 }

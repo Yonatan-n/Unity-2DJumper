@@ -1228,8 +1228,8 @@ MonoBehaviour:
   - {fileID: 177733068495963623, guid: 088ef93fc154434418d8ad742ecef574, type: 3}
   - {fileID: 177733068495963623, guid: c506897f21a3edf4883140db5cdc3ec5, type: 3}
   SceneTransition: {fileID: 5619236229530213591, guid: 719e034db47f4d149afa6f42ddb08116, type: 3}
-  levelFactor: 1000
-  levelLength: 1000
+  levelFactor: 500
+  levelLength: 500
   SwitchLevelDuration: 2
   extraBulletsBought: 0
   levelEnd: 0
@@ -1264,6 +1264,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1448,6 +1449,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ab30c394d965e469cf5b6856845b1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake2D
+  duration: 0.4
+  magnitude: 0.4
 --- !u!1 &573580312
 GameObject:
   m_ObjectHideFlags: 0
@@ -7463,7 +7478,7 @@ Transform:
   m_GameObject: {fileID: 1147108792}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 120, y: 0, z: 0}
+  m_LocalPosition: {x: 118, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7679,7 +7694,7 @@ MonoBehaviour:
   pauseMenuPanel: {fileID: 826567086}
   shopPanel: {fileID: 1484640334}
   gameOverPanel: {fileID: 1272230030}
-  inGamePauseBtn: {fileID: 2002132780}
+  inGamePauseBtn: {fileID: 2002132782}
   resumeBtn: {fileID: 1377524160}
   mainMenuBtn: {fileID: 1882577422}
   jumpBtn: {fileID: 41246030}
@@ -8254,7 +8269,7 @@ MonoBehaviour:
   extraJump: {fileID: 11400000, guid: f0f21293d894a3548a050ab6124a03c6, type: 2}
   bulletsItem: {fileID: 11400000, guid: cb00136b69f91c04b9197b10553cb06c, type: 2}
   keyItem: {fileID: 11400000, guid: d918bc89f4ef63f40892efde15894e75, type: 2}
-  moveLeft: {fileID: 11400000, guid: 832be5a888946f446b2e4397129d2d64, type: 2}
+  moveLeft: {fileID: 11400000, guid: d32afa9d0c20c4a4ba22280da71b2f33, type: 2}
 --- !u!1 &1502108743
 GameObject:
   m_ObjectHideFlags: 0
@@ -8543,7 +8558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b58b89779cddad4f87744354f3caac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundMover
-  quarter: {fileID: 109371839}
+  childA: {fileID: 1863914729}
+  childB: {fileID: 1147108793}
   speed: 14
 --- !u!4 &1591076720
 Transform:
@@ -8554,7 +8570,7 @@ Transform:
   m_GameObject: {fileID: 1591076717}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: -15.07, z: 0}
+  m_LocalPosition: {x: -7.58, y: -15.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
