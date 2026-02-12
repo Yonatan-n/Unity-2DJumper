@@ -8,24 +8,19 @@ public class MainMenu : ParentAwareSingleton<MainMenu>
     [SerializeField] GameObject optionsPanel;
     bool _showOptions;
     [SerializeField] Button gear;
-    [SerializeField] Button credits;
     [SerializeField] Button quit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         play.onClick.AddListener(GoToPlay);
         options.onClick.AddListener(ToggleOptionsPanel);
+        gear.interactable = false;// hardcoded disable for now
         gear.onClick.AddListener(GoToGear);
-        credits.onClick.AddListener(GoToCredits); // maybe not needed
         quit.onClick.AddListener(Quit);//
         _showOptions = false;
         optionsPanel.SetActive(_showOptions);
     }
 
-    void GoToCredits()
-    {
-        SceneLoader.Instance.LoadSceneByName("CreditsPage");
-    }
 
     void Quit()
     {
