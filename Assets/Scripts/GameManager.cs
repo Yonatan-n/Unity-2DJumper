@@ -81,6 +81,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     }
     public GameObject Meters;
     public GameObject Progress;
+    public GameObject HighScoreTMP;
 
     public IReadOnlyList<Gun> guns;
     public int level;
@@ -212,7 +213,17 @@ public class GameManager : ParentAwareSingleton<GameManager>
         levelEnd = true;
         AudioManager.Instance.PlayGameOverSound();
         var progText = Progress.GetComponent<TextMeshProUGUI>();
-        progText.text = "Ran: " + (totalDistance + timerToMeters()).ToString() + "M";
+        var currentScore = totalDistance + timerToMeters();
+        progText.text = "Ran: " + currentScore.ToString() + "M";
+        var highScoreTMP = HighScoreTMP.GetComponent<TextMeshProUGUI>();
+        var highScore = PlayerPrefs.GetInt("highscore");
+        if (currentScore > highScore)
+        {
+            PlayerPrefs.SetInt("highscore", currentScore);
+            highScore = currentScore;
+        }
+        highScoreTMP.text = "Highscore: " + highScore.ToString() + "M";
+
         PauseGame.Instance.Pause(PausePanel.showGameOverPanel); // stop buttons, movments for now
         // show gameover ui
     }
@@ -304,10 +315,10 @@ public class GameManager : ParentAwareSingleton<GameManager>
 
 public enum CoinsEarned
 {
-    Obstacle = 10,
-    Enemy = 50,
-    FlyingEnemy = 100,
-    JumpOver = 10,
+    Obstacle = 20,
+    Enemy = 100,
+    FlyingEnemy = 200,
+    JumpOver = 20,
 }
 
 public enum GunType

@@ -1,29 +1,39 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : Singleton<AudioManager>
 {
     // This value will control the master volume for the entire game (range 0 to 1)
     public float masterVolume = 0.1f;//1.0f;
+    public float sfxVolume = 0.1f;//1.0f;
     AudioSource audioSource;
+    private readonly string MixerMasterVolume = "MasterVolume";
     [SerializeField] AudioClip enemyIsHit;
     [SerializeField] AudioClip gameOver;
     [SerializeField] AudioClip coins;
     [SerializeField] AudioClip shopNo;
     [SerializeField] AudioClip shopYes;
+    public bool IsScreenShake = true;
+    public bool IsEarRinging = true;
+    [SerializeField] AudioMixer mixer;
+
 
     public bool IsInitialized { get; private set; }
     protected override void Awake()
     {
         base.Awake(); // must be first
         if (Instance != this)
-        {
             return;
-        }
+
         audioSource = GetComponent<AudioSource>();
         audioSource.ignoreListenerPause = true;
+    }
+    void Start()
+    {
         SetMasterVolume(masterVolume);
         IsInitialized = true; // last line
     }
+
     public void EnemyIsHit()
     {
         audioSource.PlayOneShot(enemyIsHit);
@@ -56,7 +66,11 @@ public class AudioManager : Singleton<AudioManager>
     public void SetMasterVolume(float volume)
     {
         masterVolume = volume;
-        AudioListener.volume = masterVolume;
+        float dB = masterVolume <= 0.0001f ? -80f : Mathf.Log10(masterVolume) * 20f;
+        mixer.SetFloat(MixerMasterVolume, dB);
+        float val;
+        bool success = mixer.GetFloat(MixerMasterVolume, out val);
+        Debug.Log("MasterVolume current dB: " + val + " | SetFloat success? " + success);
     }
 
 }

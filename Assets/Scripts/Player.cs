@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
     Camera _camera;
     int jumps;
 
-
     IEnumerator Start()
     {
         _camera = Camera.main;
@@ -93,7 +92,16 @@ public class Player : MonoBehaviour
         PlaySound(GameManager.Instance.gun.ShootSound);
         Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
         Debug.Log("shoot: bang");
-        _camera.GetComponent<CameraShake2D>().Shake();
+        if (AudioManager.Instance.IsScreenShake)
+        {
+            _camera.GetComponent<CameraShake2D>().Shake();
+        }
+
+        if (AudioManager.Instance.IsEarRinging)
+        {
+            GunTinnitus.Instance.TriggerTinnitus();
+        }
+
         if (--GameManager.Instance.Ammo == 0)
         {
             StartCoroutine(PerformReload());

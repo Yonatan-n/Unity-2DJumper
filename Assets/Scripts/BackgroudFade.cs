@@ -66,12 +66,17 @@ public class BackgroundFade : MonoBehaviour
         float worldScreenHeight = cam.orthographicSize * 2f;
         float worldScreenWidth = worldScreenHeight * cam.aspect;
         // Use sprite bounds (not renderer bounds)
-        float spriteWidth = main.sprite.bounds.size.x;
+        float spriteWidth = main.sprite.bounds.size.x - 2f;
         float spriteHeight = main.sprite.bounds.size.y;
-        float scaleX = worldScreenWidth / spriteWidth;
+        float scaleX = (worldScreenWidth / spriteWidth);
         float scaleY = worldScreenHeight / spriteHeight;
         float totalScale = Mathf.Max(scaleX, scaleY);
         transform.localScale = new Vector3(totalScale, totalScale, 1f);
+
+        // move background image 25% higher, to show the sky on mobile too
+        float screenHeight = cam.orthographicSize * 2f;   // total visible height
+        float offset = screenHeight * 0.25f;              // 25% of screen height
+        transform.position += new Vector3(0f, -offset, 0f);
     }
 
 }
