@@ -119,6 +119,10 @@ public class GameManager : ParentAwareSingleton<GameManager>
         gun = guns[0];
         reloadAmmo();
         coins = (int)CoinsEarned.Obstacle;
+        if (OptionsPanelManager.Instance.IsGodMode)
+        {
+            coins = 100000;
+        }
         lives = 1;
         maxJumps = 1;
         updateAllCounters();

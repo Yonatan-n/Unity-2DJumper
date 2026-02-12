@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : ParentAwareSingleton<MainMenu>
 {
     [SerializeField] Button play;
     [SerializeField] Button options;
+    [SerializeField] GameObject optionsPanel;
+    bool _showOptions;
     [SerializeField] Button gear;
     [SerializeField] Button credits;
     [SerializeField] Button quit;
@@ -12,10 +14,12 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         play.onClick.AddListener(GoToPlay);
-        options.onClick.AddListener(GoToOptions);
+        options.onClick.AddListener(ToggleOptionsPanel);
         gear.onClick.AddListener(GoToGear);
         credits.onClick.AddListener(GoToCredits); // maybe not needed
         quit.onClick.AddListener(Quit);//
+        _showOptions = false;
+        optionsPanel.SetActive(_showOptions);
     }
 
     void GoToCredits()
@@ -28,9 +32,11 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    void GoToOptions()
+    public void ToggleOptionsPanel()
     {
-        SceneLoader.Instance.LoadSceneByName("OptionsPage");
+        _showOptions = !_showOptions;
+        optionsPanel.SetActive(_showOptions);
+        // SceneLoader.Instance.LoadSceneByName("OptionsPage");
     }
 
     void GoToPlay()

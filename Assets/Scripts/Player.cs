@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     [SerializeField] float maxJumpSpeed = 20f;
     [SerializeField] AudioClip jump;
     [SerializeField] AudioClip hurt;
-    [SerializeField] AudioClip coinSound;
     [SerializeField] Button JumpBtn;
     [SerializeField] Button ShootBtn;
     [SerializeField] Button PauseBtn;
@@ -81,7 +80,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (jumps-- <= 0) return;
+        if (!OptionsPanelManager.Instance.IsGodMode && jumps-- <= 0) return;
         rb.AddForceY(jumpForce, ForceMode2D.Impulse);
         rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed);
         PlaySound(jump);
@@ -92,17 +91,17 @@ public class Player : MonoBehaviour
         PlaySound(GameManager.Instance.gun.ShootSound);
         Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
         Debug.Log("shoot: bang");
-        if (AudioManager.Instance.IsScreenShake)
+        if (OptionsPanelManager.Instance.IsScreenShake)
         {
             _camera.GetComponent<CameraShake2D>().Shake();
         }
 
-        if (AudioManager.Instance.IsEarRinging)
+        if (OptionsPanelManager.Instance.IsEarRinging)
         {
             GunTinnitus.Instance.TriggerTinnitus();
         }
 
-        if (--GameManager.Instance.Ammo == 0)
+        if (!OptionsPanelManager.Instance.IsGodMode && --GameManager.Instance.Ammo == 0)
         {
             StartCoroutine(PerformReload());
         }
@@ -134,34 +133,27 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         var tag = collision.gameObject.tag;
-
+        var isGodMode = OptionsPanelManager.Instance.IsGodMode;
         if (tag == "Obstacle")
         {
             // do falling glass or metal pipe thing lol
             // maybe 3 options, metal, wood, glass for cars trees and barrels
             PlaySound(hurt);
             Destroy(collision.gameObject);
-            GameManager.Instance.Lives--;
+            if (!isGodMode) GameManager.Instance.Lives--;
         }
         else if (tag == "Enemy")
         {
             // change later
             PlaySound(hurt);
             Destroy(collision.gameObject);
-            GameManager.Instance.Lives--;
+            if (!isGodMode) GameManager.Instance.Lives--;
         }
         else if (tag == "Ground")
         {
             resetJumps();
         }
     }
-
-    public void GetCoins(CoinsEarned type)
-    {
-        GameManager.Instance.coins += (int)type;
-        PlaySound(coinSound);
-    }
-
 
     public IEnumerator ExitRight()
     {
