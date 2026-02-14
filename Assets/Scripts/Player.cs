@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] Button PauseBtn;
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject BulletPos;
-    [SerializeField] GameObject GunObj;
+    [SerializeField] GameObject GunRoot;
     public float StartPositionX = 0f;
     Camera _camera;
     int jumps;
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
     }
     void PlayAnimation()
     {
-        var animator = GunObj.GetComponent<Animator>();
+        var animator = GunRoot.GetComponent<Animator>();
         animator.Play("Gun1911Reload");
     }
     void InputDoJump(InputAction.CallbackContext context)

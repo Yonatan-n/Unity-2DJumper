@@ -26,6 +26,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     [SerializeField] AudioClip fireAK;
     [SerializeField] GameObject ObstaclesSpawner;
     [SerializeField] GameObject player;
+    [SerializeField] PlayerEquipment playerEquipment;
     [SerializeField] GameObject CurrentBackground;
     [SerializeField] GameObject[] BackgroundPrefabs;
     [SerializeField] GameObject SceneTransition;
@@ -85,6 +86,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     }
     private void InitGame()
     {
+        playerEquipment.LoadFromPlayerData();
         level = 0;
         levelLength = (level + 1) * levelFactor;
         // levelLength = 5; // remove

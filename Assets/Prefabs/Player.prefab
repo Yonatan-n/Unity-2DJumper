@@ -10,11 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8582171879221818454}
   - component: {fileID: 5531997856295908009}
-  - component: {fileID: 3090217061061564229}
-  - component: {fileID: 4259700354277206807}
-  - component: {fileID: 9066082110925035109}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: GunVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,12 +25,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323070734754127819}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.86, y: -0.29, z: -1}
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4148204793636391109}
+  m_Father: {fileID: 6229642449549770320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &5531997856295908009
 SpriteRenderer:
@@ -94,14 +91,49 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!95 &3090217061061564229
+--- !u!1 &523271274668006967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6229642449549770320}
+  - component: {fileID: 4727899001269774937}
+  - component: {fileID: 4051412583985670121}
+  - component: {fileID: 8784054659319945419}
+  m_Layer: 0
+  m_Name: GunRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6229642449549770320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523271274668006967}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8582171879221818454}
+  m_Father: {fileID: 4148204793636391109}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4727899001269774937
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323070734754127819}
+  m_GameObject: {fileID: 523271274668006967}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7d4e29d2ee4f58e41ac62585e0969d8b, type: 2}
@@ -116,13 +148,13 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4259700354277206807
+--- !u!114 &4051412583985670121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323070734754127819}
+  m_GameObject: {fileID: 523271274668006967}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fbb409bffab34e49a578bfc080fa1c1, type: 3}
@@ -134,19 +166,19 @@ MonoBehaviour:
   reload1911_4: {fileID: 8300000, guid: 5ced3af4f24a3c0469690b4708e2081c, type: 3}
   reload1911_5: {fileID: 8300000, guid: 2a3ed56e3a7426a469246e6c0f630efb, type: 3}
   reload1911_6: {fileID: 8300000, guid: 3e0b7c9ec3a92834190e4dfc2c21906a, type: 3}
---- !u!82 &9066082110925035109
+--- !u!82 &8784054659319945419
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323070734754127819}
+  m_GameObject: {fileID: 523271274668006967}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fc5d576f61c8d3947a6ef8ee179889ad, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -387,10 +419,10 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8582171879221818454}
   - {fileID: 5445684677815076021}
   - {fileID: 721344275017640840}
   - {fileID: 4425967445138646404}
+  - {fileID: 6229642449549770320}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5339463850950838160
@@ -474,7 +506,8 @@ MonoBehaviour:
   PauseBtn: {fileID: 0}
   Bullet: {fileID: 5586060811188544566, guid: 988da0ffc81481c4898ca87d978fde85, type: 3}
   BulletPos: {fileID: 4488370257026479325}
-  GunObj: {fileID: 323070734754127819}
+  GunRoot: {fileID: 523271274668006967}
+  StartPositionX: 0
 --- !u!50 &3341619711225710960
 Rigidbody2D:
   serializedVersion: 5

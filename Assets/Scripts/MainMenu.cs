@@ -9,6 +9,7 @@ public class MainMenu : ParentAwareSingleton<MainMenu>
     bool _showOptions;
     [SerializeField] Button gear;
     [SerializeField] Button quit;
+    [SerializeField] PlayerEquipment previewEquipment;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +20,7 @@ public class MainMenu : ParentAwareSingleton<MainMenu>
         quit.onClick.AddListener(Quit);//
         _showOptions = false;
         optionsPanel.SetActive(_showOptions);
+        previewEquipment.LoadFromPlayerData();
     }
 
 

@@ -17,7 +17,7 @@ MonoBehaviour:
   Slot: 2
   Icon: {fileID: 8333481726314500824, guid: 7dab05d777ee7f14aa30e9e29c2bbfe5, type: 3}
   LocalRotation: {x: 0, y: 0, z: -45}
-  LocalOffset: {x: 0.86, y: -0.29, z: -1}
-  LocalScale: {x: 0.25, y: 0.25, z: 1}
+  LocalOffset: {x: 0.5, y: -0.29, z: -1}
+  LocalScale: {x: 0.3, y: 0.3, z: 1}
   flipX: 0
   Price: 4
