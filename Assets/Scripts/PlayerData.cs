@@ -18,7 +18,7 @@ public static class PlayerData
         get
         {
             if (_gearDatabase == null)
-                _gearDatabase = Resources.Load<GearDatabase>("GearDatabase");
+                _gearDatabase = Resources.Load<GearDatabase>("MainGearDatabase");
             return _gearDatabase;
         }
     }

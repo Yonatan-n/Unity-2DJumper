@@ -20,8 +20,10 @@ public class GearPage : MonoBehaviour
     void Start()
     {
         // PlayerData.ResetAll();
+        // PlayerData.SetIntById(PlayerData.KeysId, 300);
+        previewEquipment.LoadFromPlayerData();
         back.onClick.AddListener(Back);
-        keysCount.text = "Keys: " + PlayerData.GetIntById(PlayerData.KeysId);
+        updateKeysCount();
         BuildGrid();
     }
     private void BuildGrid()
@@ -41,9 +43,10 @@ public class GearPage : MonoBehaviour
     {
         var state = GetState(item);
 
-        if (state == GearButtonState.Buyable)
+        if (state == GearButtonState.Buyable && previewEquipment.TryBuy(item))
         {
-            if (previewEquipment.TryBuy(item)) previewEquipment.Equip(item);
+            previewEquipment.Equip(item);
+            updateKeysCount();
         }
         else if (state == GearButtonState.Equipable)
         {
@@ -68,7 +71,10 @@ public class GearPage : MonoBehaviour
             return GearButtonState.Unequipable;
         return GearButtonState.Equipable;
     }
-
+    void updateKeysCount()
+    {
+        keysCount.text = "Keys: " + PlayerData.GetIntById(PlayerData.KeysId);
+    }
     void Back()
     {
         SceneLoader.Instance.LoadSceneByName("MainMenu");

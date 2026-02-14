@@ -20,3 +20,4 @@ MonoBehaviour:
   LocalOffset: {x: 0.15, y: 0.08, z: -1}
   LocalScale: {x: 0.15, y: 0.15, z: 1}
   flipX: 0
+  Price: 1

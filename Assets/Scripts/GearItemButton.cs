@@ -17,6 +17,7 @@ public class GearItemButton : MonoBehaviour
         button.onClick.AddListener(() => { clickCallback(_gearItem); RefreshUI(); });
         icon.sprite = _gearItem.Icon;
         Debug.Log("setup button: " + _gearItem.title);
+        RefreshUI();
     }
     private GearButtonState GetState()
     {
@@ -37,7 +38,9 @@ public class GearItemButton : MonoBehaviour
         {
             case GearButtonState.Buyable:
                 label.text = "Buy";
-                priceLabel.text = _gearItem.Price.ToString();
+                int price = _gearItem.Price;
+                var priceStr = $"{price} {(price == 1 ? "key" : "keys")}";
+                priceLabel.text = priceStr;
                 Price.SetActive(true);
                 break;
 

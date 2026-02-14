@@ -63,4 +63,19 @@ public class PlayerEquipment : MonoBehaviour
             PlayerData.setEmptyGear(slot);
         }
     }
+
+    public void LoadFromPlayerData()
+    {
+        foreach (GearSlot slot in System.Enum.GetValues(typeof(GearSlot)))
+        {
+            var id = PlayerData.GetEquippedId(slot);
+            if (id == "empty")
+                continue;
+
+            var item = PlayerData.getGearById(id);
+            if (item != null)
+                Equip(item);
+        }
+    }
+
 }
