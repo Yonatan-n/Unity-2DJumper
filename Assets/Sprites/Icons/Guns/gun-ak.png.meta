@@ -116,12 +116,12 @@ TextureImporter:
       name: rifle_0
       rect:
         serializedVersion: 2
-        x: 21
+        x: 0
         y: 0
-        width: 470
+        width: 511
         height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6123606adc7d97745b2876994cf5434b
     internalID: 0
     vertices: []
     indices: 

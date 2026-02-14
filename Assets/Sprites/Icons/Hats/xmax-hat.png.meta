@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f0f237b8badf71c4d95a159c3ab873f7
+guid: 78bffaa7f8fe46d42bbd968419588790
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8200246906327157222
-    second: revolver_0
+      213: 3063841963128474276
+    second: hat_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: revolver_0
+      name: hat_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 35
-        width: 440
-        height: 442
+        x: 0
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6e940225d112dc170800000000000000
-      internalID: 8200246906327157222
+      spriteID: 4aa45345804f48a20800000000000000
+      internalID: 3063841963128474276
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cfaf966d7a324494ebaa94c8b3956632
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      revolver_0: 8200246906327157222
+      hat_0: 3063841963128474276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

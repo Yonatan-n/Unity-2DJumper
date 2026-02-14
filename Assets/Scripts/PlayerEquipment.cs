@@ -30,6 +30,7 @@ public class PlayerEquipment : MonoBehaviour
         renderer.transform.localPosition = item.LocalOffset;
         renderer.transform.localRotation = Quaternion.Euler(item.LocalRotation);
         renderer.transform.localScale = item.LocalScale;
+        renderer.flipX = item.flipX;
         PlayerData.SetEquipped(item);
     }
 
@@ -79,3 +80,7 @@ public class PlayerEquipment : MonoBehaviour
     }
 
 }
+
+
+scale 0.15,0.15
+pos 0.86, -0.29, -1

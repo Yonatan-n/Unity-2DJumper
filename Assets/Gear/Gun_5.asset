@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf8334423a72e2e4b9dbe277535984e6, type: 3}
+  m_Name: Gun_5
+  m_EditorClassIdentifier: Assembly-CSharp::GearItem
+  Id: 13
+  title: Chopper
+  Slot: 2
+  Icon: {fileID: 8333481726314500824, guid: 7dab05d777ee7f14aa30e9e29c2bbfe5, type: 3}
+  LocalRotation: {x: 0, y: 0, z: -45}
+  LocalOffset: {x: 0.86, y: -0.29, z: -1}
+  LocalScale: {x: 0.25, y: 0.25, z: 1}
+  flipX: 0
+  Price: 4
