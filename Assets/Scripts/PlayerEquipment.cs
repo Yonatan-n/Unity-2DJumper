@@ -80,7 +80,3 @@ public class PlayerEquipment : MonoBehaviour
     }
 
 }
-
-
-scale 0.15,0.15
-pos 0.86, -0.29, -1
