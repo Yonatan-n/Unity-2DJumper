@@ -17,18 +17,18 @@ public class OptionsPanelManager : ParentAwareSingleton<OptionsPanelManager>
     [SerializeField] Button closeBtn;
     public bool IsGodMode
     {
-        get => PlayerPrefs.GetInt("isGodMode", 0) == 1;
-        set { PlayerPrefs.SetInt("isGodMode", value ? 1 : 0); }
+        get => PlayerData.GetBoolById(PlayerData.isGodMode, false);
+        set { PlayerData.SetBoolById(PlayerData.isGodMode, value); }
     }
     public bool IsScreenShake
     {
-        get => PlayerPrefs.GetInt("IsScreenShake", 1) == 1;
-        set { PlayerPrefs.SetInt("IsScreenShake", value ? 1 : 0); }
+        get => PlayerData.GetBoolById(PlayerData.IsScreenShake, false);
+        set { PlayerData.SetBoolById(PlayerData.IsScreenShake, value); }
     }
     public bool IsEarRinging
     {
-        get => PlayerPrefs.GetInt("IsEarRinging", 1) == 1;
-        set { PlayerPrefs.SetInt("IsEarRinging", value ? 1 : 0); }
+        get => PlayerData.GetBoolById(PlayerData.IsEarRinging, false);
+        set { PlayerData.SetBoolById(PlayerData.IsEarRinging, value); }
     }
 
     void Start()

@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (!OptionsPanelManager.Instance.IsGodMode && jumps-- <= 0) return;
+        if (!PlayerData.GetBoolById(PlayerData.isGodMode) && jumps-- <= 0) return;
         rb.AddForceY(jumpForce, ForceMode2D.Impulse);
         rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed);
         PlaySound(jump);
@@ -91,17 +91,17 @@ public class Player : MonoBehaviour
         PlaySound(GameManager.Instance.gun.ShootSound);
         Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
         Debug.Log("shoot: bang");
-        if (OptionsPanelManager.Instance.IsScreenShake)
+        if (PlayerData.GetBoolById(PlayerData.IsScreenShake))
         {
             _camera.GetComponent<CameraShake2D>().Shake();
         }
 
-        if (OptionsPanelManager.Instance.IsEarRinging)
+        if (PlayerData.GetBoolById(PlayerData.IsEarRinging))
         {
             GunTinnitus.Instance.TriggerTinnitus();
         }
 
-        if (!OptionsPanelManager.Instance.IsGodMode && --GameManager.Instance.Ammo == 0)
+        if (!PlayerData.GetBoolById(PlayerData.isGodMode) && --GameManager.Instance.Ammo == 0)
         {
             StartCoroutine(PerformReload());
         }
@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         var tag = collision.gameObject.tag;
-        var isGodMode = OptionsPanelManager.Instance.IsGodMode;
+        var isGodMode = PlayerData.GetBoolById(PlayerData.isGodMode);
         if (tag == "Obstacle")
         {
             // do falling glass or metal pipe thing lol

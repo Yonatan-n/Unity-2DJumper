@@ -73,6 +73,7 @@
     "github.copilot.editor.enableCodeActions": false,
     "github.copilot.chat.claudeCode.enabled": false,
     "cSpell.words": [
-        "Behaviour"
+        "Behaviour",
+        "highscore"
     ]
 }

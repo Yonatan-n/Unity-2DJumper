@@ -1,0 +1,31 @@
+
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "Gear/Gear Item")]
+public class GearItem : ScriptableObject
+{
+    public string Id;
+    public string title;
+    public GearSlot Slot;
+    public Sprite Icon;
+    public Vector3 LocalRotation; // Optional for glasses
+    public Vector3 LocalOffset;  // Optional alignment tweak
+    public Vector3 LocalScale = Vector3.one;
+    public bool flipX = false;
+    public int Price; // keys
+}
+
+
+public enum GearSlot
+{
+    Hat = 0,
+    Glasses = 1,
+    Gun = 2,
+}
+
+public enum GearButtonState
+{
+    Buyable = 0,
+    Equipable = 1,
+    Unequipable = 2,
+}

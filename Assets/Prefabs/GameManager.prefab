@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &639430518056721259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6194612067070822415}
+  - component: {fileID: 3892609988624714305}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6194612067070822415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639430518056721259}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1266.5781, y: 607.93445, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3892609988624714305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639430518056721259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75ff70e725f96740892ad9f76319ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  lives: 0
+  maxJumps: 0
+  LivesCounter: {fileID: 0}
+  ammo: 0
+  AmmoCounter: {fileID: 0}
+  coins: 0
+  CoinsCounter: {fileID: 0}
+  reload1911: {fileID: 8300000, guid: ddeacabec354eca4e9160c59ad7a2318, type: 3}
+  fire1911: {fileID: 8300000, guid: 76eca5cc5b0ec5d49892c3d3bca321c8, type: 3}
+  reloadRevolver: {fileID: 8300000, guid: 24ddae0b6475309418b6f17f13973543, type: 3}
+  fireRevolver: {fileID: 8300000, guid: 3f4a2212fbc675b418c1c75eee4b08d5, type: 3}
+  reloadGlonk: {fileID: 8300000, guid: ddeacabec354eca4e9160c59ad7a2318, type: 3}
+  fireGlonk: {fileID: 8300000, guid: 76eca5cc5b0ec5d49892c3d3bca321c8, type: 3}
+  reloadAK: {fileID: 8300000, guid: 0423afab29b7ce44d948966ad0281c9f, type: 3}
+  fireAK: {fileID: 8300000, guid: f214026e759549647a4900788252352d, type: 3}
+  ObstaclesSpawner: {fileID: 0}
+  player: {fileID: 0}
+  CurrentBackground: {fileID: 0}
+  BackgroundPrefabs:
+  - {fileID: 177733068495963623, guid: 451b75bf6b825144dba138564d5b153d, type: 3}
+  - {fileID: 177733068495963623, guid: 088ef93fc154434418d8ad742ecef574, type: 3}
+  - {fileID: 177733068495963623, guid: c506897f21a3edf4883140db5cdc3ec5, type: 3}
+  SceneTransition: {fileID: 5619236229530213591, guid: 719e034db47f4d149afa6f42ddb08116, type: 3}
+  levelFactor: 500
+  levelLength: 500
+  SwitchLevelDuration: 2
+  extraBulletsBought: 0
+  levelEnd: 0
+  Meters: {fileID: 0}
+  Progress: {fileID: 0}
+  HighScoreTMP: {fileID: 0}
+  level: 0

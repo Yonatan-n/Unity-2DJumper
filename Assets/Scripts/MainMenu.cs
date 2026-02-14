@@ -14,7 +14,7 @@ public class MainMenu : ParentAwareSingleton<MainMenu>
     {
         play.onClick.AddListener(GoToPlay);
         options.onClick.AddListener(ToggleOptionsPanel);
-        gear.interactable = false;// hardcoded disable for now
+        // gear.interactable = false;// hardcoded disable for now
         gear.onClick.AddListener(GoToGear);
         quit.onClick.AddListener(Quit);//
         _showOptions = false;

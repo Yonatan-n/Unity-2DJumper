@@ -33,21 +33,6 @@ public class GameManager : ParentAwareSingleton<GameManager>
     [SerializeField] int levelLength;
     public float SwitchLevelDuration = 2f;
     // ----- SHOP --------
-    int? _keys;
-    public int Keys
-    {
-        get
-        {
-            if (_keys == null)
-                _keys = PlayerPrefs.GetInt("keys");
-            return (int)_keys;
-        }
-        set
-        {
-            _keys = value;
-            PlayerPrefs.SetInt("keys", value);
-        }
-    }
     private int _movesLeftNumber = 0;
     public int extraBulletsBought = 0;
     public readonly int MAX_MOVE_LEFT = 3;
@@ -119,7 +104,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
         gun = guns[0];
         reloadAmmo();
         coins = (int)CoinsEarned.Obstacle;
-        if (OptionsPanelManager.Instance.IsGodMode)
+        if (PlayerData.GetBoolById(PlayerData.isGodMode))
         {
             coins = 100000;
         }
@@ -220,10 +205,10 @@ public class GameManager : ParentAwareSingleton<GameManager>
         var currentScore = totalDistance + timerToMeters();
         progText.text = "Ran: " + currentScore.ToString() + "M";
         var highScoreTMP = HighScoreTMP.GetComponent<TextMeshProUGUI>();
-        var highScore = PlayerPrefs.GetInt("highscore");
+        var highScore = PlayerData.getIntById(PlayerData.highscoreId);
         if (currentScore > highScore)
         {
-            PlayerPrefs.SetInt("highscore", currentScore);
+            PlayerData.setIntById(PlayerData.highscoreId, currentScore);
             highScore = currentScore;
         }
         highScoreTMP.text = "Highscore: " + highScore.ToString() + "M";
@@ -333,14 +318,19 @@ public record Gun(GunType Type, int BulletCount, float reloadTimeSeconds, AudioC
 
 
 // TODO:
-//DONE fix phone resolution (black bars etc)
+// DONE fix phone resolution (black bars etc)
 // add background music, looping or multiple songs
 // add player walking animation 
-// add jump/shoot particles effects
-// add shoot screen shake (lol)
+// add jump/shoot particles effects 
+// DONE add shoot screen shake (lol)
 // add gear page shop thing, unlock skins with keys, have the guns be skins for now, no different behavior
 // have the player (rabbit) in the gear and main menu
-// use audio settings slider or number input in options page
+// DONE use audio settings slider or number input in options page
 // have 10-20 funny sentences that the rabbit says in the main menu (4 rules of firearms safety, stay in school, etc)
 
 // current resultion width 960, height 600
+
+// 1. gear page
+// 2. particals on shoot, jump, buy, buttons?
+// change economy, add 30% more money or reduce prices
+//  
