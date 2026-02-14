@@ -14,13 +14,14 @@ public class GearPage : MonoBehaviour
     [SerializeField] GearItemButton ItemGearPrefab;
     [SerializeField] private GearDatabase database;
     [SerializeField] private PlayerEquipment previewEquipment;
-
+    private List<GearItemButton> buttons = new List<GearItemButton>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // PlayerData.ResetAll();
         back.onClick.AddListener(Back);
-        keysCount.text = "Keys: " + PlayerData.getIntById(PlayerData.KeysId);
+        keysCount.text = "Keys: " + PlayerData.GetIntById(PlayerData.KeysId);
         BuildGrid();
     }
     private void BuildGrid()
@@ -32,6 +33,7 @@ public class GearPage : MonoBehaviour
         {
             var _gearItem = Instantiate(ItemGearPrefab, GridContainer);
             _gearItem.Setup(item, OnItemSelected);
+            buttons.Add(_gearItem);
         }
     }
 
@@ -51,9 +53,13 @@ public class GearPage : MonoBehaviour
         {
             previewEquipment.Unequip(item.Slot);
         }
-        // RefreshUI(item);
+        RefreshAllButtons();
     }
-
+    private void RefreshAllButtons()
+    {
+        foreach (var b in buttons)
+            b.RefreshUI();
+    }
     private GearButtonState GetState(GearItem item)
     {
         if (!PlayerData.IsOwned(item))

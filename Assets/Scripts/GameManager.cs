@@ -205,10 +205,10 @@ public class GameManager : ParentAwareSingleton<GameManager>
         var currentScore = totalDistance + timerToMeters();
         progText.text = "Ran: " + currentScore.ToString() + "M";
         var highScoreTMP = HighScoreTMP.GetComponent<TextMeshProUGUI>();
-        var highScore = PlayerData.getIntById(PlayerData.highscoreId);
+        var highScore = PlayerData.GetIntById(PlayerData.highscoreId);
         if (currentScore > highScore)
         {
-            PlayerData.setIntById(PlayerData.highscoreId, currentScore);
+            PlayerData.SetIntById(PlayerData.highscoreId, currentScore);
             highScore = currentScore;
         }
         highScoreTMP.text = "Highscore: " + highScore.ToString() + "M";

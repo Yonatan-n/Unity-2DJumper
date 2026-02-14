@@ -34,9 +34,9 @@ public static class PlayerData
         return gearDatabase.Items.FindAll(i => i.Slot == slot);
     }
     // Main
-    public static int getIntById(string _id, int _default = 0) => PlayerPrefs.GetInt(_id, _default);
-    public static void setIntById(string _id, int value, bool inc = false) =>
-        PlayerPrefs.SetInt(_id, inc ? getIntById(_id) + value : value);
+    public static int GetIntById(string _id, int _default = 0) => PlayerPrefs.GetInt(_id, _default);
+    public static void SetIntById(string _id, int value, bool inc = false) =>
+        PlayerPrefs.SetInt(_id, inc ? GetIntById(_id) + value : value);
     public static bool GetBoolById(string _id, bool _default = false) => PlayerPrefs.GetInt(_id, _default ? 1 : 0) == 1;
     public static void SetBoolById(string _id, bool value) => PlayerPrefs.SetInt(_id, value ? 1 : 0);
 
@@ -82,5 +82,11 @@ public static class PlayerData
     public static void setEmptyGear(GearSlot slot)
     {
         PlayerPrefs.SetString("gear_slot_" + slot.ToString(), "empty");
+    }
+    // for debugging
+    public static void ResetAll()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
     }
 }

@@ -116,7 +116,7 @@ public class ShopManager : MonoBehaviour
     ShopItemInstance AddBulletOrKey()
     {
         var gm = GameManager.Instance;
-        int keys = PlayerData.getIntById(PlayerData.KeysId);
+        int keys = PlayerData.GetIntById(PlayerData.KeysId);
         int cycle = gm.level % 3;
         if (cycle == 0)
             return new ShopItemInstance(bulletsItem, ExponentialPrice(200, gm.extraBulletsBought));
@@ -148,8 +148,8 @@ public class ShopManager : MonoBehaviour
             { ShopItemID.extra_jump,        () => gm.maxJumps++ },
             { ShopItemID.magazine_plus_1,   () => gm.gun = gm.gun with { BulletCount = gm.gun.BulletCount + 1 } },
             { ShopItemID.magazine_plus_2,   () => gm.gun = gm.gun with { BulletCount = gm.gun.BulletCount + 2 } },
-            { ShopItemID.key_1,             () => PlayerData.setIntById(PlayerData.KeysId, 1, true) },
-            { ShopItemID.keys_2,            () =>  PlayerData.setIntById(PlayerData.KeysId, 2, true)},
+            { ShopItemID.key_1,             () => PlayerData.SetIntById(PlayerData.KeysId, 1, true) },
+            { ShopItemID.keys_2,            () =>  PlayerData.SetIntById(PlayerData.KeysId, 2, true)},
             { ShopItemID.move_player_left,  () => gm.MoveLeftBought++ },
         };
 

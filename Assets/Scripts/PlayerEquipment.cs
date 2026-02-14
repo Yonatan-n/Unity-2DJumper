@@ -38,7 +38,7 @@ public class PlayerEquipment : MonoBehaviour
         if (PlayerData.IsOwned(item))
             return true;
 
-        int keys = PlayerData.getIntById(PlayerData.KeysId, 0);
+        int keys = PlayerData.GetIntById(PlayerData.KeysId, 0);
 
         if (keys < item.Price)
         {
@@ -47,7 +47,7 @@ public class PlayerEquipment : MonoBehaviour
         }
 
         AudioManager.Instance.ShopYes();
-        PlayerData.setIntById(PlayerData.KeysId, -item.Price, true);
+        PlayerData.SetIntById(PlayerData.KeysId, -item.Price, true);
         PlayerData.SetOwned(item);
         return true;
     }
