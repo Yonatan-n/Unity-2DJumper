@@ -7,29 +7,35 @@ public class PlayerEquipment : MonoBehaviour
     public class SlotBinding
     {
         public GearSlot Slot;
-        public SpriteRenderer Renderer;
+        public Transform Root; // Offset layer (NOT animated)
     }
 
     [SerializeField] private List<SlotBinding> slotBindings;
 
-    private Dictionary<GearSlot, SpriteRenderer> slotMap;
+    private Dictionary<GearSlot, Transform> slotMap;
 
     private void Awake()
     {
-        slotMap = new Dictionary<GearSlot, SpriteRenderer>();
+        slotMap = new Dictionary<GearSlot, Transform>();
+
         foreach (var binding in slotBindings)
-            slotMap[binding.Slot] = binding.Renderer;
+            slotMap[binding.Slot] = binding.Root;
     }
 
     public void Equip(GearItem item)
     {
-        if (!slotMap.TryGetValue(item.Slot, out var renderer))
+        if (!slotMap.TryGetValue(item.Slot, out var root))
+            return;
+
+        var renderer = root.GetComponentInChildren<SpriteRenderer>();
+        if (renderer == null)
             return;
 
         renderer.sprite = item.Icon;
-        renderer.transform.localPosition = item.LocalOffset;
-        renderer.transform.localRotation = Quaternion.Euler(item.LocalRotation);
-        renderer.transform.localScale = item.LocalScale;
+
+        root.localPosition = item.LocalOffset;
+        root.localRotation = Quaternion.Euler(item.LocalRotation);
+        root.localScale = item.LocalScale;
         renderer.flipX = item.flipX;
         PlayerData.SetEquipped(item);
     }
@@ -55,14 +61,18 @@ public class PlayerEquipment : MonoBehaviour
 
     public void Unequip(GearSlot slot)
     {
-        if (slotMap.TryGetValue(slot, out var renderer))
-        {
+        if (!slotMap.TryGetValue(slot, out var root))
+            return;
+
+        var renderer = root.GetComponentInChildren<SpriteRenderer>();
+        if (renderer != null)
             renderer.sprite = null;
-            renderer.transform.localRotation = Quaternion.identity;
-            renderer.transform.localPosition = Vector3.zero;
-            renderer.transform.localScale = Vector3.one;
-            PlayerData.setEmptyGear(slot);
-        }
+
+        root.localRotation = Quaternion.identity;
+        root.localPosition = Vector3.zero;
+        root.localScale = Vector3.one;
+
+        PlayerData.setEmptyGear(slot);
     }
 
     public void LoadFromPlayerData()
@@ -78,5 +88,4 @@ public class PlayerEquipment : MonoBehaviour
                 Equip(item);
         }
     }
-
 }

@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] Button PauseBtn;
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject BulletPos;
-    [SerializeField] GameObject GunRoot;
+    [SerializeField] GameObject GunAnimator;
     public float StartPositionX = 0f;
     Camera _camera;
     int jumps;
@@ -70,8 +70,23 @@ public class Player : MonoBehaviour
     }
     void PlayAnimation()
     {
-        var animator = GunRoot.GetComponent<Animator>();
-        animator.Play("Gun1911Reload");
+        var animator = GunAnimator.GetComponent<Animator>();
+
+        var gunId = PlayerData.GetEquippedId(GearSlot.Gun);
+        if (gunId == "empty") return;
+        if (gunId == "13") // ak
+        {
+            animator.Play("GunAKReload");
+        }
+        else if (gunId == "14") // mp3
+        {
+            animator.Play("GunMP3Reload");
+        }
+        else // default pistol 1911
+        {
+            animator.Play("Gun1911Reload");
+
+        }
     }
     void InputDoJump(InputAction.CallbackContext context)
     {

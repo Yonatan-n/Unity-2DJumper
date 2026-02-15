@@ -211,11 +211,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEquipment
   slotBindings:
   - Slot: 0
-    Renderer: {fileID: 6220507445605609270}
+    Root: {fileID: 5193553347976029734}
   - Slot: 1
-    Renderer: {fileID: 1004825352311926013}
+    Root: {fileID: 1731347417118105700}
   - Slot: 2
-    Renderer: {fileID: 849228726097695306}
+    Root: {fileID: 1646768657161546556}
 --- !u!1 &4041468829277808782
 GameObject:
   m_ObjectHideFlags: 0
