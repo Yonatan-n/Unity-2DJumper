@@ -7081,12 +7081,6 @@ MonoBehaviour:
   reload1911_4: {fileID: 8300000, guid: 5ced3af4f24a3c0469690b4708e2081c, type: 3}
   reload1911_5: {fileID: 8300000, guid: 2a3ed56e3a7426a469246e6c0f630efb, type: 3}
   reload1911_6: {fileID: 8300000, guid: 3e0b7c9ec3a92834190e4dfc2c21906a, type: 3}
-  reloadAK_1: {fileID: 8300000, guid: 2dd29e41e55cedd4a993c35fade45943, type: 3}
-  reloadAK_2: {fileID: 8300000, guid: b6f95aa13834d60409a0faf9d706a0c7, type: 3}
-  reloadAK_3: {fileID: 8300000, guid: 995dfcb9dd88aff4f92a0be3df06c244, type: 3}
-  reloadMP3_1: {fileID: 8300000, guid: fd54cab6f26409b4e9386fa99bc20707, type: 3}
-  reloadMP3_2: {fileID: 8300000, guid: 5cac37466fe3f084280d495d847d61f3, type: 3}
-  reloadMP3_3: {fileID: 8300000, guid: 5764f8f46326e2640b3d9a141b7b897f, type: 3}
 --- !u!1 &924172413 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8175422900205222677, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
@@ -10196,17 +10190,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 1246522012}
     m_Modifications:
     - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
-      propertyPath: AKShoot
-      value: 
-      objectReference: {fileID: 8300000, guid: cd73edcddfea38741a423bd1307ed39e, type: 3}
-    - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: JumpBtn
       value: 
       objectReference: {fileID: 41246030}
-    - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
-      propertyPath: MP3Shoot
-      value: 
-      objectReference: {fileID: 8300000, guid: c1a9e1ff7f63ba54f8f2dfd89f183d56, type: 3}
     - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: PauseBtn
       value: 

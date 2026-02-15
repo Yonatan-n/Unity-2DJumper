@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject BulletPos;
     [SerializeField] GameObject GunAnimator;
+    [SerializeField] AudioClip AKShoot;
+    [SerializeField] AudioClip MP3Shoot;
     public float StartPositionX = 0f;
     Camera _camera;
     int jumps;
@@ -103,7 +105,20 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
-        PlaySound(GameManager.Instance.gun.ShootSound);
+        var gunId = PlayerData.GetEquippedId(GearSlot.Gun);
+        if (gunId == "empty") return;
+        if (gunId == "13") // ak
+        {
+            PlaySound(AKShoot);
+        }
+        else if (gunId == "14") // mp3
+        {
+            PlaySound(MP3Shoot);
+        }
+        else // default pistol 1911
+        {
+            PlaySound(GameManager.Instance.gun.ShootSound);
+        }
         Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
         Debug.Log("shoot: bang");
         if (PlayerData.GetBoolById(PlayerData.IsScreenShake))
