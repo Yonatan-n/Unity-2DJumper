@@ -322,7 +322,7 @@ public record Gun(GunType Type, int BulletCount, float reloadTimeSeconds, AudioC
 // TODO:
 // DONE fix phone resolution (black bars etc)
 // add background music, looping or multiple songs
-// add player walking animation 
+// Done add player walking animation 
 // add jump/shoot particles effects 
 // DONE add shoot screen shake (lol)
 // Done add gear page shop thing, unlock skins with keys, have the guns be skins for now, no different behavior
