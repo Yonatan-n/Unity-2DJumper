@@ -325,8 +325,8 @@ public record Gun(GunType Type, int BulletCount, float reloadTimeSeconds, AudioC
 // add player walking animation 
 // add jump/shoot particles effects 
 // DONE add shoot screen shake (lol)
-// add gear page shop thing, unlock skins with keys, have the guns be skins for now, no different behavior
-// have the player (rabbit) in the gear and main menu
+// Done add gear page shop thing, unlock skins with keys, have the guns be skins for now, no different behavior
+// Done have the player (rabbit) in the gear and main menu
 // DONE use audio settings slider or number input in options page
 // have 10-20 funny sentences that the rabbit says in the main menu (4 rules of firearms safety, stay in school, etc)
 

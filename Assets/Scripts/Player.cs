@@ -24,13 +24,14 @@ public class Player : MonoBehaviour
     public float StartPositionX = 0f;
     Camera _camera;
     int jumps;
-
+    private Animator playerAnimator;
     IEnumerator Start()
     {
         _camera = Camera.main;
         SetupBindings();
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        playerAnimator = GetComponent<Animator>();
         JumpBtn.onClick.AddListener(Jump);
         ShootBtn.onClick.AddListener(Shoot);
         PauseBtn.onClick.AddListener(PauseButtonHandler);
@@ -98,6 +99,7 @@ public class Player : MonoBehaviour
     public void Jump()
     {
         if (!PlayerData.GetBoolById(PlayerData.isGodMode) && jumps-- <= 0) return;
+        playerAnimator.Play("PlayerJump");
         rb.AddForceY(jumpForce, ForceMode2D.Impulse);
         rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed);
         PlaySound(jump);
@@ -181,6 +183,7 @@ public class Player : MonoBehaviour
         }
         else if (tag == "Ground")
         {
+            playerAnimator.Play("PlayerWalk");
             resetJumps();
         }
     }
