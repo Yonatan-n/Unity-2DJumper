@@ -14,9 +14,6 @@ public class FlyingAnimation : MonoBehaviour
 
     private void Awake()
     {
-        if (floatRoot == null)
-            floatRoot = transform;
-
         baseLocalPos = floatRoot.localPosition;
         // prevents multiple enemies moving identically
         offset = Random.Range(0f, 100f);

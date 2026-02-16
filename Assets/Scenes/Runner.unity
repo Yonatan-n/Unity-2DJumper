@@ -8407,7 +8407,6 @@ MonoBehaviour:
   carPrefab: {fileID: 8111632324343503752, guid: 53f3548761be8d040b227f4c26e688b5, type: 3}
   enemyPrefab: {fileID: 1671331318040374672, guid: 1399b0c94d838fb469a35776a5aba51e, type: 3}
   enemyFlyingPrefab: {fileID: 1671331318040374672, guid: be831cc17d412c14bb8cb43f3150aa0e, type: 3}
-  unlockFlyingEnemiesAfterSec: 60
   barrelsSprites:
   - {fileID: -8568042794190644651, guid: dbbda487ef7f5b547936f3d27a4b8180, type: 3}
   - {fileID: 1720866271940004694, guid: 3b6b3a51efde7a148985c814e692f024, type: 3}

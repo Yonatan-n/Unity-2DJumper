@@ -9,9 +9,6 @@ public class Spawner : ParentAwareSingleton<Spawner>
     [SerializeField] GameObject carPrefab;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] GameObject enemyFlyingPrefab;
-    bool isFlyingEnemiesUnlocked = false;
-    [SerializeField] float unlockFlyingEnemiesAfterSec = 60f; // seconds
-
     [SerializeField] List<Sprite> barrelsSprites;
     [SerializeField] List<Sprite> treesSprites;
     [SerializeField] List<GameObject> carsPrefabs;
@@ -25,16 +22,16 @@ public class Spawner : ParentAwareSingleton<Spawner>
     private List<GameObject> enemiesPrefabs;
     List<GameObject> obstacleMapKeys;
     private float spawnTimer = 0;
-    private float totalTimer = 0;
     private int enemyPercentage = 20; // 20%
+    // private int maxPercentage = 100;
+    private int maxEnemyPercentage = 80;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        isFlyingEnemiesUnlocked = true; // TODO: temp
         enemiesPrefabs = new List<GameObject>
         {
             enemyPrefab, // default
-            enemyFlyingPrefab,
+            // adding later enemyFlyingPrefab,
         };
 
         obstacleMap = new Dictionary<GameObject, List<Sprite>>
@@ -77,14 +74,45 @@ public class Spawner : ParentAwareSingleton<Spawner>
         // god I love the blood
         // .45 - god's caliber
     }
-    public void IncreaseEnemyPercentage()
-    {
-        enemyPercentage += 20;
-    }
 
+
+    bool _flyingUnlocked = false;
+    public void AddFlyingEnemies()
+    {
+        Debug.Log("Adding Flying enemies");
+        if (_flyingUnlocked) return;
+        enemiesPrefabs.Add(enemyFlyingPrefab);
+        _flyingUnlocked = true;
+    }
+    bool _ShieldedUnlocked = false;
+    public void AddShieldedEnemies()
+    {
+        Debug.Log("Adding Shielded enemies");
+        if (_ShieldedUnlocked) return;
+        // enemiesPrefabs.Add(enemyFlyingPrefab);
+        _ShieldedUnlocked = true;
+    }
     void setNextSpawnRate()
     {
         spawnRate = Random.Range(spawnRateMin, spawnRateMax + 1);
+    }
+
+    void IncreaseSpawnRate()
+    {
+        if (spawnRateMax > spawnRateMin) spawnRateMax--;
+    }
+    void IncreaseEnemyPercentage()
+    {
+        if (enemyPercentage < maxEnemyPercentage)
+            enemyPercentage += 20;
+    }
+
+    public void StartNewLevel(int level)
+    {
+        IncreaseSpawnRate();
+        IncreaseEnemyPercentage();
+        if (level == 2) AddFlyingEnemies();
+        else if (level == 3) AddShieldedEnemies();
     }
 
     public static T ChooseRandom<T>(IList<T> collection)
@@ -98,21 +126,15 @@ public class Spawner : ParentAwareSingleton<Spawner>
     }
     void spawnRandomObstacle()
     {
-        var position = transform.position;
-        var rotation = transform.rotation;
-        var randomNumberPercentage = Random.Range(0, 100);
-        randomNumberPercentage = 0;
         GameObject randomFab;
+        var _transform = transform;
+        var randomNumberPercentage = Random.Range(0, 100);
         if (randomNumberPercentage < enemyPercentage)
         {
             // spawn enemy
             randomFab = ChooseRandom(enemiesPrefabs);
-            randomFab = enemiesPrefabs[1];
-            if (randomFab.tag == Tags.FlyingEnemy)
-            {
-                position = FlyingSpawnPoint.position;
-                rotation = FlyingSpawnPoint.rotation;
-            }
+            if (randomFab == enemyFlyingPrefab)
+                _transform = FlyingSpawnPoint;
         }
         else
         {
@@ -131,7 +153,7 @@ public class Spawner : ParentAwareSingleton<Spawner>
                 sr.flipX = RandomBool();
             }
         }
-        var obs = Instantiate(randomFab, position, rotation);
+        var obs = Instantiate(randomFab, _transform.position, _transform.rotation);
         obstacles.Add(obs);
         setNextSpawnRate();
     }
@@ -147,7 +169,6 @@ public class Spawner : ParentAwareSingleton<Spawner>
 
     void Update()
     {
-        totalTimer += Time.deltaTime; // resets after game over
         spawnTimer += Time.deltaTime; // resets after each obstacle spawn 
         if (spawnTimer > spawnRate && !GameManager.Instance.levelEnd)
         {
@@ -155,17 +176,10 @@ public class Spawner : ParentAwareSingleton<Spawner>
             spawnTimer = 0;
         }
 
-        // todo remove false
-        if (false && totalTimer > unlockFlyingEnemiesAfterSec && !isFlyingEnemiesUnlocked)
-        {
-            isFlyingEnemiesUnlocked = true;
-            enemiesPrefabs.Add(enemyFlyingPrefab);
-        }
-
         if (obstacles.Count > 0 && obstacles[0] != null && obstacles[0].transform.position.x < deadZone)
         {
             // only need to check first one every time
-            // if player collieded, no need to destroy, just remove from the list
+            // if player collided, no need to destroy, just remove from the list
             if (obstacles[0])
             {
                 var obs = obstacles[0].GetComponent<Obstacle>();

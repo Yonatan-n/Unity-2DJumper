@@ -248,8 +248,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     private IEnumerator FinishCurrentLevel()
     {
         levelEnd = true;
-        var spawner = ObstaclesSpawner.GetComponent<Spawner>();
-        spawner.DestroyAllObstacles();
+        Spawner.Instance.DestroyAllObstacles();
         ObstaclesSpawner.SetActive(false);
         var playerScript = player.GetComponent<Player>();
         playerScript.SetButtons(false);
@@ -270,6 +269,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
         totalDistance += levelLength;
         levelEnd = false;
         level++;
+        Spawner.Instance.StartNewLevel(level);
         levelLength = (level + 1) * levelFactor;
         GroundMover.Instance.speed += 2;
         var playerScript = player.GetComponent<Player>();
@@ -278,8 +278,6 @@ public class GameManager : ParentAwareSingleton<GameManager>
         yield return playerScript.EnterLeft();
         // yield return new WaitForSeconds(SwitchLevelDuration);
         resetTimer();
-        var spawner = ObstaclesSpawner.GetComponent<Spawner>();
-        spawner.IncreaseEnemyPercentage();
         ObstaclesSpawner.SetActive(true);
     }
 
@@ -306,10 +304,10 @@ public class GameManager : ParentAwareSingleton<GameManager>
 
 public enum CoinsEarned
 {
-    Obstacle = 20,
-    Enemy = 100,
-    FlyingEnemy = 200,
-    JumpOver = 20,
+    Obstacle = 40,
+    Enemy = 200,
+    FlyingEnemy = 400,
+    JumpOver = 40,
 }
 
 public enum GunType

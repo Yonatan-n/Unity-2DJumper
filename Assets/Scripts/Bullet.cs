@@ -1,8 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 12;
+    public static readonly List<string> enemyTags = new() { Tags.Enemy, Tags.FlyingEnemy };
+
     float deadZone;
     Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,8 +38,7 @@ public class Bullet : MonoBehaviour
             // normal bullet, only 1 enemy
 
         }
-
-        if (other.gameObject.tag == Tags.Enemy || other.gameObject.tag == Tags.FlyingEnemy)
+        if (enemyTags.Contains(other.gameObject.tag))
         {
             // blood particles
             AudioManager.Instance.EnemyIsHit();
