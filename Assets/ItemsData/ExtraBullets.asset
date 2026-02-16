@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 2
   displayName: +2 bullets
   icon: {fileID: 3098933925591197577, guid: 497237e14f8b54545981258b0e5eafc0, type: 3}
-  basePrice: 200
+  basePrice: 100
   description: 

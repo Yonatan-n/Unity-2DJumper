@@ -7081,6 +7081,12 @@ MonoBehaviour:
   reload1911_4: {fileID: 8300000, guid: 5ced3af4f24a3c0469690b4708e2081c, type: 3}
   reload1911_5: {fileID: 8300000, guid: 2a3ed56e3a7426a469246e6c0f630efb, type: 3}
   reload1911_6: {fileID: 8300000, guid: 3e0b7c9ec3a92834190e4dfc2c21906a, type: 3}
+  reloadAK_1: {fileID: 0}
+  reloadAK_2: {fileID: 0}
+  reloadAK_3: {fileID: 0}
+  reloadMP3_1: {fileID: 0}
+  reloadMP3_2: {fileID: 0}
+  reloadMP3_3: {fileID: 0}
 --- !u!1 &924172413 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8175422900205222677, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
@@ -8365,6 +8371,7 @@ MonoBehaviour:
   - {fileID: 8111632324343503752, guid: 53f3548761be8d040b227f4c26e688b5, type: 3}
   spawnRateMin: 2
   spawnRateMax: 6
+  FlyingSpawnPoint: {fileID: 0}
   deadZone: -32
 --- !u!4 &1418599275
 Transform:

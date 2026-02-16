@@ -166,7 +166,7 @@ public class Player : MonoBehaviour
     {
         var tag = collision.gameObject.tag;
         var isGodMode = PlayerData.GetBoolById(PlayerData.isGodMode);
-        if (tag == "Obstacle")
+        if (tag == Tags.Obstacle)
         {
             // do falling glass or metal pipe thing lol
             // maybe 3 options, metal, wood, glass for cars trees and barrels
@@ -174,14 +174,14 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             if (!isGodMode) GameManager.Instance.Lives--;
         }
-        else if (tag == "Enemy")
+        else if (tag == Tags.Enemy || tag == Tags.FlyingEnemy)
         {
             // change later
             PlaySound(hurt);
             Destroy(collision.gameObject);
             if (!isGodMode) GameManager.Instance.Lives--;
         }
-        else if (tag == "Ground")
+        else if (tag == Tags.Ground)
         {
             playerAnimator.Play("PlayerWalk");
             resetJumps();

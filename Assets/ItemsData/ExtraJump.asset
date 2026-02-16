@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 0
   displayName: Extra Jump
   icon: {fileID: 2793481351783396797, guid: b86df38b3d0e33648bc958c670931595, type: 3}
-  basePrice: 800
+  basePrice: 400
   description: 

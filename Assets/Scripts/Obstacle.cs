@@ -10,11 +10,11 @@ public class Obstacle : MonoBehaviour
     public void Destroyed(bool isShoot)
     {
         CoinsEarned source;
-        if (gameObject.CompareTag("Enemy"))
+        if (gameObject.CompareTag(Tags.Enemy))
         {
             source = CoinsEarned.Enemy;
         }
-        else if (gameObject.CompareTag("FlyingEnemy"))
+        else if (gameObject.CompareTag(Tags.FlyingEnemy))
         {
             source = CoinsEarned.FlyingEnemy;
         }
@@ -33,15 +33,12 @@ public class Obstacle : MonoBehaviour
     void Update()
     {
         var moveSpeed = GroundMover.Instance.speed;
-        float speedPercentageIncrease;
-        if (gameObject.CompareTag("Enemy"))
+        float speedPercentageIncrease = gameObject.tag switch
         {
-            speedPercentageIncrease = 1.3f;
-        }
-        else
-        {
-            speedPercentageIncrease = 1f;
-        }
+            Tags.Enemy => 1.3f,
+            Tags.FlyingEnemy => 0.5f,
+            _ => 1f
+        };
         transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime * speedPercentageIncrease);
     }
 }

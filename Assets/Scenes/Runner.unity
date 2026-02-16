@@ -1191,6 +1191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 512572711}
   - component: {fileID: 512572710}
+  - component: {fileID: 512572712}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1258,6 +1259,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &512572712
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512572709}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ea452acd3f32a54aa6bc834a35732c0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6939,6 +6962,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &857239218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 857239219}
+  m_Layer: 0
+  m_Name: FlyingSpawerPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &857239219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857239218}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.40000153, y: 9.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1418599275}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &899054667 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7727481184943340694, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
@@ -8352,7 +8406,7 @@ MonoBehaviour:
   treePrefab: {fileID: 8111632324343503752, guid: 05a7512488c661349b87af5c14598071, type: 3}
   carPrefab: {fileID: 8111632324343503752, guid: 53f3548761be8d040b227f4c26e688b5, type: 3}
   enemyPrefab: {fileID: 1671331318040374672, guid: 1399b0c94d838fb469a35776a5aba51e, type: 3}
-  enemyFlyingPrefab: {fileID: 0}
+  enemyFlyingPrefab: {fileID: 1671331318040374672, guid: be831cc17d412c14bb8cb43f3150aa0e, type: 3}
   unlockFlyingEnemiesAfterSec: 60
   barrelsSprites:
   - {fileID: -8568042794190644651, guid: dbbda487ef7f5b547936f3d27a4b8180, type: 3}
@@ -8371,6 +8425,7 @@ MonoBehaviour:
   - {fileID: 8111632324343503752, guid: 53f3548761be8d040b227f4c26e688b5, type: 3}
   spawnRateMin: 2
   spawnRateMax: 6
+  FlyingSpawnPoint: {fileID: 857239219}
   deadZone: -32
 --- !u!4 &1418599275
 Transform:
@@ -8384,7 +8439,8 @@ Transform:
   m_LocalPosition: {x: 35.6, y: -11.16, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 857239219}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1484640334

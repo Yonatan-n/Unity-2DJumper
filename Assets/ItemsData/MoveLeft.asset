@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 6
   displayName: Move left
   icon: {fileID: 1746255142942077672, guid: 5528c637f9efbb14bb123b2971a1614d, type: 3}
-  basePrice: 900
+  basePrice: 800
   description: 

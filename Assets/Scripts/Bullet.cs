@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
 
         }
 
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.tag == Tags.Enemy || other.gameObject.tag == Tags.FlyingEnemy)
         {
             // blood particles
             AudioManager.Instance.EnemyIsHit();

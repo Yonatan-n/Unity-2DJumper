@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 1
   displayName: Extra Life
   icon: {fileID: -205270267638800340, guid: 91a88e49eca623b4bb090f3159bbb5b5, type: 3}
-  basePrice: 350
+  basePrice: 300
   description: 

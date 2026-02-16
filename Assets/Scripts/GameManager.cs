@@ -318,6 +318,18 @@ public enum GunType
 }
 public record Gun(GunType Type, int BulletCount, float reloadTimeSeconds, AudioClip reloadSound, AudioClip ShootSound);
 
+public static class Tags
+{
+    public const string Enemy = "Enemy";
+    public const string FlyingEnemy = "FlyingEnemy";
+    public const string Bullet = "Bullet";
+    public const string BulletFMJ = "BulletFMJ";
+    public const string Player = "Player";
+    public const string Obstacle = "Obstacle";
+    public const string Ground = "Ground";
+
+}
+
 
 // TODO:
 // DONE fix phone resolution (black bars etc)
@@ -330,9 +342,7 @@ public record Gun(GunType Type, int BulletCount, float reloadTimeSeconds, AudioC
 // DONE use audio settings slider or number input in options page
 // have 10-20 funny sentences that the rabbit says in the main menu (4 rules of firearms safety, stay in school, etc)
 
-// current resultion width 960, height 600
-
-// 1. gear page
+// 1. DONE gear page
 // 2. particals on shoot, jump, buy, buttons?
-// change economy, add 30% more money or reduce prices
+// DONE change economy, add 30% more money or reduce prices
 //  
