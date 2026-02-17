@@ -8,6 +8,8 @@ public static class PlayerData
     public const string isGodMode = "isGodMode";
     public const string IsScreenShake = "IsScreenShake";
     public const string IsEarRinging = "IsEarRinging";
+    public const string IsStartingGrace = "IsStartingGrace";
+    public const string MasterVolume = "MasterVolume";
     public const string GearHatId = "gear_hat_id";
     public const string GearGlassesId = "gear_glasses_id";
     public const string GearGunId = "gear_gun_id";
@@ -37,6 +39,8 @@ public static class PlayerData
     public static int GetIntById(string _id, int _default = 0) => PlayerPrefs.GetInt(_id, _default);
     public static void SetIntById(string _id, int value, bool inc = false) =>
         PlayerPrefs.SetInt(_id, inc ? GetIntById(_id) + value : value);
+    public static float GetFloatById(string _id, float _default = 0) => PlayerPrefs.GetFloat(_id, _default);
+    public static void SetFloatById(string _id, float value) => PlayerPrefs.SetFloat(_id, value);
     public static bool GetBoolById(string _id, bool _default = false) => PlayerPrefs.GetInt(_id, _default ? 1 : 0) == 1;
     public static void SetBoolById(string _id, bool value) => PlayerPrefs.SetInt(_id, value ? 1 : 0);
 

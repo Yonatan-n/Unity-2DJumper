@@ -344,3 +344,57 @@ public static class Tags
 // 2. particals on shoot, jump, buy, buttons?
 // DONE change economy, add 30% more money or reduce prices
 //  
+
+
+// Notes
+// 1. add hardhat call it RCE
+// reduce level 4+ length by at least 1000
+// maybe reduce all levels to 1000-1500M only, speed stay the same
+// [!] fix no gun by default
+// add 3sec delay when game starts (option to turn off, on by default)
+// in the shop, show how many keys do you have, top right corner 
+// make the flying enemies higher and lower to make it difficult to hit
+// for burst guns, tighter or looser spread (ak, mp3)
+// bomb enemy
+// enemies that walk, stand still and jump
+// large enemy that split into 2 small ones (jump diagonally)
+// shield (2-3 times? more? opacity to clarify)
+// move left is very strong. keep the first one the same, make the 2+ move half distance
+
+// challenges:
+// do not buy $item (move left, lives, double jump)
+// can only apply 1 buff at a run
+
+// clearing a level makes it that you can start at that level (Level Select, start at a shop with some money)
+// 
+
+// youtube hats / glass / guns? ask omer
+
+// Maybe: make the first level a tutorial like, you have no gun, unlock it at the end and play sound "he's got a gun!" lol
+// cutsecene:
+// level start talking to a tree/barrel about his wife sending him to get a carrot cake
+// level 1 gets hit by enemy (make it that you can't move away from him), pull up a gun from behind the back and shoot him
+// "Move bitch I'm going to the store"
+// level 2 flying enemy, sees him rabbit: "You again? how did you get up there?", 
+// flying: "Hello friend, I have never seen a creature like yourself in my entire life"
+// rabbit: "I don't have time for this shit" (jump and shoots him)
+// level 3: suicide enemy, rabbit sees him coming from a far, 
+// rabbit: "another one? I don't have time for more talking, this I'm going to the fucking store" (shoots him from afar before dialog)
+// level 4: shielded enemy, rabbit sees him. shielded: "Hello fuzzy one, we are the protectors of-...", 
+// rabbit: "huh? can't talk I'm going to the store", (shoot once)
+// <shield disappear>, enemy: "We are protected by-...", rabbit: "you still breathing? STORE!" (mag dumps into him)
+// level 5: big enemy split into small ones. big one: "Hello little o-..." 
+// rabbit: "the fuck is your problem? are you made out of little versions of youerslfe or something?"
+// big enemy: "Well actually I'm-..." (rabbit shoots, enemy splits)
+// rabbit: "Huh, would you look at that" (shoots some more)
+// final shop, buys carrot cake.
+// scene, brings it back to the wife. rabbit: "Hello darling, I brought you the carrot cake you love! <3"
+// wife: "Oh! so cool...", wife:"umm", wife:"I really want burgers now... O_o". (you won page, after that back to main menu)
+// next runs, starts with you going to get the wife a burger, but this time she is coming with you, extra lives ar rabbits, etc
+
+// enemy 100% kills you, then cut scene, rabbit, get's mad (comic angrey vfx), pulls out a gun from behind the back
+// shoot the enemy, sound clip "he's got a gun!" and then you get the gun unlocked and gear unlocked
+// extra rabbits for extra lives, female rabbit (maybe settings option to turn off brutality)
+// STORY
+// wants to buy carrot in the store, he can always get it but today there is a 1+1 sale
+// getting the rabbit wife 

@@ -4,15 +4,14 @@ using UnityEngine.Audio;
 public class AudioManager : Singleton<AudioManager>
 {
     // This value will control the master volume for the entire game (range 0 to 1)
-    [Range(0, 1)] public float masterVolume = 0.1f;//1.0f;
-    [Range(0, 1)] public float sfxVolume = 0.1f;//1.0f;
-    AudioSource audioSource;
+    public AudioSource audioSource;
     private readonly string MixerMasterVolume = "MasterVolume";
     [SerializeField] AudioClip enemyIsHit;
     [SerializeField] AudioClip gameOver;
     [SerializeField] AudioClip coins;
     [SerializeField] AudioClip shopNo;
     [SerializeField] AudioClip shopYes;
+    [SerializeField] AudioClip shoot;
     [SerializeField] AudioMixer mixer;
 
 
@@ -28,7 +27,7 @@ public class AudioManager : Singleton<AudioManager>
     }
     void Start()
     {
-        SetMasterVolume(masterVolume);
+        SetMasterVolume(null);
         IsInitialized = true; // last line
     }
 
@@ -44,6 +43,13 @@ public class AudioManager : Singleton<AudioManager>
     public void ShopYes()
     {
         audioSource.PlayOneShot(shopYes);
+    }
+    // for volume level change check
+    public void Shoot()
+    {
+        // not oneShot
+        audioSource.clip = shoot;
+        audioSource.Play();
     }
 
     public void PlayGameOverSound()
@@ -61,9 +67,10 @@ public class AudioManager : Singleton<AudioManager>
         audioSource.PlayOneShot(coins);
     }
 
-    public void SetMasterVolume(float volume)
+    public void SetMasterVolume(float? volume)
     {
-        masterVolume = volume;
+        volume ??= PlayerData.GetFloatById(PlayerData.MasterVolume);
+        var masterVolume = (float)volume;
         float dB = masterVolume <= 0.0001f ? -80f : Mathf.Log10(masterVolume) * 20f;
         mixer.SetFloat(MixerMasterVolume, dB);
         float val;

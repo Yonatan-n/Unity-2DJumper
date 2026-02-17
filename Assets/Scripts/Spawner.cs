@@ -21,13 +21,14 @@ public class Spawner : ParentAwareSingleton<Spawner>
     private Dictionary<GameObject, List<Sprite>> obstacleMap;
     private List<GameObject> enemiesPrefabs;
     List<GameObject> obstacleMapKeys;
-    private float spawnTimer = 0;
+    private float spawnTimer; // gives 3 seconds of no enemies at the start if IsStartingGrace
     private int enemyPercentage = 20; // 20%
     // private int maxPercentage = 100;
     private int maxEnemyPercentage = 80;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        spawnTimer = OptionsPanelManager.Instance.IsStartingGrace ? -3 : 0;
         enemiesPrefabs = new List<GameObject>
         {
             enemyPrefab, // default
@@ -42,7 +43,7 @@ public class Spawner : ParentAwareSingleton<Spawner>
         };
         obstacleMapKeys = obstacleMap.Keys.ToListPooled();
         obstacles = new List<GameObject>();
-        spawnRandomObstacle();
+        // spawnRandomObstacle();
         // TODO
         // option page:
         // volume control

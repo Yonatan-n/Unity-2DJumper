@@ -2,14 +2,14 @@ bullet: <a href="https://www.flaticon.com/free-icons/bullet" title="bullet icons
 pistol: <a href="https://www.flaticon.com/free-icons/gun" title="gun icons">Gun icons created by shmai - Flaticon</a>
 revolver: <a href="https://www.flaticon.com/free-icons/revolver" title="revolver icons">Revolver icons created by shmai - Flaticon</a>
 ak: <a href="https://www.flaticon.com/free-icons/gun" title="gun icons">Gun icons created by Freepik - Flaticon</a>
-mp5: <a href="https://www.flaticon.com/free-icons/weapon" title="weapon icons">Weapon icons created by max.icons - Flaticon</a>
-glock: <a href="https://www.flaticon.com/free-icons/pistol" title="pistol icons">Pistol icons created by Freepik - Flaticon</a>
-hk usp? <a href="https://www.flaticon.com/free-icons/gun" title="gun icons">Gun icons created by DinosoftLabs - Flaticon</a>
+mp3: <a href="https://www.flaticon.com/free-icons/weapon" title="weapon icons">Weapon icons created by max.icons - Flaticon</a>
+glnock: <a href="https://www.flaticon.com/free-icons/pistol" title="pistol icons">Pistol icons created by Freepik - Flaticon</a>
+vsp <a href="https://www.flaticon.com/free-icons/gun" title="gun icons">Gun icons created by DinosoftLabs - Flaticon</a>
 heart glasses: <a href="https://www.flaticon.com/free-icons/sunglasses" title="sunglasses icons">Sunglasses icons created by Freepik - Flaticon</a>
 chef hat: <a href="https://www.flaticon.com/free-icons/chef-hat" title="chef hat icons">Chef hat icons created by Freepik - Flaticon</a>
 party hat: <a href="https://www.flaticon.com/free-icons/party-hat" title="party hat icons">Party hat icons created by Freepik - Flaticon</a>
 wizard hat: <a href="https://www.flaticon.com/free-icons/witch-hat" title="witch hat icons">Witch hat icons created by Luvdat - Flaticon</a>
-chrismas hat: <a href="https://www.flaticon.com/free-icons/christmas" title="christmas icons">Christmas icons created by Vectors Market - Flaticon</a>
+christmas hat: <a href="https://www.flaticon.com/free-icons/christmas" title="christmas icons">Christmas icons created by Vectors Market - Flaticon</a>
 crates: <a href="https://www.flaticon.com/free-icons/crate" title="crate icons">Crate icons created by Freepik - Flaticon</a>
 car blue: <a href="https://www.flaticon.com/free-icons/car" title="car icons">Car icons created by Freepik - Flaticon</a>
 barrel oil: <a href="https://www.flaticon.com/free-icons/barrel" title="barrel icons">Barrel icons created by Freepik - Flaticon</a>
@@ -25,6 +25,7 @@ grave: <a href="https://www.flaticon.com/free-icons/tombstone" title="tombstone 
 location: <a href="https://www.flaticon.com/free-icons/location" title="location icons">Location icons created by Good Ware - Flaticon</a>
 pogo stick: <a href="https://www.flaticon.com/free-icons/pogo-stick" title="pogo-stick icons">Pogo-stick icons created by Freepik - Flaticon</a>
 left: <a href="https://www.flaticon.com/free-icons/curved-arrow" title="curved arrow icons">Curved arrow icons created by Pop Vectors - Flaticon</a>
+checkmark: <a href="https://www.flaticon.com/free-icons/tick" title="tick icons">Tick icons created by Maxim Basinski Premium - Flaticon</a>
 
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">Pixabay</a>
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">Pixabay</a>

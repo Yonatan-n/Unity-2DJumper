@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +9,12 @@ public enum BoolSetting
     EarRinging
 }
 
-
-
 public class OptionsPanelManager : ParentAwareSingleton<OptionsPanelManager>
 {
     [SerializeField] private Transform contentTransform;
     [SerializeField] private OptionRowUI toggleRowPrefab;
     [SerializeField] Button closeBtn;
+    private Coroutine previewVolume;
     public bool IsGodMode
     {
         get => PlayerData.GetBoolById(PlayerData.isGodMode, false);
@@ -22,22 +22,56 @@ public class OptionsPanelManager : ParentAwareSingleton<OptionsPanelManager>
     }
     public bool IsScreenShake
     {
-        get => PlayerData.GetBoolById(PlayerData.IsScreenShake, false);
+        get => PlayerData.GetBoolById(PlayerData.IsScreenShake, true);
         set { PlayerData.SetBoolById(PlayerData.IsScreenShake, value); }
     }
     public bool IsEarRinging
     {
-        get => PlayerData.GetBoolById(PlayerData.IsEarRinging, false);
+        get => PlayerData.GetBoolById(PlayerData.IsEarRinging, true);
         set { PlayerData.SetBoolById(PlayerData.IsEarRinging, value); }
     }
+    public bool IsStartingGrace
+    {
+        get => PlayerData.GetBoolById(PlayerData.IsStartingGrace, true);
+        set { PlayerData.SetBoolById(PlayerData.IsStartingGrace, value); }
+    }
+    public float MasterVolume
+    {
+        get => PlayerData.GetFloatById(PlayerData.MasterVolume, 0.5f);
+        set { PlayerData.SetFloatById(PlayerData.MasterVolume, value); }
+    }
+
 
     void Start()
     {
         closeBtn.onClick.AddListener(MainMenu.Instance.ToggleOptionsPanel);
         CreateToggle("Screen Shake", IsScreenShake, setIsScreenShake);
         CreateToggle("Ear Ringing", IsEarRinging, setIsEarRinging);
+        CreateToggle("3 Seconds Starting Delay", IsStartingGrace, setIsStartingGrace);
         CreateToggle("God Mode", IsGodMode, setIsGodMode);
-        // CreateSlider("SFX Volume", false, (volume) => AudioManager.Instance.SetMasterVolume(volume));
+        CreateSlider("Volume", MasterVolume, SetMasterVolume);
+    }
+
+    void SetMasterVolume(float volume)
+    {
+        MasterVolume = volume;
+        AudioManager.Instance.SetMasterVolume(MasterVolume);
+        previewVolume ??= StartCoroutine(PlaySoundPreview());
+    }
+    private IEnumerator PlaySoundPreview()
+    {
+        AudioManager.Instance.Shoot();
+        yield return new WaitWhile(() => AudioManager.Instance.audioSource.isPlaying);
+        previewVolume = null;
+    }
+    public void OnPointerUp(UnityEngine.EventSystems.PointerEventData eventData)
+    {
+        AudioManager.Instance.Shoot();
+    }
+
+    void setIsStartingGrace(bool value)
+    {
+        IsStartingGrace = value;
     }
     void setIsGodMode(bool value)
     {
@@ -65,8 +99,5 @@ public class OptionsPanelManager : ParentAwareSingleton<OptionsPanelManager>
         row.SetupSlider(label, defaultValue, callback);
     }
 
-    void Update()
-    {
 
-    }
 }
