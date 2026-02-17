@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf8334423a72e2e4b9dbe277535984e6, type: 3}
+  m_Name: Hat5
+  m_EditorClassIdentifier: Assembly-CSharp::GearItem
+  Id: 15
+  title: RCE
+  Slot: 0
+  Icon: {fileID: -5961774742715100294, guid: 936285ba9e016914188998ac32bb748d, type: 3}
+  LocalRotation: {x: 0, y: 0, z: 0}
+  LocalOffset: {x: 0, y: 0.7, z: -1}
+  LocalScale: {x: 0.25, y: 0.25, z: 1}
+  flipX: 0
+  Price: 1
