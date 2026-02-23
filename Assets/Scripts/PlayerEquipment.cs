@@ -80,10 +80,10 @@ public class PlayerEquipment : MonoBehaviour
         foreach (GearSlot slot in System.Enum.GetValues(typeof(GearSlot)))
         {
             var id = PlayerData.GetEquippedId(slot);
-            if (id == "empty")
+            if (id == PlayerData.empty)
                 continue;
 
-            var item = PlayerData.getGearById(id);
+            var item = PlayerData.GetGearById(id);
             if (item != null)
                 Equip(item);
         }

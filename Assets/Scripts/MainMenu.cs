@@ -20,6 +20,15 @@ public class MainMenu : ParentAwareSingleton<MainMenu>
         quit.onClick.AddListener(Quit);//
         _showOptions = false;
         optionsPanel.SetActive(_showOptions);
+        // PlayerData.ResetAll();
+        if (PlayerData.GetBoolById(PlayerData.isFirstStart, true))
+        {
+            var defaultGunId = "9";   // 1911
+            var gear = PlayerData.GetGearById(defaultGunId);
+            PlayerData.SetOwned(gear);
+            previewEquipment.Equip(gear);
+            PlayerData.SetBoolById(PlayerData.isFirstStart, false);
+        }
         previewEquipment.LoadFromPlayerData();
     }
 

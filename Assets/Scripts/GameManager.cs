@@ -73,6 +73,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     public int level;
     public readonly int TOTAL_LEVELS = 3;
     private int totalDistance = 0;
+    private Player PlayerScript;
 
     void Start()
     {
@@ -86,6 +87,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     }
     private void InitGame()
     {
+        PlayerScript = player.GetComponent<Player>();
         playerEquipment.LoadFromPlayerData();
         level = 0;
         levelLength = (level + 1) * levelFactor;
@@ -119,6 +121,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
             new Vector3(0, 0, 10), Quaternion.identity
         );
         StartCoroutine(SwitchBackground());
+        StartCoroutine(PlayerScript.EnterLeft());
     }
 
     public void updateMeters()
@@ -250,9 +253,8 @@ public class GameManager : ParentAwareSingleton<GameManager>
         levelEnd = true;
         Spawner.Instance.DestroyAllObstacles();
         ObstaclesSpawner.SetActive(false);
-        var playerScript = player.GetComponent<Player>();
-        playerScript.SetButtons(false);
-        yield return playerScript.ExitRight();
+        PlayerScript.SetButtons(false);
+        yield return PlayerScript.ExitRight();
         Debug.Log("player right of scene");
         // yield return SceneLoader.Instance.FadeOutEnum();
         PauseGame.Instance.Pause(PausePanel.showShopPanel); // will trigger the next level loading
@@ -347,11 +349,11 @@ public static class Tags
 
 
 // Notes
-// 1. add hardhat call it RCE
+// DONE add hardhat call it RCE
 // reduce level 4+ length by at least 1000
 // maybe reduce all levels to 1000-1500M only, speed stay the same
 // [!] fix no gun by default
-// add 3sec delay when game starts (option to turn off, on by default)
+// DONE add 3sec delay when game starts (option to turn off, on by default)
 // in the shop, show how many keys do you have, top right corner 
 // make the flying enemies higher and lower to make it difficult to hit
 // for burst guns, tighter or looser spread (ak, mp3)

@@ -13,6 +13,9 @@ public static class PlayerData
     public const string GearHatId = "gear_hat_id";
     public const string GearGlassesId = "gear_glasses_id";
     public const string GearGunId = "gear_gun_id";
+    public const string isFirstStart = "isFirstStart";
+    private const string _gearSlotPrefix = "gear_slot_";
+    public const string empty = "empty";
     // gear db
     private static GearDatabase _gearDatabase;
     public static GearDatabase gearDatabase
@@ -25,23 +28,29 @@ public static class PlayerData
         }
     }
 
-
-    public static GearItem GetById(string id)
-    {
-        return gearDatabase.Items.Find(i => i.Id == id);
-    }
-
     public static List<GearItem> GetBySlot(GearSlot slot)
     {
         return gearDatabase.Items.FindAll(i => i.Slot == slot);
     }
     // Main
     public static int GetIntById(string _id, int _default = 0) => PlayerPrefs.GetInt(_id, _default);
-    public static void SetIntById(string _id, int value, bool inc = false) =>
-        PlayerPrefs.SetInt(_id, inc ? GetIntById(_id) + value : value);
+    public static void SetIntById(string id, int value, bool inc = false)
+    {
+        if (inc)
+            value += GetIntById(id);
+        PlayerPrefs.SetInt(id, value);
+    }
     public static float GetFloatById(string _id, float _default = 0) => PlayerPrefs.GetFloat(_id, _default);
     public static void SetFloatById(string _id, float value) => PlayerPrefs.SetFloat(_id, value);
-    public static bool GetBoolById(string _id, bool _default = false) => PlayerPrefs.GetInt(_id, _default ? 1 : 0) == 1;
+    public static bool GetBoolById(string id, bool defaultValue = false)
+    {
+        if (PlayerPrefs.HasKey(id))
+            return PlayerPrefs.GetInt(id) == 1;
+
+        PlayerPrefs.SetInt(id, defaultValue ? 1 : 0);
+        return defaultValue;
+
+    }
     public static void SetBoolById(string _id, bool value) => PlayerPrefs.SetInt(_id, value ? 1 : 0);
 
     // Ownership
@@ -60,16 +69,15 @@ public static class PlayerData
         PlayerPrefs.SetInt(GetOwnedKey(item.Id), owned ? 1 : 0);
     }
 
-
     // Gear
-    public static GearItem getGearById(string gearItemId)
+    public static GearItem GetGearById(string gearItemId)
     {
         return gearDatabase.GetById(gearItemId);
     }
 
     private static string GetSlotKey(GearSlot slot)
     {
-        return "gear_slot_" + slot;
+        return _gearSlotPrefix + slot;
     }
 
     public static void SetEquipped(GearItem item)
@@ -79,13 +87,13 @@ public static class PlayerData
 
     public static string GetEquippedId(GearSlot slot)
     {
-        return PlayerPrefs.GetString(GetSlotKey(slot), "empty");
+        return PlayerPrefs.GetString(GetSlotKey(slot), empty);
     }
 
 
     public static void setEmptyGear(GearSlot slot)
     {
-        PlayerPrefs.SetString("gear_slot_" + slot.ToString(), "empty");
+        PlayerPrefs.SetString(_gearSlotPrefix + slot.ToString(), empty);
     }
     // for debugging
     public static void ResetAll()

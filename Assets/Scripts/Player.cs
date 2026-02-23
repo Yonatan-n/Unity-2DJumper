@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
         var animator = GunAnimator.GetComponent<Animator>();
 
         var gunId = PlayerData.GetEquippedId(GearSlot.Gun);
-        if (gunId == "empty") return;
+        if (gunId == PlayerData.empty) return;
         if (gunId == "13") // ak
         {
             animator.Play("GunAKReload");
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
     public void Shoot()
     {
         var gunId = PlayerData.GetEquippedId(GearSlot.Gun);
-        if (gunId == "empty") return;
+        if (gunId == PlayerData.empty) return;
         if (gunId == "13") // ak
         {
             PlaySound(AKShoot);

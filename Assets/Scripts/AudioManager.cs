@@ -69,7 +69,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void SetMasterVolume(float? volume)
     {
-        volume ??= PlayerData.GetFloatById(PlayerData.MasterVolume);
+        volume ??= PlayerData.GetFloatById(PlayerData.MasterVolume, 0.5f);
         var masterVolume = (float)volume;
         float dB = masterVolume <= 0.0001f ? -80f : Mathf.Log10(masterVolume) * 20f;
         mixer.SetFloat(MixerMasterVolume, dB);

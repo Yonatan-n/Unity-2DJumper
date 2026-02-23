@@ -76,6 +76,10 @@ public class OptionsPanelManager : ParentAwareSingleton<OptionsPanelManager>
     void setIsGodMode(bool value)
     {
         IsGodMode = value;
+        if (value)
+        {
+            PlayerData.SetIntById(PlayerData.KeysId, 999);
+        }
     }
     void setIsScreenShake(bool value)
     {
