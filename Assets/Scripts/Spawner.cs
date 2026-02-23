@@ -28,7 +28,8 @@ public class Spawner : ParentAwareSingleton<Spawner>
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spawnTimer = OptionsPanelManager.Instance.IsStartingGrace ? -3 : 0;
+        var isStartingGrace = PlayerData.GetBoolById(PlayerData.IsStartingGrace);
+        spawnTimer = isStartingGrace ? -3 : 0;
         enemiesPrefabs = new List<GameObject>
         {
             enemyPrefab, // default

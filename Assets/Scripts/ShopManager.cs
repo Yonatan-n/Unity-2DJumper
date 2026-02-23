@@ -37,7 +37,6 @@ public class ShopManager : MonoBehaviour
     public ShopItemData keyItem;
     public ShopItemData moveLeft;
 
-    int shopIndex;
     public string GetShopItemName(ShopItemID itemId)
     {
         if (itemId == ShopItemID.magazine_plus_2)

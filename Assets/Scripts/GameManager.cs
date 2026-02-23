@@ -36,7 +36,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     // ----- SHOP --------
     private int _movesLeftNumber = 0;
     public int extraBulletsBought = 0;
-    public readonly int MAX_MOVE_LEFT = 3;
+    public readonly int MAX_MOVE_LEFT = 6;
     public int MoveLeftBought
     {
         get { return _movesLeftNumber; }
@@ -46,9 +46,12 @@ public class GameManager : ParentAwareSingleton<GameManager>
             var playerScript = player.GetComponent<Player>();
             playerScript.StartPositionX = _movesLeftNumber switch
             {
-                1 => -12f,
-                2 => -20f,
-                3 => -28f, // max
+                1 => -10f,
+                2 => -14f,
+                3 => -18f,
+                4 => -22f,
+                5 => -24f,
+                6 => -28f, // max
                 _ => 0f // else, but really just 0
             };
         }
@@ -307,8 +310,8 @@ public class GameManager : ParentAwareSingleton<GameManager>
 public enum CoinsEarned
 {
     Obstacle = 40,
-    Enemy = 200,
-    FlyingEnemy = 400,
+    Enemy = 100,
+    FlyingEnemy = 200,
     JumpOver = 40,
 }
 
@@ -352,7 +355,7 @@ public static class Tags
 // DONE add hardhat call it RCE
 // reduce level 4+ length by at least 1000
 // maybe reduce all levels to 1000-1500M only, speed stay the same
-// [!] fix no gun by default
+// DONE [!] fix no gun by default
 // DONE add 3sec delay when game starts (option to turn off, on by default)
 // in the shop, show how many keys do you have, top right corner 
 // make the flying enemies higher and lower to make it difficult to hit
