@@ -11,6 +11,7 @@ public class FlyingAnimation : MonoBehaviour
 
     private Vector3 baseLocalPos;
     private float offset;
+    public bool stop = false;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class FlyingAnimation : MonoBehaviour
 
     private void Update()
     {
+        if (stop) return;
         float t = (Time.time + offset) * speed;
         float x = Mathf.Sin(t) * width;
         float y = Mathf.Sin(t * 2f) * height; // creates ∞-like motion

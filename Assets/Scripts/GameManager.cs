@@ -93,7 +93,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
         PlayerScript = player.GetComponent<Player>();
         playerEquipment.LoadFromPlayerData();
         level = 0;
-        levelLength = (level + 1) * levelFactor;
+        levelLength = levelFactor;
         // levelLength = 5; // remove
         var sceneTransition = GameObject.Find("SceneTransition");
         if (sceneTransition == null) // testing only?
@@ -275,8 +275,8 @@ public class GameManager : ParentAwareSingleton<GameManager>
         levelEnd = false;
         level++;
         Spawner.Instance.StartNewLevel(level);
-        levelLength = (level + 1) * levelFactor;
-        GroundMover.Instance.speed += 2;
+        levelLength = levelFactor * 2; // same always, just faster
+        GroundMover.Instance.speed += 3;
         var playerScript = player.GetComponent<Player>();
         playerScript.SetButtons(true); //
         yield return SwitchBackground(); // same duration as EnterLeft, don't yield to sync them
@@ -330,6 +330,7 @@ public static class Tags
     public const string Player = "Player";
     public const string Obstacle = "Obstacle";
     public const string Ground = "Ground";
+    public const string Shield = "Shield";
 
 }
 
@@ -358,13 +359,13 @@ public static class Tags
 // DONE [!] fix no gun by default
 // DONE add 3sec delay when game starts (option to turn off, on by default)
 // in the shop, show how many keys do you have, top right corner 
-// make the flying enemies higher and lower to make it difficult to hit
+// DONE make the flying enemies higher and lower to make it difficult to hit
 // for burst guns, tighter or looser spread (ak, mp3)
 // bomb enemy
 // enemies that walk, stand still and jump
 // large enemy that split into 2 small ones (jump diagonally)
 // shield (2-3 times? more? opacity to clarify)
-// move left is very strong. keep the first one the same, make the 2+ move half distance
+// Done move left is very strong. keep the first one the same, make the 2+ move half distance
 
 // challenges:
 // do not buy $item (move left, lives, double jump)

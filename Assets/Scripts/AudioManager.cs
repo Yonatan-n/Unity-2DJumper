@@ -7,6 +7,7 @@ public class AudioManager : Singleton<AudioManager>
     public AudioSource audioSource;
     private readonly string MixerMasterVolume = "MasterVolume";
     [SerializeField] AudioClip enemyIsHit;
+    [SerializeField] AudioClip ShieldIsHit;
     [SerializeField] AudioClip gameOver;
     [SerializeField] AudioClip coins;
     [SerializeField] AudioClip shopNo;
@@ -36,6 +37,10 @@ public class AudioManager : Singleton<AudioManager>
         audioSource.PlayOneShot(enemyIsHit);
     }
 
+    public void ShieldBroke()
+    {
+        audioSource.PlayOneShot(ShieldIsHit);
+    }
     public void ShopNoMoney()
     {
         audioSource.PlayOneShot(shopNo);

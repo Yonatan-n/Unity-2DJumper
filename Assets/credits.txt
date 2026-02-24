@@ -27,8 +27,9 @@ pogo stick: <a href="https://www.flaticon.com/free-icons/pogo-stick" title="pogo
 left: <a href="https://www.flaticon.com/free-icons/curved-arrow" title="curved arrow icons">Curved arrow icons created by Pop Vectors - Flaticon</a>
 checkmark: <a href="https://www.flaticon.com/free-icons/tick" title="tick icons">Tick icons created by Maxim Basinski Premium - Flaticon</a>
 hardhat: <a href="https://www.flaticon.com/free-icons/hard-hat" title="hard hat icons">Hard hat icons created by ekays.dsgn - Flaticon</a>
-
-
+shield: <a href="https://www.flaticon.com/free-icons/defend" title="defend icons">Defend icons created by mpanicon - Flaticon</a>
+bomb: <a href="https://www.flaticon.com/free-icons/bomb" title="bomb icons">Bomb icons created by Pixel perfect - Flaticon</a>
+another shield: <a href="https://www.flaticon.com/free-icons/warrior-shield" title="warrior-shield icons">Warrior-shield icons created by Freepik - Flaticon</a>
 
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">Pixabay</a>
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">Pixabay</a>
@@ -47,8 +48,9 @@ Sound Effect by <a href="https://pixabay.com/users/universfield-28281460/?utm_so
 Sound Effect by <a href="https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=186577">floraphonic</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=186577">Pixabay</a>
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=83632">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=83632">Pixabay</a>
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=82600">freesound_community</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=82600">Pixabay</a>
-background, player, enemies etc: https://kenney.nl/assets/jumper-packSound Effect by <a href="https://pixabay.com/users/mubeenstudio-33140857/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=406495">Mubeen Studio</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=406495">Pixabay</a>
+Sound Effect by <a href="https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=193281">floraphonic</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=193281">Pixabay</a>
 
+background, player, enemies etc: https://kenney.nl/assets/jumper-packSound Effect by <a href="https://pixabay.com/users/mubeenstudio-33140857/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=406495">Mubeen Studio</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=406495">Pixabay</a>
 floor: <a href="https://www.freepik.com/free-vector/seamless-ground-grass-cross-sections-landscaping_188006625.htm#fromView=keyword&page=1&position=0&uuid=c3d02ad5-ac13-4f0f-8bfb-5ea7cfeaf620&query=Ground">Image by svstudioart on Freepik</a>
 
 guns sounds: https://f8studios.itch.io/snakes-authentic-gun-sounds

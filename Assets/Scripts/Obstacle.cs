@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-
+    public bool WasShotted = false;
     void Start()
     {
 
@@ -40,5 +40,10 @@ public class Obstacle : MonoBehaviour
             _ => 1f
         };
         transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime * speedPercentageIncrease);
+    }
+    void OnBecameInvisible()
+    {
+        Debug.Log($"OnBecameInvisible {WasShotted}");
+        Destroyed(WasShotted);
     }
 }

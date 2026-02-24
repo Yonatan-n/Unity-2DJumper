@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public enum ShopItemID
 {
@@ -36,7 +37,7 @@ public class ShopManager : MonoBehaviour
     public ShopItemData bulletsItem;
     public ShopItemData keyItem;
     public ShopItemData moveLeft;
-
+    [SerializeField] TextMeshProUGUI KeysCounter;
     public string GetShopItemName(ShopItemID itemId)
     {
         if (itemId == ShopItemID.magazine_plus_2)
@@ -60,10 +61,15 @@ public class ShopManager : MonoBehaviour
     {
         BuildShop();
     }
+    void UpdateKeysCounter()
+    {
+        KeysCounter.text = $"Keys: {PlayerData.GetIntById(PlayerData.KeysId)}";
+    }
 
     void BuildShop()
     {
         Debug.Log("build shop");
+        UpdateKeysCounter();
         // clear old items
         foreach (Transform child in itemContainer)
             Destroy(child.gameObject);
@@ -139,6 +145,12 @@ public class ShopManager : MonoBehaviour
         return true;
     }
 
+    void BuyKey(int amount)
+    {
+        PlayerData.SetIntById(PlayerData.KeysId, amount, true);
+        UpdateKeysCounter();
+    }
+
     void ApplyItem(ShopItemInstance item)
     {
         var gm = GameManager.Instance;
@@ -147,8 +159,8 @@ public class ShopManager : MonoBehaviour
             { ShopItemID.extra_jump,        () => gm.maxJumps++ },
             { ShopItemID.magazine_plus_1,   () => gm.gun = gm.gun with { BulletCount = gm.gun.BulletCount + 1 } },
             { ShopItemID.magazine_plus_2,   () => gm.gun = gm.gun with { BulletCount = gm.gun.BulletCount + 2 } },
-            { ShopItemID.key_1,             () => PlayerData.SetIntById(PlayerData.KeysId, 1, true) },
-            { ShopItemID.keys_2,            () =>  PlayerData.SetIntById(PlayerData.KeysId, 2, true)},
+            { ShopItemID.key_1,             () => BuyKey(1)},
+            { ShopItemID.keys_2,            () => BuyKey(2)},
             { ShopItemID.move_player_left,  () => gm.MoveLeftBought++ },
         };
 

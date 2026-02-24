@@ -27,22 +27,12 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // bullets should not penetrate obstacles, but should kill enemies
-        // FMJ can go through multiple enemies
-        if (tag == "BulletFMJ")
-        {
-            // destroy multiple enemies
-        }
-        else
-        {
-            // normal bullet, only 1 enemy
-
-        }
         if (enemyTags.Contains(other.gameObject.tag))
         {
             // blood particles
-            AudioManager.Instance.EnemyIsHit();
-            Spawner.Instance.ShootObstacleRemove(other.gameObject);
+            var enemy = other.GetComponent<Enemy>();
+            if (enemy.TakeDamage(1))
+                Spawner.Instance.ShootObstacleRemove(other.gameObject);
         }
         // yellow partials
         Destroy(gameObject);
