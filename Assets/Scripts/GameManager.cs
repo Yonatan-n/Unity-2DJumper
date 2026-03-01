@@ -325,7 +325,7 @@ public enum CoinsEarned
 {
     Obstacle = 40,
     Enemy = 100,
-    FlyingEnemy = 200,
+    FlyingEnemy = 400,
     JumpOver = 40,
 }
 

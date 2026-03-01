@@ -36,7 +36,7 @@ public class Obstacle : MonoBehaviour
         float speedPercentageIncrease = gameObject.tag switch
         {
             Tags.Enemy => 1.3f,
-            Tags.FlyingEnemy => 0.5f,
+            Tags.FlyingEnemy => 0.3f,
             _ => 1f
         };
         transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime * speedPercentageIncrease);
