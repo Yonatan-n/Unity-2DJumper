@@ -32,7 +32,7 @@ public class Spawner : ParentAwareSingleton<Spawner>
     void Start()
     {
         var isStartingGrace = PlayerData.GetBoolById(PlayerData.IsStartingGrace);
-        spawnTimer = isStartingGrace ? -3 : 0;
+        spawnTimer = isStartingGrace ? -GameManager.Instance.GraceTime : 0;
         enemiesPrefabs = new List<GameObject>
         {
             EnemyWalkerPrefab, // default

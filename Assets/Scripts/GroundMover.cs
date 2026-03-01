@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GroundMover : ParentAwareSingleton<GroundMover>
@@ -5,7 +6,14 @@ public class GroundMover : ParentAwareSingleton<GroundMover>
     [SerializeField] Transform childA;
     [SerializeField] Transform childB;
     public float speed = 14f;
+    private float maxSpeed = 28f;
+    [SerializeField] float step = 2f;
     float startX, childWidth;
+
+    public void IncreaseSpeed()
+    {
+        speed = math.min(speed + step, maxSpeed);
+    }
     void Start()
     {
         // Width of ONE child (which contains 2 tiles)

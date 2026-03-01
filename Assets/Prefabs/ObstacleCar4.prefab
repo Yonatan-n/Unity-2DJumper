@@ -87,7 +87,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8030835215644163416, guid: 9d48ca7faf2d02b45b301b43cbbacf61, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4.11, y: 5.07}
@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faef63d2b34f4fb43a542130d3761ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  WasShotted: 0
 --- !u!60 &5157697131472148141
 PolygonCollider2D:
   m_ObjectHideFlags: 0

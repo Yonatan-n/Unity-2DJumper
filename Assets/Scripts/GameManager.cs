@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : ParentAwareSingleton<GameManager>
 {
+    public readonly float GraceTime = 3f;
     public Gun gun;
     public int lives = 1;
     public int maxJumps = 1; // can buy more later
@@ -77,6 +78,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     public readonly int TOTAL_LEVELS = 3;
     private int totalDistance = 0;
     private Player PlayerScript;
+    public bool ShowControlsText = true;
 
     void Start()
     {
@@ -243,7 +245,10 @@ public class GameManager : ParentAwareSingleton<GameManager>
     void Update()
     {
         timer += Time.deltaTime;
-        updateMeters();
+        if (!levelEnd)
+        {
+            updateMeters();
+        }
 
         if (timerToMeters() >= levelLength && !levelEnd)
         {
@@ -274,15 +279,24 @@ public class GameManager : ParentAwareSingleton<GameManager>
         totalDistance += levelLength;
         levelEnd = false;
         level++;
+        resetTimer();
         Spawner.Instance.StartNewLevel(level);
         levelLength = levelFactor * 2; // same always, just faster
-        GroundMover.Instance.speed += 3;
+        GroundMover.Instance.IncreaseSpeed();
         var playerScript = player.GetComponent<Player>();
+        if (level > 0 && ShowControlsText)
+        {
+            ShowControlsText = false; // set to false after the first level
+            playerScript.HideControlButtons();
+        }
         playerScript.SetButtons(true); //
         yield return SwitchBackground(); // same duration as EnterLeft, don't yield to sync them
         yield return playerScript.EnterLeft();
         // yield return new WaitForSeconds(SwitchLevelDuration);
-        resetTimer();
+        var isStartingGrace = PlayerData.GetBoolById(PlayerData.IsStartingGrace);
+        if (isStartingGrace)
+            yield return new WaitForSeconds(GraceTime);
+
         ObstaclesSpawner.SetActive(true);
     }
 
@@ -340,6 +354,8 @@ public static class Tags
 // add background music, looping or multiple songs
 // Done add player walking animation 
 // add jump/shoot particles effects 
+// add coin animation when enemy dies 1-4 coins spawn and are magmatic to the coins icon
+// change coin sfx to be more gentle and less annoying
 // DONE add shoot screen shake (lol)
 // Done add gear page shop thing, unlock skins with keys, have the guns be skins for now, no different behavior
 // Done have the player (rabbit) in the gear and main menu

@@ -1244,6 +1244,7 @@ MonoBehaviour:
   Progress: {fileID: 1417670853}
   HighScoreTMP: {fileID: 1875237170}
   level: 0
+  ShowControlsText: 1
 --- !u!4 &512572711
 Transform:
   m_ObjectHideFlags: 0
@@ -8483,7 +8484,7 @@ MonoBehaviour:
   EnemyWalkerPrefab: {fileID: 1671331318040374672, guid: 56636a0d65ecc7a45987178348689cbf, type: 3}
   EnemyWalkerShield: {fileID: 1671331318040374672, guid: 1399b0c94d838fb469a35776a5aba51e, type: 3}
   EnemyFlying: {fileID: 1671331318040374672, guid: be831cc17d412c14bb8cb43f3150aa0e, type: 3}
-  EnemyFlyingShield: {fileID: 1671331318040374672, guid: 56636a0d65ecc7a45987178348689cbf, type: 3}
+  EnemyFlyingShield: {fileID: 1671331318040374672, guid: 7ddcad988a7561a48ab0e51a1a40015b, type: 3}
   barrelsSprites:
   - {fileID: -8568042794190644651, guid: dbbda487ef7f5b547936f3d27a4b8180, type: 3}
   - {fileID: 1720866271940004694, guid: 3b6b3a51efde7a148985c814e692f024, type: 3}
@@ -8502,7 +8503,6 @@ MonoBehaviour:
   spawnRateMin: 2
   spawnRateMax: 6
   FlyingSpawnPoint: {fileID: 857239219}
-  deadZone: -32
 --- !u!4 &1418599275
 Transform:
   m_ObjectHideFlags: 0
@@ -10410,6 +10410,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4210258812379053866, guid: 797d5b926973b114bace0ebff0b8fc29, type: 3}
+      propertyPath: coins
+      value: 
+      objectReference: {fileID: 8300000, guid: 4742dc6e5c4ee8d46b083b8c951167fa, type: 3}
+    - target: {fileID: 4210258812379053866, guid: 797d5b926973b114bace0ebff0b8fc29, type: 3}
+      propertyPath: ShieldIsHit
+      value: 
+      objectReference: {fileID: 8300000, guid: 3fe047f3112a3634faca62adc9f66061, type: 3}
     - target: {fileID: 4900938276979991718, guid: 797d5b926973b114bace0ebff0b8fc29, type: 3}
       propertyPath: m_Name
       value: AudioManager

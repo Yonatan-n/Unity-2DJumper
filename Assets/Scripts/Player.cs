@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 public class Player : MonoBehaviour
 {
 
@@ -195,6 +196,12 @@ public class Player : MonoBehaviour
     public IEnumerator EnterLeft()
     {
         return movePlayerOutOfScreen(true);
+    }
+
+    public void HideControlButtons()
+    {
+        JumpBtn.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        ShootBtn.GetComponentInChildren<TextMeshProUGUI>().text = "";
     }
 
     private IEnumerator movePlayerOutOfScreen(bool isLeft)
