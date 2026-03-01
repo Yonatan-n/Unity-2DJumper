@@ -5,8 +5,9 @@ using System.Collections;
 using TMPro;
 public class Player : MonoBehaviour
 {
-
+    [SerializeField] GameObject visual;
     public int score;
+    private bool isMidAir;
     InputAction jumpAction;
     Rigidbody2D rb;
     AudioSource audioSource;
@@ -25,14 +26,16 @@ public class Player : MonoBehaviour
     public float StartPositionX = 0f;
     Camera _camera;
     int jumps;
-    private Animator playerAnimator;
+    Animator playerAnimator;
+    FlipVisual flipVisual;
     IEnumerator Start()
     {
         _camera = Camera.main;
         SetupBindings();
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        playerAnimator = GetComponent<Animator>();
+        playerAnimator = visual.GetComponent<Animator>();
+        flipVisual = visual.GetComponent<FlipVisual>();
         JumpBtn.onClick.AddListener(Jump);
         ShootBtn.onClick.AddListener(Shoot);
         PauseBtn.onClick.AddListener(PauseButtonHandler);
@@ -52,6 +55,7 @@ public class Player : MonoBehaviour
     void resetJumps()
     {
         jumps = GameManager.Instance.maxJumps;
+        isMidAir = false;
     }
 
     private void SetupBindings()
@@ -100,6 +104,13 @@ public class Player : MonoBehaviour
     public void Jump()
     {
         if (!PlayerData.GetBoolById(PlayerData.isGodMode) && jumps-- <= 0) return;
+        if (isMidAir)
+        {
+            // Reset vertical velocity
+            rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
+            flipVisual.TriggerFlip();
+        }
+        isMidAir = true;
         playerAnimator.Play("PlayerJump");
         rb.AddForceY(jumpForce, ForceMode2D.Impulse);
         rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed);
