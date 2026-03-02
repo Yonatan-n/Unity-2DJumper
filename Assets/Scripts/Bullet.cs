@@ -4,6 +4,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 12;
+    [SerializeField] GameObject bulletSplit;
+
     public static readonly List<string> enemyTags = new() { Tags.Enemy, Tags.FlyingEnemy };
 
     float deadZone;
@@ -29,12 +31,14 @@ public class Bullet : MonoBehaviour
     {
         if (enemyTags.Contains(other.gameObject.tag))
         {
-            // blood particles
             var enemy = other.GetComponent<Enemy>();
             if (enemy.TakeDamage(1))
                 Spawner.Instance.ShootObstacleRemove(other.gameObject);
         }
-        // yellow partials
+        else
+        {
+            Instantiate(bulletSplit, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

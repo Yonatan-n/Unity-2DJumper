@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 36
-  deadZone: 33
+  bulletSplit: {fileID: 6591727933921325097, guid: 92e115ceb7a7da8449b2611abf0a4247, type: 3}
 --- !u!50 &3227402428092161500
 Rigidbody2D:
   serializedVersion: 5

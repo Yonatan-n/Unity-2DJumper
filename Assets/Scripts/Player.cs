@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     int jumps;
     Animator playerAnimator;
     FlipVisual flipVisual;
+    [SerializeField] GameObject doubleJumpParticles;
     IEnumerator Start()
     {
         _camera = Camera.main;
@@ -106,9 +107,10 @@ public class Player : MonoBehaviour
         if (!PlayerData.GetBoolById(PlayerData.isGodMode) && jumps-- <= 0) return;
         if (isMidAir)
         {
-            // Reset vertical velocity
+            // Reset vertical velocity, so that the next jump will have exactly the same force as the first one
             rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
             flipVisual.TriggerFlip();
+            Instantiate(doubleJumpParticles, transform.position, Quaternion.identity);
         }
         isMidAir = true;
         playerAnimator.Play("PlayerJump");

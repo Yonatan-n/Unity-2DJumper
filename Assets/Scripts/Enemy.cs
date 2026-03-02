@@ -1,18 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Obstacle))]
 public class Enemy : MonoBehaviour
 {
     int Health;
     int Shield;
     [SerializeField] GameObject ShieldObj;
-    Obstacle obs;
+    [SerializeField] GameObject bloodPrefab;
 
     public void Init(int health, int shield = 0)
     {
         Health = health;
         Shield = shield;
-        obs = GetComponent<Obstacle>();
     }
 
     public bool TakeDamage(int amount)
@@ -58,5 +56,7 @@ public class Enemy : MonoBehaviour
         rb.gravityScale = 1f;
         rb.AddForce(new Vector2(Random.Range(-3f, 3f), 20f), ForceMode2D.Impulse);
         rb.angularVelocity = Random.Range(-200f, 200f);
+        // blood fx
+        Instantiate(bloodPrefab, transform);
     }
 }
