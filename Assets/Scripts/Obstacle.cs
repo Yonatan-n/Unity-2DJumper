@@ -48,6 +48,7 @@ public class Obstacle : MonoBehaviour
     void OnBecameInvisible()
     {
         Debug.Log($"OnBecameInvisible {WasShotted}");
+        RewardManager.Instance.SpawnCoins(transform.position, 5);
         Destroyed(WasShotted);
     }
 }

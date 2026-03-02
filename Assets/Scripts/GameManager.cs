@@ -348,6 +348,13 @@ public static class Tags
 
 }
 
+public enum RewardType
+{
+    Coins,
+    Lives,
+    Ammo,
+}
+
 
 // TODO:
 // DONE fix phone resolution (black bars etc)
