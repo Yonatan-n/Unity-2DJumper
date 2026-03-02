@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     Animator playerAnimator;
     FlipVisual flipVisual;
     [SerializeField] GameObject doubleJumpFX;
+    public bool doneLoading = false;
     IEnumerator Start()
     {
         _camera = Camera.main;
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
         yield return new WaitUntil(() => AudioManager.Instance.IsInitialized);
         GameManager.Instance.updateAllCounters();
         resetJumps();
+        doneLoading = true;
     }
     public void SetButtons(bool value)
     {
@@ -208,7 +210,8 @@ public class Player : MonoBehaviour
     }
     public IEnumerator EnterLeft()
     {
-        return movePlayerOutOfScreen(true);
+        yield return new WaitUntil(() => doneLoading);
+        yield return movePlayerOutOfScreen(true);
     }
 
     public void HideControlButtons()
