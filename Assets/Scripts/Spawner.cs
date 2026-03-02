@@ -170,7 +170,11 @@ public class Spawner : ParentAwareSingleton<Spawner>
                 sr.flipX = RandomBool();
             }
         }
-        var obs = Instantiate(randomFab, _transform.position, _transform.rotation);
+        var position = new Vector3(
+            Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 5f,
+             _transform.position.y, _transform.position.z
+        );
+        var obs = Instantiate(randomFab, position, _transform.rotation);
         obstacles.Add(obs);
         var enemy = obs.GetComponent<Enemy>();
         enemy = enemy != null ? enemy : obs.GetComponentInChildren<Enemy>();
