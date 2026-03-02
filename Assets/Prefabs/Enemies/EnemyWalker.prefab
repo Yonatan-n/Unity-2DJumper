@@ -240,3 +240,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   ShieldObj: {fileID: 0}
   bloodPrefab: {fileID: 237085088473183294, guid: ae428828a1ede724caa0383cad943b77, type: 3}
+  shieldBreak: {fileID: 6591727933921325097, guid: 230ced342012d084fa4814a4bc9033f2, type: 3}

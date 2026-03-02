@@ -4,15 +4,20 @@ public class Enemy : MonoBehaviour
 {
     int Health;
     int Shield;
+    Rigidbody2D rb;
     [SerializeField] GameObject ShieldObj;
     [SerializeField] GameObject bloodPrefab;
+    [SerializeField] GameObject shieldBreak;
 
     public void Init(int health, int shield = 0)
     {
         Health = health;
         Shield = shield;
     }
-
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     public bool TakeDamage(int amount)
     {
         if (Shield > 0)
@@ -39,11 +44,16 @@ public class Enemy : MonoBehaviour
         AudioManager.Instance.ShieldBroke();
         var _shield_anim = ShieldObj.GetComponent<Animator>();
         _shield_anim.SetTrigger("IsBroken");
+
+        var shieldParticles = Instantiate(shieldBreak, transform.position, Quaternion.identity);
+        var ps = shieldParticles.GetComponent<ParticleSystem>();
+        var velocityModule = ps.velocityOverLifetime;
+        // +7 feels better, don't know why
+        velocityModule.x = -(GroundMover.Instance.speed + 7);
     }
     private void Die()
     {
         var collider = GetComponent<Collider2D>();
-        var rb = GetComponent<Rigidbody2D>();
         var anim = GetComponent<Animator>();
         var flyingAnim = GetComponentInChildren<FlyingAnimation>();
         if (flyingAnim != null)

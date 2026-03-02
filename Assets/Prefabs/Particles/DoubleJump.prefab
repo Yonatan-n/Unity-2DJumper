@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4013809838044293379}
   - component: {fileID: 3587992937386765874}
   m_Layer: 0
-  m_Name: DoubleJumpConfetti
+  m_Name: DoubleJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

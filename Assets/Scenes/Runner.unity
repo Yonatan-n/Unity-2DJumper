@@ -10553,6 +10553,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 300227526}
     - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: doubleJumpFX
+      value: 
+      objectReference: {fileID: 1184576973696018685, guid: 02cc85e76c19aaf499c2e2ad33ed883c, type: 3}
+    - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: doubleJumpParticles
       value: 
       objectReference: {fileID: 4013809838044293379, guid: 02cc85e76c19aaf499c2e2ad33ed883c, type: 3}
