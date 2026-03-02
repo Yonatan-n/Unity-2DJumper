@@ -50,9 +50,9 @@ public class RewardManager : MonoBehaviour
         pool.Enqueue(reward);
     }
 
-    public void SpawnCoins(Vector3 worldPos, int amount)
+    public void SpawnCoins(Vector3 worldPos, CoinsEarned source)
     {
-        Spawn(worldPos, amount, coinTarget, OnCoinCollected);
+        Spawn(worldPos, (int)source / 40, coinTarget, () => OnCoinCollected(source));
     }
     public void SpawnAmmo(Vector3 worldPos, int amount)
     {
@@ -82,9 +82,10 @@ public class RewardManager : MonoBehaviour
         }
     }
 
-    private void OnCoinCollected()
+    private void OnCoinCollected(CoinsEarned source)
     {
         // Add coin to PlayerData here
+        GameManager.Instance.earnedCoins(source);
     }
 
     private void OnLifeCollected()

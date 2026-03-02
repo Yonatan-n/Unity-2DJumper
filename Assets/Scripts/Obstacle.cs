@@ -3,33 +3,18 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     public bool WasShotted = false;
-    void Start()
-    {
 
-    }
-    public void Destroyed(bool isShoot)
+    private CoinsEarned MapSourceToCoin(bool isShoot)
     {
-        CoinsEarned source;
-        if (gameObject.CompareTag(Tags.Enemy))
+        return (isShoot, gameObject.tag) switch
         {
-            source = CoinsEarned.Enemy;
-        }
-        else if (gameObject.CompareTag(Tags.FlyingEnemy))
-        {
-            source = CoinsEarned.FlyingEnemy;
-        }
-        else
-        {
-            source = CoinsEarned.Obstacle;
-        }
-        if (!isShoot)
-        {
-            source = CoinsEarned.JumpOver;
-        }
-        Debug.Log("Obstacle destroyed " + source);
-        Destroy(gameObject);
-        GameManager.Instance.earnedCoins(source);
+            (false, _) => CoinsEarned.JumpOver,
+            (true, Tags.Enemy) => CoinsEarned.Enemy,
+            (true, Tags.FlyingEnemy) => CoinsEarned.FlyingEnemy,
+            (true, _) => CoinsEarned.Obstacle
+        };
     }
+
     void Update()
     {
         var moveSpeed = GroundMover.Instance.speed;
@@ -48,7 +33,7 @@ public class Obstacle : MonoBehaviour
     void OnBecameInvisible()
     {
         Debug.Log($"OnBecameInvisible {WasShotted}");
-        RewardManager.Instance.SpawnCoins(transform.position, 5);
-        Destroyed(WasShotted);
+        RewardManager.Instance.SpawnCoins(transform.position, MapSourceToCoin(WasShotted));
+        Destroy(gameObject);
     }
 }
