@@ -44,12 +44,10 @@ public class Enemy : MonoBehaviour
         AudioManager.Instance.ShieldBroke();
         var _shield_anim = ShieldObj.GetComponent<Animator>();
         _shield_anim.SetTrigger("IsBroken");
-
         var shieldParticles = Instantiate(shieldBreak, transform.position, Quaternion.identity);
         var ps = shieldParticles.GetComponent<ParticleSystem>();
         var velocityModule = ps.velocityOverLifetime;
-        // +7 feels better, don't know why
-        velocityModule.x = -(GroundMover.Instance.speed + 7);
+        velocityModule.x = -(GroundMover.Instance.speed * Obstacle.GetSpeedIncrease(gameObject));
     }
     private void Die()
     {

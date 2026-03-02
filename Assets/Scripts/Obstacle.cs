@@ -33,13 +33,17 @@ public class Obstacle : MonoBehaviour
     void Update()
     {
         var moveSpeed = GroundMover.Instance.speed;
-        float speedPercentageIncrease = gameObject.tag switch
+        transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime * GetSpeedIncrease(gameObject));
+    }
+
+    public static float GetSpeedIncrease(GameObject gameObject)
+    {
+        return gameObject.tag switch
         {
             Tags.Enemy => 1.3f,
             Tags.FlyingEnemy => 0.3f,
             _ => 1f
         };
-        transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime * speedPercentageIncrease);
     }
     void OnBecameInvisible()
     {
