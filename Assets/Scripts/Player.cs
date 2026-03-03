@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public int score;
     private bool isMidAir;
     InputAction jumpAction;
+    InputAction shootAction;
+    bool canShoot = true;
     Rigidbody2D rb;
     AudioSource audioSource;
     [SerializeField] float jumpForce = 20f;
@@ -67,6 +69,10 @@ public class Player : MonoBehaviour
         jumpAction.AddBinding("<Keyboard>/space");
         jumpAction.Enable();
         jumpAction.performed += InputDoJump;
+        shootAction = new InputAction("Press", InputActionType.Button);
+        shootAction.AddBinding("<Keyboard>/f");
+        shootAction.Enable();
+        shootAction.performed += InputDoShoot;
 
     }
     void PauseButtonHandler()
@@ -99,6 +105,10 @@ public class Player : MonoBehaviour
 
         }
     }
+    void InputDoShoot(InputAction.CallbackContext context)
+    {
+        Shoot();
+    }
     void InputDoJump(InputAction.CallbackContext context)
     {
         Jump();
@@ -123,6 +133,7 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
+        if (!canShoot) return;
         var gunId = PlayerData.GetEquippedId(GearSlot.Gun);
         if (gunId == PlayerData.empty) return;
         if (gunId == "13") // ak
@@ -158,7 +169,8 @@ public class Player : MonoBehaviour
     {
         var gun = GameManager.Instance.gun;
         GameManager.Instance.GreyOutInAmmo(true);
-        ShootBtn.interactable = false;
+        canShoot = false;
+        ShootBtn.interactable = canShoot;
         // block icon and shoot button
         // start to play sound 
         // throw gun and catch
@@ -172,7 +184,8 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(gun.reloadTimeSeconds - waitForShotToFade);
         GameManager.Instance.GreyOutInAmmo(false);
-        ShootBtn.interactable = true;
+        canShoot = true;
+        ShootBtn.interactable = canShoot;
         // Code to execute after the delay
         Debug.Log("Function executed after " + gun.reloadTimeSeconds + " seconds!");
     }

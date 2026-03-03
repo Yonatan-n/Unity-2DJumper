@@ -15,10 +15,10 @@ public class RewardManager : MonoBehaviour
     [Header("Pooling")]
     [SerializeField] RewardFlyToUI rewardPrefab;
     [SerializeField] int initialPoolSize = 30;
-    private static readonly Dictionary<CoinsEarned, (int count, int totalValue)> CoinRewards = new(){
+    private static readonly Dictionary<CoinsEarned, (int coinsAmount, int totalValue)> CoinRewards = new(){
         {CoinsEarned.Obstacle,     (1, 40)},
-        {CoinsEarned.Enemy,        (2, 50)},
-        {CoinsEarned.FlyingEnemy,  (4, 100)},
+        {CoinsEarned.Enemy,        (2, 100)},
+        {CoinsEarned.FlyingEnemy,  (4, 400)},
         {CoinsEarned.JumpOver,     (1, 40)},
     };
     private readonly Queue<RewardFlyToUI> pool = new();
