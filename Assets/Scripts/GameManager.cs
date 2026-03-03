@@ -112,7 +112,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
 
         gun = guns[0];
         reloadAmmo();
-        coins = (int)CoinsEarned.Obstacle;
+        coins = 0;
         if (PlayerData.GetBoolById(PlayerData.isGodMode))
         {
             coins = 100000;
@@ -226,10 +226,10 @@ public class GameManager : ParentAwareSingleton<GameManager>
         PauseGame.Instance.Pause(PausePanel.showGameOverPanel); // stop buttons, movments for now
         // show gameover ui
     }
-    public void earnedCoins(CoinsEarned earned)
+    public void earnedCoins(int earned)
     {
         AudioManager.Instance.CoinPickUp();
-        Coins += (int)earned;
+        Coins += earned;
         updateCoins();
     }
     public void updateCoins()
@@ -323,10 +323,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
 
 public enum CoinsEarned
 {
-    Obstacle = 40,
-    Enemy = 100,
-    FlyingEnemy = 400,
-    JumpOver = 40,
+    Obstacle, Enemy, FlyingEnemy, JumpOver,
 }
 
 public enum GunType

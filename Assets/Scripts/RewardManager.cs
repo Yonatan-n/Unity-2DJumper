@@ -15,7 +15,12 @@ public class RewardManager : MonoBehaviour
     [Header("Pooling")]
     [SerializeField] RewardFlyToUI rewardPrefab;
     [SerializeField] int initialPoolSize = 30;
-
+    private static readonly Dictionary<CoinsEarned, (int count, int totalValue)> CoinRewards = new(){
+        {CoinsEarned.Obstacle,     (1, 40)},
+        {CoinsEarned.Enemy,        (2, 50)},
+        {CoinsEarned.FlyingEnemy,  (4, 100)},
+        {CoinsEarned.JumpOver,     (1, 40)},
+    };
     private readonly Queue<RewardFlyToUI> pool = new();
 
     private void Awake()
@@ -52,7 +57,9 @@ public class RewardManager : MonoBehaviour
 
     public void SpawnCoins(Vector3 worldPos, CoinsEarned source)
     {
-        Spawn(worldPos, (int)source / 40, coinTarget, () => OnCoinCollected(source));
+        var (_coinCount, totalValue) = CoinRewards[source];
+        int valuePerCoin = Mathf.RoundToInt(totalValue / _coinCount);
+        Spawn(worldPos, _coinCount, coinTarget, () => GameManager.Instance.earnedCoins(valuePerCoin));
     }
     public void SpawnAmmo(Vector3 worldPos, int amount)
     {
@@ -80,12 +87,6 @@ public class RewardManager : MonoBehaviour
                               onCollected,
                               ReturnToPool);
         }
-    }
-
-    private void OnCoinCollected(CoinsEarned source)
-    {
-        // Add coin to PlayerData here
-        GameManager.Instance.earnedCoins(source);
     }
 
     private void OnLifeCollected()
