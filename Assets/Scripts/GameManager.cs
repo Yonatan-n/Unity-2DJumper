@@ -75,7 +75,6 @@ public class GameManager : ParentAwareSingleton<GameManager>
 
     public IReadOnlyList<Gun> guns;
     public int level;
-    public readonly int TOTAL_LEVELS = 3;
     private int totalDistance = 0;
     private Player PlayerScript;
     public bool ShowControlsText = true;
@@ -122,7 +121,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
         updateAllCounters();
         resetTimer();
         CurrentBackground = Instantiate(
-            BackgroundPrefabs[TOTAL_LEVELS - 1],
+            BackgroundPrefabs[0],
             new Vector3(0, 0, 10), Quaternion.identity
         );
         StartCoroutine(SwitchBackground());
@@ -303,7 +302,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     IEnumerator SwitchBackground()
     {
         var newBackground = Instantiate(
-            BackgroundPrefabs[level % TOTAL_LEVELS],
+            BackgroundPrefabs[level % BackgroundPrefabs.Length],
             new Vector3(0, 0, 10), Quaternion.identity
         );
         var newBGFade = newBackground.GetComponent<BackgroundFade>();
