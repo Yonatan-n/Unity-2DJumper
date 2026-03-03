@@ -42,7 +42,7 @@ public class RewardFlyToUI : MonoBehaviour
         if (running != null)
             StopCoroutine(running);
 
-        rect.localScale = Vector3.one;
+        rect.localScale = Vector3.zero; // hide immediately
         running = StartCoroutine(Fly());
     }
 
@@ -52,20 +52,19 @@ public class RewardFlyToUI : MonoBehaviour
         if (maxRandomDelay > 0f)
             yield return new WaitForSeconds(UnityEngine.Random.Range(0f, maxRandomDelay));
 
-        // Convert positions to canvas-local space
         Vector2 start;
         Vector2 end;
+        // Convert positions to canvas-local space
         RectTransform canvasRect = canvas.transform as RectTransform;
         var camera = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
         Vector3 screenPos = worldCamera.WorldToScreenPoint(worldPosition);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPos, camera, out start);
-
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvasRect,
-            RectTransformUtility.WorldToScreenPoint(camera, target.position),
-            camera, out end);
+            canvasRect, RectTransformUtility.WorldToScreenPoint(camera, target.position), camera, out end
+        );
 
         rect.anchoredPosition = start;
+        rect.localScale = Vector3.one; // show after starting
         float time = 0f;
         while (time < duration)
         {
