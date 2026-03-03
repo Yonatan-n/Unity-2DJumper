@@ -171,7 +171,7 @@ public class Spawner : ParentAwareSingleton<Spawner>
             }
         }
         var position = new Vector3(
-            Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 5f,
+            Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x + 1f,
              _transform.position.y, _transform.position.z
         );
         var obs = Instantiate(randomFab, position, _transform.rotation);
