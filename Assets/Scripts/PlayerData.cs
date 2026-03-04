@@ -54,7 +54,7 @@ public static class PlayerData
     public static void SetBoolById(string _id, bool value) => PlayerPrefs.SetInt(_id, value ? 1 : 0);
 
     // Ownership
-    private static string GetOwnedKey(string gearId)
+    public static string GetOwnedKey(string gearId)
     {
         return "gear_owned_" + gearId;
     }
@@ -75,7 +75,7 @@ public static class PlayerData
         return gearDatabase.GetById(gearItemId);
     }
 
-    private static string GetSlotKey(GearSlot slot)
+    public static string GetSlotKey(GearSlot slot)
     {
         return _gearSlotPrefix + slot;
     }

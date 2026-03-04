@@ -28,6 +28,7 @@ public class Spawner : ParentAwareSingleton<Spawner>
     private readonly int maxShieldPercentage = 75;
     // private int maxPercentage = 100;
     private readonly int maxEnemyPercentage = 80;
+    private bool _is_first = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -184,6 +185,12 @@ public class Spawner : ParentAwareSingleton<Spawner>
         else if (randomFab == EnemyWalkerShield || randomFab == EnemyFlyingShield)
             enemy.Init(1, 1);
         setNextSpawnRate();
+        if (_is_first)
+        {
+            var obs_script = obs.GetComponent<Obstacle>();
+            obs_script.is_first = true;
+            _is_first = false;
+        }
     }
 
     public void ShootObstacleRemove(GameObject obstacle)

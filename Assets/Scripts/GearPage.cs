@@ -19,7 +19,6 @@ public class GearPage : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // PlayerData.ResetAll();
         // PlayerData.SetIntById(PlayerData.KeysId, 300);
         previewEquipment.LoadFromPlayerData();
         back.onClick.AddListener(Back);
@@ -47,6 +46,10 @@ public class GearPage : MonoBehaviour
         {
             previewEquipment.Equip(item);
             updateKeysCount();
+            if (item.Slot == GearSlot.Gun)
+            {
+                StatsTracker.Instance.OnGunUnlocked();
+            }
         }
         else if (state == GearButtonState.Equipable)
         {
@@ -80,9 +83,18 @@ public class GearPage : MonoBehaviour
         SceneLoader.Instance.LoadSceneByName("MainMenu");
 
     }
-    // Update is called once per frame
-    void Update()
+    [ContextMenu("Reset All Gear")]
+    public void ResetAllGear()
     {
+        // Clear all equipped slots
+        foreach (GearSlot slot in System.Enum.GetValues(typeof(GearSlot)))
+            PlayerPrefs.DeleteKey(PlayerData.GetSlotKey(slot));
 
+        // Clear all owned items
+        foreach (var item in database.Items)
+            PlayerPrefs.DeleteKey(PlayerData.GetOwnedKey(item.Id));
+
+        PlayerPrefs.Save();
     }
+
 }

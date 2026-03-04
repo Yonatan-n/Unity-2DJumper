@@ -142,6 +142,7 @@ public class ShopManager : MonoBehaviour
         AudioManager.Instance.ShopYes();
         GameManager.Instance.Coins -= item.price;
         ApplyItem(item);
+        StatsTracker.Instance.OnCoinSpent(item.price);
         return true;
     }
 

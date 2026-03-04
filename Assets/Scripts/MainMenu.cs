@@ -59,7 +59,7 @@ public class MainMenu : ParentAwareSingleton<MainMenu>
 
     void GoToAchievements()
     {
-        SceneLoader.Instance.LoadSceneByName("AchievementsPage");
+        SceneLoader.Instance.LoadSceneByName("Achievements");
     }
 
     // Update is called once per frame

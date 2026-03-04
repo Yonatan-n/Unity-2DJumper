@@ -13,28 +13,54 @@ public class SceneLoader : Singleton<SceneLoader>
     }
     public void LoadSceneByName(string sceneName)
     {
-        StartCoroutine(FadeOut(sceneName));
+        // StartCoroutine(FadeOut(sceneName));
+        SceneManager.LoadScene(sceneName);
     }
+
 
     IEnumerator FadeOut(string sceneName)
     {
-        animator.SetTrigger("FadeOut");
-        yield return new WaitForSeconds(FadeOutClip.length + 0.5f);
-        // SceneManager.LoadScene(sceneName);
+#if !UNITY_EDITOR
+            animator.SetTrigger("FadeOut");
+            yield return new WaitForSeconds(FadeOutClip.length + 0.5f);
+#endif
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         operation.allowSceneActivation = false;
         while (operation.progress < 0.9f)
         {
-            // You can update a loading bar here using operation.progress (0 to 0.9)
             Debug.Log("Loading progress: " + operation.progress);
-            yield return null; // Wait for the next frame
+            yield return null;
         }
         operation.allowSceneActivation = true;
         yield return null;
-        // scene loaded
-        // yield return new WaitForSeconds(0.2f);
-        animator.SetTrigger("FadeIn");
+
+#if !UNITY_EDITOR
+            animator.SetTrigger("FadeIn");
+#endif
     }
+
+    //     IEnumerator FadeOut(string sceneName)
+    //     {
+    // #if !UNITY_EDITOR
+    //     animator.SetTrigger("FadeOut");
+    //     yield return new WaitForSeconds(FadeOutClip.length + 0.5f);
+    // #endif
+
+    //         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+    //         operation.allowSceneActivation = false;
+    //         while (operation.progress < 0.9f)
+    //         {
+    //             Debug.Log("Loading progress: " + operation.progress);
+    //             yield return null;
+    //         }
+    //         operation.allowSceneActivation = true;
+    //         yield return null;
+
+    // #if !UNITY_EDITOR
+    //     animator.SetTrigger("FadeIn");
+    // #endif
+    //     }
 
     public void JustFadeOut()
     {

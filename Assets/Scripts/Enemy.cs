@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
         var ps = shieldParticles.GetComponent<ParticleSystem>();
         var velocityModule = ps.velocityOverLifetime;
         velocityModule.x = -(GroundMover.Instance.speed * Obstacle.GetSpeedIncrease(gameObject));
+        StatsTracker.Instance.OnShieldEnemyKilled();
     }
     private void Die()
     {
@@ -66,5 +67,8 @@ public class Enemy : MonoBehaviour
         rb.angularVelocity = Random.Range(-200f, 200f);
         // blood fx
         Instantiate(bloodPrefab, transform);
+        StatsTracker.Instance.OnEnemyKilled();
+        if (gameObject.CompareTag(Tags.FlyingEnemy))
+            StatsTracker.Instance.OnFlyingEnemyKilled();
     }
 }

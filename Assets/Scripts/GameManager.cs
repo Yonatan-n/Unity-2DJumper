@@ -91,6 +91,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     }
     private void InitGame()
     {
+        StatsTracker.Instance.OnSessionStarted();
         PlayerScript = player.GetComponent<Player>();
         playerEquipment.LoadFromPlayerData();
         level = 0;
@@ -208,6 +209,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     }
     void GameOver()
     {
+        StatsTracker.Instance.OnPlayerDied();
         levelEnd = true;
         AudioManager.Instance.PlayGameOverSound();
         var progText = Progress.GetComponent<TextMeshProUGUI>();
@@ -227,6 +229,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     }
     public void earnedCoins(int earned)
     {
+        StatsTracker.Instance.OnCoinCollected(earned);
         AudioManager.Instance.CoinPickUp();
         Coins += earned;
         updateCoins();
@@ -278,6 +281,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
         totalDistance += levelLength;
         levelEnd = false;
         level++;
+        StatsTracker.Instance.OnLevelCleared(level); // using the next one because starts at 0
         resetTimer();
         Spawner.Instance.StartNewLevel(level);
         levelLength = levelFactor * 2; // same always, just faster

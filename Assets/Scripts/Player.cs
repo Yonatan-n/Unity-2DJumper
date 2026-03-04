@@ -129,10 +129,17 @@ public class Player : MonoBehaviour
         rb.AddForceY(jumpForce, ForceMode2D.Impulse);
         rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed);
         PlaySound(jump);
+        StatsTracker.Instance.OnJump();
+        if (GameManager.Instance.maxJumps - jumps >= 4)
+        {
+            StatsTracker.Instance.OnQuadJump();
+        }
     }
 
     public void Shoot()
     {
+        StatsTracker.Instance.OnPlayerDiedToFirst();
+
         if (!canShoot) return;
         var gunId = PlayerData.GetEquippedId(GearSlot.Gun);
         if (gunId == PlayerData.empty) return;
@@ -150,6 +157,7 @@ public class Player : MonoBehaviour
         }
         Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
         Debug.Log("shoot: bang");
+        StatsTracker.Instance.OnShoot();
         if (PlayerData.GetBoolById(PlayerData.IsScreenShake))
         {
             _camera.GetComponent<CameraShake2D>().Shake();
@@ -199,6 +207,9 @@ public class Player : MonoBehaviour
         {
             // do falling glass or metal pipe thing lol
             // maybe 3 options, metal, wood, glass for cars trees and barrels
+            var obs = collision.gameObject.GetComponent<Obstacle>();
+            if (obs.is_first)
+                StatsTracker.Instance.OnPlayerDiedToFirst();
             PlaySound(hurt);
             Destroy(collision.gameObject);
             if (!isGodMode) GameManager.Instance.Lives--;

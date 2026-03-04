@@ -3,6 +3,7 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     public bool WasShotted = false;
+    public bool is_first = false;
 
     private CoinsEarned MapSourceToCoin(bool isShoot)
     {
