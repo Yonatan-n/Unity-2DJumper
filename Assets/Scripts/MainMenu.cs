@@ -8,6 +8,7 @@ public class MainMenu : ParentAwareSingleton<MainMenu>
     [SerializeField] GameObject optionsPanel;
     bool _showOptions;
     [SerializeField] Button gear;
+    [SerializeField] Button achievements;
     [SerializeField] Button quit;
     [SerializeField] PlayerEquipment previewEquipment;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,6 +18,7 @@ public class MainMenu : ParentAwareSingleton<MainMenu>
         options.onClick.AddListener(ToggleOptionsPanel);
         // gear.interactable = false;// hardcoded disable for now
         gear.onClick.AddListener(GoToGear);
+        achievements.onClick.AddListener(GoToAchievements);
         quit.onClick.AddListener(Quit);//
         _showOptions = false;
         optionsPanel.SetActive(_showOptions);
@@ -53,6 +55,11 @@ public class MainMenu : ParentAwareSingleton<MainMenu>
     void GoToGear()
     {
         SceneLoader.Instance.LoadSceneByName("GearPage");
+    }
+
+    void GoToAchievements()
+    {
+        SceneLoader.Instance.LoadSceneByName("AchievementsPage");
     }
 
     // Update is called once per frame

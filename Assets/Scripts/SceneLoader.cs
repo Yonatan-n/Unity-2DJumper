@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement; // Required for scene management
-using UnityEngine.Rendering;
 using System.Collections;
 public class SceneLoader : Singleton<SceneLoader>
 {

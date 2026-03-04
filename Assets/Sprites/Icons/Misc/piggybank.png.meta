@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b6769bfb79438814b851a761ba2009f9
+guid: 5c98fae8295a906479230bfcf2598faf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5283433313551417558
-    second: tomb_0
+      213: -6974166996078987376
+    second: piggybank_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tomb_0
+      name: piggybank_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a2f7d47e4697da6b0800000000000000
-      internalID: -5283433313551417558
+      spriteID: 097757a5118c63f90800000000000000
+      internalID: -6974166996078987376
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3d372abfe77a8fd4f814380981c342d1
+    spriteID: fd06e87a7ec8b3b4eae0d80b54960fbc
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tomb_0: -5283433313551417558
+      piggybank_0: -6974166996078987376
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

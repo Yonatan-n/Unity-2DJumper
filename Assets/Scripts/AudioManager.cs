@@ -13,6 +13,7 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] AudioClip shopNo;
     [SerializeField] AudioClip shopYes;
     [SerializeField] AudioClip shoot;
+    [SerializeField] AudioClip achievement;
     [SerializeField] AudioMixer mixer;
 
 
@@ -49,6 +50,12 @@ public class AudioManager : Singleton<AudioManager>
     {
         audioSource.PlayOneShot(shopYes);
     }
+
+    public void AchievementUnlocked()
+    {
+        audioSource.PlayOneShot(achievement);
+    }
+
     // for volume level change check
     public void Shoot()
     {
