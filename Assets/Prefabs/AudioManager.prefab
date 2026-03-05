@@ -101,13 +101,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13830a566afa56f418c77d98f1293a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  masterVolume: 0.1
-  sfxVolume: 0.1
+  audioSource: {fileID: 0}
   enemyIsHit: {fileID: 8300000, guid: f723a09c84eeca948ab4740cf32442d5, type: 3}
+  ShieldIsHit: {fileID: 0}
   gameOver: {fileID: 8300000, guid: d1cf8dbe3a4d40f48829ffedc7012ec9, type: 3}
   coins: {fileID: 8300000, guid: b0c1c5fe7ca72844cad02335a57f8a05, type: 3}
   shopNo: {fileID: 8300000, guid: 5b3a1b00c78ff264f99f2657d45ae0ee, type: 3}
   shopYes: {fileID: 8300000, guid: 577609903822d234fae2687f86d8f76e, type: 3}
+  shoot: {fileID: 8300000, guid: 76eca5cc5b0ec5d49892c3d3bca321c8, type: 3}
+  achievement: {fileID: 8300000, guid: 5907846f0c2a2d04f9909cd22c44aeeb, type: 3}
   mixer: {fileID: 24100000, guid: fc5d576f61c8d3947a6ef8ee179889ad, type: 2}
 --- !u!82 &8162703889030059251
 AudioSource:
