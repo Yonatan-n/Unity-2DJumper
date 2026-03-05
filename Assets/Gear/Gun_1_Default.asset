@@ -15,9 +15,9 @@ MonoBehaviour:
   Id: 9
   title: 1911
   Slot: 2
-  Icon: {fileID: 214225037881730361, guid: c30b938add92ecc4fb246736166e1e63, type: 3}
+  Icon: {fileID: -5140756218328373572, guid: 45c093bd8eae7e645b1bf21ecc213064, type: 3}
   LocalRotation: {x: 0, y: 0, z: 0}
   LocalOffset: {x: 0.86, y: -0.29, z: -1}
   LocalScale: {x: 0.15, y: 0.15, z: 1}
-  flipX: 1
+  flipX: 0
   Price: 0

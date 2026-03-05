@@ -1263,14 +1263,6 @@ MonoBehaviour:
   AmmoCounter: {fileID: 342968203}
   coins: 0
   CoinsCounter: {fileID: 1048715676}
-  reload1911: {fileID: 8300000, guid: ddeacabec354eca4e9160c59ad7a2318, type: 3}
-  fire1911: {fileID: 8300000, guid: 76eca5cc5b0ec5d49892c3d3bca321c8, type: 3}
-  reloadRevolver: {fileID: 8300000, guid: 24ddae0b6475309418b6f17f13973543, type: 3}
-  fireRevolver: {fileID: 8300000, guid: 3f4a2212fbc675b418c1c75eee4b08d5, type: 3}
-  reloadGlonk: {fileID: 8300000, guid: ddeacabec354eca4e9160c59ad7a2318, type: 3}
-  fireGlonk: {fileID: 8300000, guid: 76eca5cc5b0ec5d49892c3d3bca321c8, type: 3}
-  reloadAK: {fileID: 8300000, guid: 0423afab29b7ce44d948966ad0281c9f, type: 3}
-  fireAK: {fileID: 8300000, guid: f214026e759549647a4900788252352d, type: 3}
   ObstaclesSpawner: {fileID: 1418599273}
   player: {fileID: 924172413}
   playerEquipment: {fileID: 1246522011}
@@ -7277,6 +7269,15 @@ MonoBehaviour:
   reloadMP3_1: {fileID: 8300000, guid: fd54cab6f26409b4e9386fa99bc20707, type: 3}
   reloadMP3_2: {fileID: 8300000, guid: 5cac37466fe3f084280d495d847d61f3, type: 3}
   reloadMP3_3: {fileID: 8300000, guid: 5764f8f46326e2640b3d9a141b7b897f, type: 3}
+  reloadGov_1: {fileID: 0}
+  reloadGov_2: {fileID: 0}
+  reloadGov_3: {fileID: 0}
+  reloadEDC_1: {fileID: 0}
+  reloadEDC_2: {fileID: 0}
+  reloadEDC_3: {fileID: 0}
+  reload365_1: {fileID: 0}
+  reload365_2: {fileID: 0}
+  reload365_3: {fileID: 0}
 --- !u!1 &924172413 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8175422900205222677, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
@@ -10797,9 +10798,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4742dc6e5c4ee8d46b083b8c951167fa, type: 3}
     - target: {fileID: 4210258812379053866, guid: 797d5b926973b114bace0ebff0b8fc29, type: 3}
+      propertyPath: shoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 76eca5cc5b0ec5d49892c3d3bca321c8, type: 3}
+    - target: {fileID: 4210258812379053866, guid: 797d5b926973b114bace0ebff0b8fc29, type: 3}
       propertyPath: ShieldIsHit
       value: 
       objectReference: {fileID: 8300000, guid: 3fe047f3112a3634faca62adc9f66061, type: 3}
+    - target: {fileID: 4210258812379053866, guid: 797d5b926973b114bace0ebff0b8fc29, type: 3}
+      propertyPath: achievement
+      value: 
+      objectReference: {fileID: 8300000, guid: 1f43ea7405098144e95f8dd5da93f3fa, type: 3}
     - target: {fileID: 4900938276979991718, guid: 797d5b926973b114bace0ebff0b8fc29, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -10889,6 +10898,10 @@ PrefabInstance:
       propertyPath: GunAnimator
       value: 
       objectReference: {fileID: 899054667}
+    - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: DefaultShoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 76eca5cc5b0ec5d49892c3d3bca321c8, type: 3}
     - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: _gunTinnitus
       value: 
