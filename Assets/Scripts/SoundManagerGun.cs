@@ -15,6 +15,15 @@ public class SoundManagerGun : MonoBehaviour
     [SerializeField] AudioClip reloadMP3_1;
     [SerializeField] AudioClip reloadMP3_2;
     [SerializeField] AudioClip reloadMP3_3;
+    [SerializeField] AudioClip reloadGov_1;
+    [SerializeField] AudioClip reloadGov_2;
+    [SerializeField] AudioClip reloadGov_3;
+    [SerializeField] AudioClip reloadEDC_1;
+    [SerializeField] AudioClip reloadEDC_2;
+    [SerializeField] AudioClip reloadEDC_3;
+    [SerializeField] AudioClip reload365_1;
+    [SerializeField] AudioClip reload365_2;
+    [SerializeField] AudioClip reload365_3;
 
     void Start()
     {
@@ -76,5 +85,43 @@ public class SoundManagerGun : MonoBehaviour
     public void ReloadMP3_3()
     {
         audioSource.PlayOneShot(reloadMP3_3);
+    }
+
+    public void ReloadGov_1()
+    {
+        audioSource.PlayOneShot(reloadGov_1);
+    }
+    public void ReloadGov_2()
+    {
+        audioSource.PlayOneShot(reloadGov_2);
+    }
+    public void ReloadGov_3()
+    {
+        audioSource.PlayOneShot(reloadGov_3);
+    }
+
+    public void ReloadEDC_1()
+    {
+        audioSource.PlayOneShot(reloadEDC_1);
+    }
+    public void ReloadEDC_2()
+    {
+        audioSource.PlayOneShot(reloadEDC_2);
+    }
+    public void ReloadEDC_3()
+    {
+        audioSource.PlayOneShot(reloadEDC_3);
+    }
+    public void Reload365_1()
+    {
+        audioSource.PlayOneShot(reload365_1);
+    }
+    public void Reload365_2()
+    {
+        audioSource.PlayOneShot(reload365_2);
+    }
+    public void Reload365_3()
+    {
+        audioSource.PlayOneShot(reload365_3);
     }
 }
