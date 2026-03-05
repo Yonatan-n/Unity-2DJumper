@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
             "13" => "GunAKReload",     // ak
             "14" => "GunMP3Reload",    // mp3
             "11" => "GunVSPReload",    // vsp
-            "10" => "GunGlonckReload", // glonck
+            "10" => "GunGlonkReload", // glonk
             _ => "Gun1911Reload"       // default pistol 1911, if == "9"
         };
         animator.Play(animName);
