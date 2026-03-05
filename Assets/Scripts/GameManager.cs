@@ -15,16 +15,6 @@ public class GameManager : ParentAwareSingleton<GameManager>
     public GameObject AmmoCounter;
     public int coins;
     public GameObject CoinsCounter;
-    [SerializeField] AudioClip reload1911;
-    [SerializeField] AudioClip fire1911;
-
-    [SerializeField] AudioClip reloadRevolver;
-    [SerializeField] AudioClip fireRevolver;
-    [SerializeField] AudioClip reloadGlonk;
-    [SerializeField] AudioClip fireGlonk;
-
-    [SerializeField] AudioClip reloadAK;
-    [SerializeField] AudioClip fireAK;
     [SerializeField] GameObject ObstaclesSpawner;
     [SerializeField] GameObject player;
     [SerializeField] PlayerEquipment playerEquipment;
@@ -72,8 +62,6 @@ public class GameManager : ParentAwareSingleton<GameManager>
     public GameObject Meters;
     public GameObject Progress;
     public GameObject HighScoreTMP;
-
-    public IReadOnlyList<Gun> guns;
     public int level;
     private int totalDistance = 0;
     private Player PlayerScript;
@@ -103,14 +91,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
             Instantiate(SceneTransition, Vector3.zero, Quaternion.identity);
         }
 
-        guns = new[]{
-            new Gun(GunType.C_1911, 7, 2.3f, reload1911, fire1911),
-            new Gun(GunType.Revolver, 5, 4f, reloadRevolver, fireRevolver),
-            new Gun(GunType.Glonk, 15, 3f, reloadGlonk, fireGlonk),
-            new Gun(GunType.AK, 30, 3f, reloadAK, fireAK),
-        };
-
-        gun = guns[0];
+        gun = new Gun(GunType.C_1911, 7, 2.3f);
         reloadAmmo();
         coins = 0;
         if (PlayerData.GetBoolById(PlayerData.isGodMode))
@@ -333,7 +314,7 @@ public enum GunType
 {
     C_1911, Glonk, AK, Revolver,
 }
-public record Gun(GunType Type, int BulletCount, float reloadTimeSeconds, AudioClip reloadSound, AudioClip ShootSound);
+public record Gun(GunType Type, int BulletCount, float reloadTimeSeconds);
 
 public static class Tags
 {

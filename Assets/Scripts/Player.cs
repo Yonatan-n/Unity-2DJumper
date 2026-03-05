@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject GunAnimator;
     [SerializeField] AudioClip AKShoot;
     [SerializeField] AudioClip MP3Shoot;
+    [SerializeField] AudioClip DefaultShoot;
+
     public float StartPositionX = 0f;
     Camera _camera;
     int jumps;
@@ -48,6 +50,11 @@ public class Player : MonoBehaviour
         GameManager.Instance.updateAllCounters();
         resetJumps();
         doneLoading = true;
+    }
+    void OnDisable()
+    {
+        shootAction.performed -= InputDoShoot;
+        jumpAction.performed -= InputDoJump;
     }
     public void SetButtons(bool value)
     {
@@ -151,7 +158,7 @@ public class Player : MonoBehaviour
         }
         else // default pistol 1911
         {
-            PlaySound(GameManager.Instance.gun.ShootSound);
+            PlaySound(DefaultShoot);
         }
         Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
         Debug.Log("shoot: bang");
