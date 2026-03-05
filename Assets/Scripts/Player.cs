@@ -138,8 +138,6 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
-        StatsTracker.Instance.OnPlayerDiedToFirst();
-
         if (!canShoot) return;
         var gunId = PlayerData.GetEquippedId(GearSlot.Gun);
         if (gunId == PlayerData.empty) return;
