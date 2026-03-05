@@ -24,6 +24,7 @@ public class AchievementPopup : MonoBehaviour
         descriptionText.text = def.description;
         animator.ResetTrigger(ShowTrigger);
         animator.SetTrigger(ShowTrigger);
+        AudioManager.Instance.AchievementUnlocked();
     }
 }
 
