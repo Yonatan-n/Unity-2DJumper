@@ -7269,15 +7269,15 @@ MonoBehaviour:
   reloadMP3_1: {fileID: 8300000, guid: fd54cab6f26409b4e9386fa99bc20707, type: 3}
   reloadMP3_2: {fileID: 8300000, guid: 5cac37466fe3f084280d495d847d61f3, type: 3}
   reloadMP3_3: {fileID: 8300000, guid: 5764f8f46326e2640b3d9a141b7b897f, type: 3}
-  reloadGov_1: {fileID: 0}
-  reloadGov_2: {fileID: 0}
-  reloadGov_3: {fileID: 0}
-  reloadEDC_1: {fileID: 0}
-  reloadEDC_2: {fileID: 0}
-  reloadEDC_3: {fileID: 0}
-  reload365_1: {fileID: 0}
-  reload365_2: {fileID: 0}
-  reload365_3: {fileID: 0}
+  reloadGov_1: {fileID: 8300000, guid: d39fa2defadbdcf4fba66e224ffb85b7, type: 3}
+  reloadGov_2: {fileID: 8300000, guid: 44433ba0277c20b4b8c589185591aed9, type: 3}
+  reloadGov_3: {fileID: 8300000, guid: f8a4ab948e4a8b5409a925ede4de0596, type: 3}
+  reloadEDC_1: {fileID: 8300000, guid: c2a60b31615c09b44998a9f291dcfdcb, type: 3}
+  reloadEDC_2: {fileID: 8300000, guid: ef748c3eaa56b87439af9460adc3751b, type: 3}
+  reloadEDC_3: {fileID: 8300000, guid: 30ca2bfd67583e9459577815a70292c5, type: 3}
+  reload365_1: {fileID: 8300000, guid: 37ef1de791fd5bf4b888bea7d93cc29d, type: 3}
+  reload365_2: {fileID: 8300000, guid: c72a810e2c612554b810ccb4676f7f0f, type: 3}
+  reload365_3: {fileID: 8300000, guid: 16358178486401b44abd4fa7a6acba44, type: 3}
 --- !u!1 &924172413 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8175422900205222677, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
