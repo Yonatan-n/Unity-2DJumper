@@ -333,14 +333,23 @@ public class Player : MonoBehaviour
         if (tag == Tags.Obstacle)
         {
             var obs = collision.gameObject.GetComponent<Obstacle>();
-            if (obs.is_first)
+            if (!isGodMode && GameManager.Instance.Lives == 1 && obs.is_first)
                 StatsTracker.Instance.OnPlayerDiedToFirst();
+            StatsTracker.Instance.OnPlayerCollision(obs.type);
             PlaySound(hurt);
             Destroy(collision.gameObject);
             if (!isGodMode) GameManager.Instance.Lives--;
         }
         else if (tag == Tags.Enemy || tag == Tags.FlyingEnemy)
         {
+            ObstacleType? obsType = tag switch
+            {
+                Tags.FlyingEnemy => ObstacleType.FlyingEnemy,
+                Tags.Enemy => ObstacleType.WalkingEnemy,
+                _ => null,
+            };
+
+            if (obsType.HasValue) StatsTracker.Instance.OnPlayerCollision(obsType.Value);
             PlaySound(hurt);
             Destroy(collision.gameObject);
             if (!isGodMode) GameManager.Instance.Lives--;

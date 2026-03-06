@@ -1,7 +1,14 @@
 using UnityEngine;
 
+
+public enum ObstacleType
+{
+    Barrel, Tree, Car, WalkingEnemy, FlyingEnemy
+}
+
 public class Obstacle : MonoBehaviour
 {
+    public ObstacleType type;
     public bool WasShotted = false;
     public bool is_first = false;
     private bool hasBeenVisible = false;

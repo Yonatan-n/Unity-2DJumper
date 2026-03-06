@@ -19,7 +19,7 @@ public class Spawner : ParentAwareSingleton<Spawner>
     private float spawnRate;
     [SerializeField] Transform FlyingSpawnPoint;
     private List<GameObject> obstacles;
-    private Dictionary<GameObject, List<Sprite>> obstacleMap;
+    private Dictionary<GameObject, (List<Sprite>, ObstacleType)> obstacleMap;
     private List<GameObject> enemiesPrefabs;
     List<GameObject> obstacleMapKeys;
     private float spawnTimer; // gives 3 seconds of no enemies at the start if IsStartingGrace
@@ -42,11 +42,11 @@ public class Spawner : ParentAwareSingleton<Spawner>
             // adding later enemyFlyingPrefab,
         };
 
-        obstacleMap = new Dictionary<GameObject, List<Sprite>>
+        obstacleMap = new Dictionary<GameObject, (List<Sprite>, ObstacleType)>
         {
-            {barrelPrefab, barrelsSprites},
-            {treePrefab, treesSprites},
-            {carPrefab, null},
+            {barrelPrefab, (barrelsSprites, ObstacleType.Barrel)},
+            {treePrefab, (treesSprites, ObstacleType.Tree)},
+            {carPrefab, (null, ObstacleType.Car)},
         };
         obstacleMapKeys = obstacleMap.Keys.ToListPooled();
         obstacles = new List<GameObject>();
@@ -145,14 +145,19 @@ public class Spawner : ParentAwareSingleton<Spawner>
     }
     void spawnRandomObstacle()
     {
+        ObstacleType obsType;
         GameObject randomFab;
         var _transform = transform;
         if (Random.Range(0, 100) < enemyPercentage)
         {
             // spawn enemy
             randomFab = TryPromoteToShielded(ChooseRandom(enemiesPrefabs));
+            obsType = ObstacleType.WalkingEnemy;
             if (randomFab.CompareTag(Tags.FlyingEnemy))
+            {
                 _transform = FlyingSpawnPoint;
+                obsType = ObstacleType.FlyingEnemy;
+            }
         }
         else
         {
@@ -163,12 +168,15 @@ public class Spawner : ParentAwareSingleton<Spawner>
                 randomFab = ChooseRandom(carsPrefabs);
                 var sr = randomFab.GetComponent<SpriteRenderer>();
                 sr.flipX = RandomBool();
+                obsType = ObstacleType.Car;
             }
             else
             {
                 var sr = randomFab.GetComponent<SpriteRenderer>();
-                sr.sprite = ChooseRandom(obstacleMap[randomFab]);
+                var (sprites, obstacle_type) = obstacleMap[randomFab];
+                sr.sprite = ChooseRandom(sprites);
                 sr.flipX = RandomBool();
+                obsType = obstacle_type;
             }
         }
         var position = new Vector3(
@@ -176,6 +184,13 @@ public class Spawner : ParentAwareSingleton<Spawner>
              _transform.position.y, _transform.position.z
         );
         var obs = Instantiate(randomFab, position, _transform.rotation);
+        var obs_script = obs.GetComponent<Obstacle>();
+        obs_script.type = obsType;
+        if (_is_first)
+        {
+            obs_script.is_first = true;
+            _is_first = false;
+        }
         obstacles.Add(obs);
         var enemy = obs.GetComponent<Enemy>();
         enemy = enemy != null ? enemy : obs.GetComponentInChildren<Enemy>();
@@ -185,12 +200,6 @@ public class Spawner : ParentAwareSingleton<Spawner>
         else if (randomFab == EnemyWalkerShield || randomFab == EnemyFlyingShield)
             enemy.Init(1, 1);
         setNextSpawnRate();
-        if (_is_first)
-        {
-            var obs_script = obs.GetComponent<Obstacle>();
-            obs_script.is_first = true;
-            _is_first = false;
-        }
     }
 
     public void ShootObstacleRemove(GameObject obstacle)

@@ -117,10 +117,30 @@ public class AchievementManager : MonoBehaviour
         return new AchievementData();
     }
 
-
     public IReadOnlyList<AchievementDefinition> GetAllDefinitions() => _allDefinitions;
 
     // ── Internal ──────────────────────────────────────────────────
+    // private void Start()
+    // {
+    //     // overrides
+    //     var coinOverrides = new Dictionary<AchievementID, int>
+    // {
+    //     { AchievementID.die_100, 500 },
+    // };
+
+    //     // register coin rewards for all achievements
+    //     foreach (AchievementID id in Enum.GetValues(typeof(AchievementID)))
+    //     {
+    //         int coins = coinOverrides.GetValueOrDefault(id, 2000);
+    //         RegisterUnlockCallback(id.ToID(), () => CoinManager.Instance.AddCoins(coins));
+    //     }
+
+    //     // register non-coin rewards on top
+    //     RegisterUnlockCallback(
+    //         AchievementID.kill_1st.ToID(),
+    //         () => InventoryManager.Instance.GiveItem(ItemID.SomeItem)
+    //     );
+    // }
 
     private void CompleteAchievement(string id, AchievementDefinition def, AchievementData data)
     {
@@ -199,6 +219,9 @@ public static class AchievementBootstrapper
         // ── Deaths ────────────────────────────────────────────────────────
         AchievementManager.Register(AchievementID.die_to_1st.ToID(), "Didn't See That", "Die to the first obstacle");
         AchievementManager.Register(AchievementID.die_10.ToID(), "Trial & Error", "Die 10 times", progressTarget: 10);
+        AchievementManager.Register(AchievementID.hit_10_trees.ToID(), "Tree Hugger", "Hit by 10 trees", progressTarget: 10);
+        AchievementManager.Register(AchievementID.hit_10_cars.ToID(), "Roadkill", "Hit by 10 cars", progressTarget: 10);
+        AchievementManager.Register(AchievementID.hit_10_barrels.ToID(), "Barrel Roll", "Hit by 10 barrels", progressTarget: 10);
         AchievementManager.Register(AchievementID.die_100.ToID(), "Frequent Flyer", "Die 100 times", progressTarget: 100);
 
         // ── Coins ─────────────────────────────────────────────────────────
@@ -256,6 +279,11 @@ public enum AchievementID
     die_to_1st,
     die_10,
     die_100,
+
+    // Collide with
+    hit_10_trees,
+    hit_10_cars,
+    hit_10_barrels,
 
     // Coins
     coins_10000,

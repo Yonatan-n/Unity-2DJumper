@@ -49,6 +49,18 @@ public class StatsTracker : MonoBehaviour
         Progress(AchievementID.die_10);
         Progress(AchievementID.die_100);
     }
+    public void OnPlayerCollision(ObstacleType obstacleType)
+    {
+        AchievementID? id = obstacleType switch
+        {
+            ObstacleType.Barrel => AchievementID.hit_10_barrels,
+            ObstacleType.Car => AchievementID.hit_10_cars,
+            ObstacleType.Tree => AchievementID.hit_10_trees,
+            _ => null
+        };
+
+        if (id.HasValue) Progress(id.Value);
+    }
 
     public void OnCoinCollected(int amount)
     {
