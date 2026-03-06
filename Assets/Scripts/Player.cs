@@ -100,8 +100,16 @@ public class Player : MonoBehaviour
     }
     void OnDisable()
     {
-        shootAction.performed -= InputDoShoot;
         jumpAction.performed -= InputDoJump;
+        shootAction.performed -= OnShootPerformed;
+        shootAction.canceled -= OnShootCanceled;
+        shootAction.Disable();
+        shootAction.Dispose();
+
+        jumpAction.performed -= InputDoJump;
+        jumpAction.Disable();
+        jumpAction.Dispose();
+
     }
     public void SetButtons(bool value)
     {
@@ -144,7 +152,7 @@ public class Player : MonoBehaviour
     {
         if (Gun.Id == PlayerData.empty) return;
         var (_reload, _shoot) = GetGunAnimations();
-        var _shootClip = Gun.Id switch
+        var _sfx = Gun.Id switch
         {
             GunsId.AK => AKShoot,
             GunsId.MP3 => MP3Shoot,
@@ -156,8 +164,8 @@ public class Player : MonoBehaviour
         }
         else if (action == PlayerAction.Shoot)
         {
-            PlaySound(_shootClip);
-            GunAnimator.Play(_shoot);
+            PlaySound(_sfx);
+            if (_shoot != null) GunAnimator.Play(_shoot);
         }
     }
 
@@ -165,18 +173,14 @@ public class Player : MonoBehaviour
     {
         return Gun.Id switch
         {
-            GunsId.AK => ("GunAKReload", "GunFlatRecoil"),
-            GunsId.MP3 => ("GunMP3Reload", "GunFlatRecoil"),
-            GunsId.VSP => ("GunVSPReload", "GunFlatRecoilDouble"),
+            GunsId.AK => ("GunAKReload", null),
+            GunsId.MP3 => ("GunMP3Reload", null),
+            GunsId.VSP => ("GunVSPReload", "GunFlatRecoil"),
             GunsId.GLONK => ("GunGlonkReload", "GunFlatRecoilDouble"),
             _ => ("Gun1911Reload", "GunFlatRecoil")
         };
     }
 
-    void InputDoShoot(InputAction.CallbackContext context)
-    {
-        Shoot();
-    }
     void InputDoJump(InputAction.CallbackContext context)
     {
         Jump();
@@ -252,7 +256,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(AUTO_FIRE_RATE);
         _recoil.ApplyRecoil();
 
-        while (isTriggerHeld)
+        while (isTriggerHeld && GameManager.Instance.Ammo > 0)
         {
             FireBullet();
             _recoil.ApplyRecoil();
