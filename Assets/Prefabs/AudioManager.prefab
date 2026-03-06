@@ -105,6 +105,7 @@ MonoBehaviour:
   enemyIsHit: {fileID: 8300000, guid: f723a09c84eeca948ab4740cf32442d5, type: 3}
   ShieldIsHit: {fileID: 0}
   gameOver: {fileID: 8300000, guid: d1cf8dbe3a4d40f48829ffedc7012ec9, type: 3}
+  GameStart: {fileID: 8300000, guid: 24bb25115065eb941ad3c09452762b04, type: 3}
   coins: {fileID: 8300000, guid: b0c1c5fe7ca72844cad02335a57f8a05, type: 3}
   shopNo: {fileID: 8300000, guid: 5b3a1b00c78ff264f99f2657d45ae0ee, type: 3}
   shopYes: {fileID: 8300000, guid: 577609903822d234fae2687f86d8f76e, type: 3}
