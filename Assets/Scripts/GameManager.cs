@@ -79,6 +79,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     private void InitGame()
     {
         StatsTracker.Instance.OnSessionStarted();
+        AudioManager.Instance.GameStartSound();
         PlayerScript = player.GetComponent<Player>();
         playerEquipment.LoadFromPlayerData();
         level = 0;

@@ -18,11 +18,12 @@ public class Player : MonoBehaviour
     private bool isTriggerHeld = false;
 
     private const float SINGLE_FIRE_RATE = 0.2f;
-    private const float DOUBLE_SHOT_DELAY = 0.09f;
-
+    private const float BINARY_SHOT_DELAY = 0.9f;
     private const float DOUBLE_FIRE_RATE = 0.6f;
     private const float AUTO_FIRE_RATE = 0.1f;
-    private const float BURST_FIRE_RATE = 0.1f;
+    private const float BURST_FIRE_RATE = 0.07f;
+    private const float BURST_DELAY = 0.2f;
+
     private RifleRecoil _recoil;
 
     Rigidbody2D rb;
@@ -215,17 +216,17 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(SingleShot());
         }
-        else if (Gun.fireMode == FireMode.Double)
+        else if (Gun.fireMode == FireMode.BinaryTrigger)
         {
             StartCoroutine(BinaryTriggerShoot());
         }
-        else if (Gun.fireMode == FireMode.SemiAndAuto)
+        else if (Gun.fireMode == FireMode.FullAuto)
         {
             StartCoroutine(FullAutoShoot());
         }
-        else if (Gun.fireMode == FireMode.Triple)
+        else if (Gun.fireMode == FireMode.Burst3Shots)
         {
-            StartCoroutine(BurstShootTriple());
+            StartCoroutine(BurstShoot3());
         }
     }
 
@@ -240,7 +241,7 @@ public class Player : MonoBehaviour
     {
         canShoot = false;
         FireBullet();
-        yield return new WaitForSeconds(DOUBLE_SHOT_DELAY);
+        yield return new WaitForSeconds(BINARY_SHOT_DELAY);
         // only shoot the 2nd shoot if there is ammo in the magazine
         if (GameManager.Instance.Ammo > 0)
         {
@@ -266,9 +267,24 @@ public class Player : MonoBehaviour
         if (!isReloading) canShoot = true;
     }
 
-    IEnumerator BurstShootTriple()
+    private IEnumerator BurstShoot3()
     {
-        yield return new WaitForSeconds(BURST_FIRE_RATE);
+        canShoot = false;
+        while (isTriggerHeld && GameManager.Instance.Ammo > 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                // stop if no ammo
+                if (GameManager.Instance.ammo <= 0) break;
+                FireBullet();
+                _recoil.ApplyRecoil();
+                yield return new WaitForSeconds(BURST_FIRE_RATE);
+
+            }
+            _recoil.ResetRecoil();
+            yield return new WaitForSeconds(BURST_DELAY);
+        }
+        if (!isReloading) canShoot = true;
     }
 
     private void FireBullet()

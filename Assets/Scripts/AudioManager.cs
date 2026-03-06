@@ -9,6 +9,7 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] AudioClip enemyIsHit;
     [SerializeField] AudioClip ShieldIsHit;
     [SerializeField] AudioClip gameOver;
+    [SerializeField] AudioClip GameStart;
     [SerializeField] AudioClip coins;
     [SerializeField] AudioClip shopNo;
     [SerializeField] AudioClip shopYes;
@@ -66,12 +67,14 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayGameOverSound()
     {
-        if (gameOver == null)
-        {
-            Debug.LogWarning("GameOver clip is not assigned!");
-            return;
-        }
-        audioSource.PlayOneShot(gameOver);
+        audioSource.clip = gameOver;
+        audioSource.Play();
+    }
+
+    public void GameStartSound()
+    {
+        audioSource.Stop();
+        audioSource.PlayOneShot(GameStart);
     }
 
     public void CoinPickUp()

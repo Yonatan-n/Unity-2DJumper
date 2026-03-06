@@ -23,9 +23,9 @@ public class GearItem : ScriptableObject
 public enum FireMode
 {
     Single, // 1911
-    Double, // glonk
-    SemiAndAuto, // ak
-    Triple, // mp3
+    BinaryTrigger, // glonk
+    FullAuto, // ak
+    Burst3Shots, // mp3
 }
 
 public enum GearSlot
