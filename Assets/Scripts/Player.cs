@@ -18,8 +18,8 @@ public class Player : MonoBehaviour
     private bool isTriggerHeld = false;
 
     private const float SINGLE_FIRE_RATE = 0.2f;
-    private const float BINARY_SHOT_DELAY = 0.9f;
-    private const float DOUBLE_FIRE_RATE = 0.6f;
+    private const float BINARY_SHOT_DELAY = 0.09f;
+    private const float BINARY_FIRE_RATE = 0.6f;
     private const float AUTO_FIRE_RATE = 0.1f;
     private const float BURST_FIRE_RATE = 0.07f;
     private const float BURST_DELAY = 0.2f;
@@ -246,7 +246,7 @@ public class Player : MonoBehaviour
         if (GameManager.Instance.Ammo > 0)
         {
             FireBullet();
-            yield return new WaitForSeconds(DOUBLE_FIRE_RATE);
+            yield return new WaitForSeconds(BINARY_FIRE_RATE);
         }
         if (!isReloading) canShoot = true;
     }
