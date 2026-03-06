@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
     IEnumerator Start()
     {
         Gun = PlayerData.GetEquippedGun();
-        _recoil = GetComponent<RifleRecoil>();
+        _recoil = GetComponentInChildren<RifleRecoil>();
         _camera = Camera.main;
         SetupBindings();
         rb = GetComponent<Rigidbody2D>();
@@ -253,8 +253,8 @@ public class Player : MonoBehaviour
     {
         canShoot = false;
         FireBullet();
-        yield return new WaitForSeconds(AUTO_FIRE_RATE);
         _recoil.ApplyRecoil();
+        yield return new WaitForSeconds(AUTO_FIRE_RATE);
 
         while (isTriggerHeld && GameManager.Instance.Ammo > 0)
         {

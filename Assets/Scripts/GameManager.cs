@@ -306,7 +306,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
 
 public enum CoinsEarned
 {
-    Obstacle, Enemy, FlyingEnemy, JumpOver,
+    Obstacle, Enemy, FlyingEnemy, JumpOver, EnemyAlive
 }
 
 public static class Tags

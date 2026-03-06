@@ -2,59 +2,83 @@ using UnityEngine;
 
 public class RifleRecoil : MonoBehaviour
 {
-    [Header("Recoil Settings")]
-    public float recoilKickStrength = 8f;
-    public float maxRecoilAngle = 25f;
+    [Header("Rotation Recoil (Z axis)")]
+    public float rotationKickPerShot = 3f;
+    public float maxRotationAngle = 90f;
+    public float rotationRecoverySpeed = 4f;
+    public float rotationDamping = 0.85f;
 
-    [Header("Recovery Settings")]
-    public float recoverySpeed = 4f;
-    public float damping = 0.85f;
+    [Header("Position Kickback")]
+    public float kickbackX = 0.1f;
+    public float kickbackY = 0.05f;
+    public float maxKickback = 0.5f;
+    public float positionRecoverySpeed = 6f;
+    public float positionDamping = 0.80f;
 
-    [Header("Horizontal Drift (optional)")]
-    public float horizontalDriftStrength = 1f;  // 0 to disable
-
-    private float verticalRecoil = 0f;
-    private float horizontalRecoil = 0f;
-    private float verticalVelocity = 0f;
-    private float horizontalVelocity = 0f;
+    private float currentRotation = 0f;
+    private float rotationVelocity = 0f;
+    private Vector3 currentPositionOffset = Vector3.zero;
+    private Vector3 positionVelocity = Vector3.zero;
     private Quaternion originalRotation;
+    private Vector3 originalPosition;
+    private bool isShooting = false;
 
-    void Start()
+    void Awake()
     {
         originalRotation = transform.localRotation;
+        originalPosition = transform.localPosition;
     }
 
     void Update()
     {
-        // Vertical spring recovery
-        verticalVelocity += -verticalRecoil * recoverySpeed * Time.deltaTime;
-        verticalVelocity *= damping;
-        verticalRecoil += verticalVelocity * Time.deltaTime;
-        verticalRecoil = Mathf.Clamp(verticalRecoil, 0f, maxRecoilAngle);
+        // ── Always apply velocity ──────────────────────────
+        currentRotation += rotationVelocity;
+        currentRotation = Mathf.Clamp(currentRotation, 0f, maxRotationAngle);
 
-        // Horizontal spring recovery (drifts back to 0)
-        horizontalVelocity += -horizontalRecoil * recoverySpeed * Time.deltaTime;
-        horizontalVelocity *= damping;
-        horizontalRecoil += horizontalVelocity * Time.deltaTime;
+        currentPositionOffset += positionVelocity;
+        currentPositionOffset.x = Mathf.Clamp(currentPositionOffset.x, -maxKickback, maxKickback);
+        currentPositionOffset.y = Mathf.Clamp(currentPositionOffset.y, -maxKickback, maxKickback);
 
-        transform.localRotation = originalRotation
-            * Quaternion.Euler(-verticalRecoil, horizontalRecoil, 0f);
+        // ── Recovery only when not shooting ───────────────
+        if (!isShooting)
+        {
+            rotationVelocity *= rotationDamping;
+            rotationVelocity -= currentRotation * rotationRecoverySpeed * Time.deltaTime;
+
+            positionVelocity *= positionDamping;
+            positionVelocity -= currentPositionOffset * positionRecoverySpeed * Time.deltaTime;
+        }
+        else
+        {
+            rotationVelocity *= 0.6f;
+            positionVelocity *= 0.6f;
+        }
+
+        // ── Apply ─────────────────────────────────────────
+        transform.localRotation = originalRotation * Quaternion.Euler(0f, 0f, currentRotation);
+        transform.localPosition = originalPosition + currentPositionOffset;
     }
 
     public void ApplyRecoil()
     {
-        // Vertical kick — stacks with each shot
-        verticalVelocity += recoilKickStrength;
-
-        // Small random horizontal drift per shot
-        float drift = Random.Range(-horizontalDriftStrength, horizontalDriftStrength);
-        horizontalVelocity += drift;
+        isShooting = true;
+        rotationVelocity += rotationKickPerShot;
+        positionVelocity += new Vector3(kickbackX, kickbackY, 0f);
     }
 
     public void ResetRecoil()
     {
-        // Call this when trigger is released to snap recovery
-        verticalVelocity = 0f;
-        horizontalVelocity = 0f;
+        isShooting = false;
+    }
+
+    public void HardReset()
+    {
+        currentRotation = 0f;
+        rotationVelocity = 0f;
+        currentPositionOffset = Vector3.zero;
+        positionVelocity = Vector3.zero;
+        isShooting = false;
+        transform.localRotation = originalRotation;
+        transform.localPosition = originalPosition;
     }
 }

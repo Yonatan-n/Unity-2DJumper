@@ -16,6 +16,7 @@ public class RewardManager : MonoBehaviour
     [SerializeField] RewardFlyToUI rewardPrefab;
     [SerializeField] int initialPoolSize = 30;
     private static readonly Dictionary<CoinsEarned, (int coinsAmount, int totalValue)> CoinRewards = new(){
+        {CoinsEarned.EnemyAlive,     (0, 0)},
         {CoinsEarned.Obstacle,     (1, 40)},
         {CoinsEarned.Enemy,        (2, 100)},
         {CoinsEarned.FlyingEnemy,  (4, 400)},
@@ -58,7 +59,8 @@ public class RewardManager : MonoBehaviour
     public void SpawnCoins(Vector3 worldPos, CoinsEarned source)
     {
         var (_coinCount, totalValue) = CoinRewards[source];
-        int valuePerCoin = Mathf.RoundToInt(totalValue / _coinCount);
+        if (_coinCount == 0) return; // no coins
+        int valuePerCoin = totalValue / _coinCount;
         Spawn(worldPos, _coinCount, coinTarget, () => GameManager.Instance.earnedCoins(valuePerCoin));
     }
     public void SpawnAmmo(Vector3 worldPos, int amount)

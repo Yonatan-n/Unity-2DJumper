@@ -4,11 +4,14 @@ public class Obstacle : MonoBehaviour
 {
     public bool WasShotted = false;
     public bool is_first = false;
+    private bool hasBeenVisible = false;
 
     private CoinsEarned MapSourceToCoin(bool isShoot)
     {
         return (isShoot, gameObject.tag) switch
         {
+            (false, Tags.Enemy) => CoinsEarned.EnemyAlive,
+            (false, Tags.FlyingEnemy) => CoinsEarned.EnemyAlive,
             (false, _) => CoinsEarned.JumpOver,
             (true, Tags.Enemy) => CoinsEarned.Enemy,
             (true, Tags.FlyingEnemy) => CoinsEarned.FlyingEnemy,
@@ -16,10 +19,17 @@ public class Obstacle : MonoBehaviour
         };
     }
 
+    void Start()
+    {
+    }
+
     void Update()
     {
         var moveSpeed = GroundMover.Instance.speed;
         transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime * GetSpeedIncrease(gameObject));
+
+        if (!hasBeenVisible && IsVisibleToCamera()) hasBeenVisible = true;
+        if (hasBeenVisible && IsOffLeftOrTop()) Cleanup();
     }
 
     public static float GetSpeedIncrease(GameObject gameObject)
@@ -31,9 +41,21 @@ public class Obstacle : MonoBehaviour
             _ => 1f
         };
     }
-    void OnBecameInvisible()
+    private bool IsVisibleToCamera()
     {
-        Debug.Log($"OnBecameInvisible {WasShotted}");
+        Renderer renderer = GetComponent<Renderer>();
+        return renderer.isVisible;
+    }
+
+    private bool IsOffLeftOrTop()
+    {
+        var viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+        return viewportPos.x < 0 || viewportPos.y > 1;
+    }
+
+    private void Cleanup()
+    {
+        if (!gameObject.scene.isLoaded) return; // for debug, stop errors
         RewardManager.Instance.SpawnCoins(transform.position, MapSourceToCoin(WasShotted));
         Destroy(gameObject);
     }
