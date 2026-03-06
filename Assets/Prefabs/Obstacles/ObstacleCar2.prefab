@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   WasShotted: 0
+  is_first: 0
 --- !u!60 &5157697131472148141
 PolygonCollider2D:
   m_ObjectHideFlags: 0

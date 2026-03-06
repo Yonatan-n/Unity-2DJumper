@@ -7,7 +7,7 @@ public enum ShopItemID
 {
     extra_jump,
     extra_life,
-    magazine_plus_2, magazine_plus_1,
+    magazine_plus_3, magazine_plus_5,
     key_1, keys_2,
     move_player_left,
 }
@@ -40,10 +40,10 @@ public class ShopManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI KeysCounter;
     public string GetShopItemName(ShopItemID itemId)
     {
-        if (itemId == ShopItemID.magazine_plus_2)
-            return "+2 bullets";
-        if (itemId == ShopItemID.magazine_plus_1)
-            return "+1 bullets";
+        if (itemId == ShopItemID.magazine_plus_3)
+            return "+3 bullets";
+        if (itemId == ShopItemID.magazine_plus_5)
+            return "+5 bullets";
         if (itemId == ShopItemID.key_1)
             return "1 key";
         if (itemId == ShopItemID.keys_2)
@@ -158,8 +158,8 @@ public class ShopManager : MonoBehaviour
         var shopActions = new Dictionary<ShopItemID, Action>{
             { ShopItemID.extra_life,        () => gm.Lives++ },
             { ShopItemID.extra_jump,        () => gm.maxJumps++ },
-            { ShopItemID.magazine_plus_1,   () => gm.gun = gm.gun with { BulletCount = gm.gun.BulletCount + 1 } },
-            { ShopItemID.magazine_plus_2,   () => gm.gun = gm.gun with { BulletCount = gm.gun.BulletCount + 2 } },
+            { ShopItemID.magazine_plus_3,   () => gm.MaxAmmo+=3 },
+            { ShopItemID.magazine_plus_5,   () => gm.MaxAmmo+=5 },
             { ShopItemID.key_1,             () => BuyKey(1)},
             { ShopItemID.keys_2,            () => BuyKey(2)},
             { ShopItemID.move_player_left,  () => gm.MoveLeftBought++ },

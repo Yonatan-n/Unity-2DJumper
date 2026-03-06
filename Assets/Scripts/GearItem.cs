@@ -13,6 +13,9 @@ public class GearItem : ScriptableObject
     public Vector3 LocalScale = Vector3.one;
     public bool flipX = false;
     public int Price; // keys
+    public float ReloadTime; // gun only
+    public float FireRate; // gun only
+    public int Magazine; // gun only
 }
 
 

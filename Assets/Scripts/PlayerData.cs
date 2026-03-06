@@ -90,6 +90,12 @@ public static class PlayerData
         return PlayerPrefs.GetString(GetSlotKey(slot), empty);
     }
 
+    public static GearItem GetEquippedGun()
+    {
+        var _gunId = GetEquippedId(GearSlot.Gun);
+        return GetGearById(_gunId);
+    }
+
 
     public static void setEmptyGear(GearSlot slot)
     {

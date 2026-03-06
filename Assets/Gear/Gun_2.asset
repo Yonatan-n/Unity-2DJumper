@@ -21,3 +21,6 @@ MonoBehaviour:
   LocalScale: {x: 0.15, y: 0.15, z: 1}
   flipX: 0
   Price: 2
+  ReloadTime: 2.3
+  FireRate: 0.1
+  Magazine: 8

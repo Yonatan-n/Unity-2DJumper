@@ -25,8 +25,7 @@ public class MainMenu : ParentAwareSingleton<MainMenu>
         // PlayerData.ResetAll();
         if (PlayerData.GetBoolById(PlayerData.isFirstStart, true))
         {
-            var defaultGunId = "9";   // 1911
-            var gear = PlayerData.GetGearById(defaultGunId);
+            var gear = PlayerData.GetGearById(GunsId.DEFAULT_1911);
             PlayerData.SetOwned(gear);
             previewEquipment.Equip(gear);
             PlayerData.SetBoolById(PlayerData.isFirstStart, false);

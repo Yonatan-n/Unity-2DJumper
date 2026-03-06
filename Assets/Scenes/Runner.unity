@@ -1260,6 +1260,7 @@ MonoBehaviour:
   maxJumps: 0
   LivesCounter: {fileID: 1661571386}
   ammo: 0
+  MaxAmmo: 0
   AmmoCounter: {fileID: 342968203}
   coins: 0
   CoinsCounter: {fileID: 1048715676}
@@ -10895,7 +10896,7 @@ PrefabInstance:
     - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: GunAnimator
       value: 
-      objectReference: {fileID: 899054667}
+      objectReference: {fileID: 899054669}
     - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: DefaultShoot
       value: 
@@ -10957,12 +10958,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5531997856295908009, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
-      propertyPath: m_Sprite
-      value: 
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5531997856295908009, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: m_Size.x
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531997856295908009, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: m_Size.y
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531997856295908009, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8580425642107057225, guid: 676af173c97082146ac478406f75aff8, type: 3}
+    - target: {fileID: 5531997856295908009, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5658321763276091874, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: m_Sprite
@@ -10987,6 +11000,22 @@ PrefabInstance:
     - target: {fileID: 8175422900205222677, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8582171879221818454, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8582171879221818454, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8582171879221818454, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8582171879221818454, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8598941723089098494, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: m_Sprite

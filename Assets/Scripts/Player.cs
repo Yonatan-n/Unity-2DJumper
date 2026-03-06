@@ -22,11 +22,12 @@ public class Player : MonoBehaviour
     [SerializeField] Button PauseBtn;
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject BulletPos;
-    [SerializeField] GameObject GunAnimator;
+    [SerializeField] Animator GunAnimator;
     [SerializeField] AudioClip AKShoot;
     [SerializeField] AudioClip MP3Shoot;
     [SerializeField] AudioClip DefaultShoot;
-
+    // gun
+    private GearItem Gun;
     public float StartPositionX = 0f;
     Camera _camera;
     int jumps;
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
     public bool doneLoading = false;
     IEnumerator Start()
     {
+        Gun = PlayerData.GetEquippedGun();
         _camera = Camera.main;
         SetupBindings();
         rb = GetComponent<Rigidbody2D>();
@@ -92,22 +94,40 @@ public class Player : MonoBehaviour
     {
         audioSource.PlayOneShot(clip);
     }
-    void PlayAnimation()
-    {
-        var animator = GunAnimator.GetComponent<Animator>();
 
-        var gunId = PlayerData.GetEquippedId(GearSlot.Gun);
-        if (gunId == PlayerData.empty) return;
-        string animName = gunId switch
+    void PlayAnimation(PlayerAction action)
+    {
+        if (Gun.Id == PlayerData.empty) return;
+        var (_reload, _shoot) = GetGunAnimations();
+        var _shootClip = Gun.Id switch
         {
-            GunId.AK => "GunAKReload",     // ak
-            GunId.MP3 => "GunMP3Reload",    // mp3
-            GunId.VSP => "GunVSPReload",    // vsp
-            GunId.GLONK => "GunGlonkReload", // glonk
-            _ => "Gun1911Reload"       // default pistol 1911, if == "9"
+            GunsId.AK => AKShoot,
+            GunsId.MP3 => MP3Shoot,
+            _ => DefaultShoot
         };
-        animator.Play(animName);
+        if (action == PlayerAction.Reload)
+        {
+            GunAnimator.Play(_reload);
+        }
+        else if (action == PlayerAction.Shoot)
+        {
+            PlaySound(_shootClip);
+            GunAnimator.Play(_shoot);
+        }
     }
+
+    private (string, string) GetGunAnimations()
+    {
+        return Gun.Id switch
+        {
+            GunsId.AK => ("GunAKReload", "GunFlatRecoil"),
+            GunsId.MP3 => ("GunMP3Reload", "GunFlatRecoil"),
+            GunsId.VSP => ("GunVSPReload", "GunFlatRecoil"),
+            GunsId.GLONK => ("GunGlonkReload", "GunFlatRecoil"),
+            _ => ("Gun1911Reload", "GunFlatRecoil")
+        };
+    }
+
     void InputDoShoot(InputAction.CallbackContext context)
     {
         Shoot();
@@ -142,20 +162,7 @@ public class Player : MonoBehaviour
     public void Shoot()
     {
         if (!canShoot) return;
-        var gunId = PlayerData.GetEquippedId(GearSlot.Gun);
-        if (gunId == PlayerData.empty) return;
-        if (gunId == GunId.AK) // ak
-        {
-            PlaySound(AKShoot);
-        }
-        else if (gunId == GunId.MP3) // mp3
-        {
-            PlaySound(MP3Shoot);
-        }
-        else // default pistol 1911, and other pistols
-        {
-            PlaySound(DefaultShoot);
-        }
+        PlayAnimation(PlayerAction.Shoot);
         Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
         Debug.Log("shoot: bang");
         StatsTracker.Instance.OnShoot();
@@ -176,7 +183,6 @@ public class Player : MonoBehaviour
     }
     IEnumerator PerformReload()
     {
-        var gun = GameManager.Instance.gun;
         GameManager.Instance.GreyOutInAmmo(true);
         canShoot = false;
         ShootBtn.interactable = canShoot;
@@ -189,14 +195,14 @@ public class Player : MonoBehaviour
         var waitForShotToFade = 0.8f;
         yield return new WaitForSeconds(waitForShotToFade);
         // start the animation
-        PlayAnimation();
+        PlayAnimation(PlayerAction.Reload);
 
-        yield return new WaitForSeconds(gun.reloadTimeSeconds - waitForShotToFade);
+        yield return new WaitForSeconds(Gun.ReloadTime - waitForShotToFade);
         GameManager.Instance.GreyOutInAmmo(false);
         canShoot = true;
         ShootBtn.interactable = canShoot;
         // Code to execute after the delay
-        Debug.Log("Function executed after " + gun.reloadTimeSeconds + " seconds!");
+        Debug.Log("Function executed after " + Gun.ReloadTime + " seconds!");
     }
 
 
@@ -281,4 +287,9 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(endX, transform.position.y, transform.position.z);
     }
 
+}
+
+enum PlayerAction
+{
+    Reload, Shoot
 }

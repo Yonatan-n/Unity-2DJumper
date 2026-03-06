@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class GameManager : ParentAwareSingleton<GameManager>
 {
     public readonly float GraceTime = 3f;
-    public Gun gun;
     public int lives = 1;
     public int maxJumps = 1; // can buy more later
     public GameObject LivesCounter;
     public int ammo;
+    public int MaxAmmo;
     public GameObject AmmoCounter;
     public int coins;
     public GameObject CoinsCounter;
@@ -69,7 +69,6 @@ public class GameManager : ParentAwareSingleton<GameManager>
 
     void Start()
     {
-        // SceneManager.sceneLoaded += OnSceneLoaded;
         InitGame();
     }
 
@@ -90,8 +89,8 @@ public class GameManager : ParentAwareSingleton<GameManager>
         {
             Instantiate(SceneTransition, Vector3.zero, Quaternion.identity);
         }
-
-        gun = new Gun(GunType.C_1911, 7, 2.3f);
+        var gun = PlayerData.GetEquippedGun();
+        MaxAmmo = gun.Magazine;
         reloadAmmo();
         coins = 0;
         if (PlayerData.GetBoolById(PlayerData.isGodMode))
@@ -174,7 +173,7 @@ public class GameManager : ParentAwareSingleton<GameManager>
     }
     public void reloadAmmo()
     {
-        ammo = gun.BulletCount;
+        ammo = MaxAmmo;
     }
     public void updateAmmo()
     {
@@ -310,12 +309,6 @@ public enum CoinsEarned
     Obstacle, Enemy, FlyingEnemy, JumpOver,
 }
 
-public enum GunType
-{
-    C_1911, Glonk, AK, Revolver,
-}
-public record Gun(GunType Type, int BulletCount, float reloadTimeSeconds);
-
 public static class Tags
 {
     public const string Enemy = "Enemy";
@@ -328,7 +321,7 @@ public static class Tags
     public const string Shield = "Shield";
 
 }
-public static class GunId
+public static class GunsId
 {
     public const string DEFAULT_1911 = "9";
     public const string GLONK = "10";
