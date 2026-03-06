@@ -100,10 +100,10 @@ public class Player : MonoBehaviour
         if (gunId == PlayerData.empty) return;
         string animName = gunId switch
         {
-            "13" => "GunAKReload",     // ak
-            "14" => "GunMP3Reload",    // mp3
-            "11" => "GunVSPReload",    // vsp
-            "10" => "GunGlonkReload", // glonk
+            GunId.AK => "GunAKReload",     // ak
+            GunId.MP3 => "GunMP3Reload",    // mp3
+            GunId.VSP => "GunVSPReload",    // vsp
+            GunId.GLONK => "GunGlonkReload", // glonk
             _ => "Gun1911Reload"       // default pistol 1911, if == "9"
         };
         animator.Play(animName);
@@ -144,15 +144,15 @@ public class Player : MonoBehaviour
         if (!canShoot) return;
         var gunId = PlayerData.GetEquippedId(GearSlot.Gun);
         if (gunId == PlayerData.empty) return;
-        if (gunId == "13") // ak
+        if (gunId == GunId.AK) // ak
         {
             PlaySound(AKShoot);
         }
-        else if (gunId == "14") // mp3
+        else if (gunId == GunId.MP3) // mp3
         {
             PlaySound(MP3Shoot);
         }
-        else // default pistol 1911
+        else // default pistol 1911, and other pistols
         {
             PlaySound(DefaultShoot);
         }

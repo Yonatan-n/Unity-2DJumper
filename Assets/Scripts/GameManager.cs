@@ -328,6 +328,14 @@ public static class Tags
     public const string Shield = "Shield";
 
 }
+public static class GunId
+{
+    public const string DEFAULT_1911 = "9";
+    public const string GLONK = "10";
+    public const string VSP = "11";
+    public const string AK = "13";
+    public const string MP3 = "14";
+}
 
 public enum RewardType
 {
@@ -335,48 +343,6 @@ public enum RewardType
     Lives,
     Ammo,
 }
-
-
-// TODO:
-// DONE fix phone resolution (black bars etc)
-// add background music, looping or multiple songs
-// Done add player walking animation 
-// add jump/shoot particles effects 
-// add coin animation when enemy dies 1-4 coins spawn and are magmatic to the coins icon
-// change coin sfx to be more gentle and less annoying
-// DONE add shoot screen shake (lol)
-// Done add gear page shop thing, unlock skins with keys, have the guns be skins for now, no different behavior
-// Done have the player (rabbit) in the gear and main menu
-// DONE use audio settings slider or number input in options page
-// have 10-20 funny sentences that the rabbit says in the main menu (4 rules of firearms safety, stay in school, etc)
-
-// 1. DONE gear page
-// 2. particals on shoot, jump, buy, buttons?
-// DONE change economy, add 30% more money or reduce prices
-//  
-
-
-// Notes
-// DONE add hardhat call it RCE
-// reduce level 4+ length by at least 1000
-// maybe reduce all levels to 1000-1500M only, speed stay the same
-// DONE [!] fix no gun by default
-// DONE add 3sec delay when game starts (option to turn off, on by default)
-// in the shop, show how many keys do you have, top right corner 
-// DONE make the flying enemies higher and lower to make it difficult to hit
-// for burst guns, tighter or looser spread (ak, mp3)
-// bomb enemy
-// enemies that walk, stand still and jump
-// large enemy that split into 2 small ones (jump diagonally)
-// shield (2-3 times? more? opacity to clarify)
-// Done move left is very strong. keep the first one the same, make the 2+ move half distance
-
-// challenges:
-// do not buy $item (move left, lives, double jump)
-// can only apply 1 buff at a run
-
-// clearing a level makes it that you can start at that level (Level Select, start at a shop with some money)
-// 
 
 // youtube hats / glass / guns? ask omer
 
