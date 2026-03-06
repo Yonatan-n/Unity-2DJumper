@@ -171,6 +171,13 @@ public class AchievementManager : MonoBehaviour
         Debug.Log("ResetAllAchievements ran");
     }
 
+    [ContextMenu("Unlock All Achievements")]
+    public void UnlockAllAchievements()
+    {
+        foreach (var def in _allDefinitions)
+            Unlock(def.id);
+    }
+
 
 }
 

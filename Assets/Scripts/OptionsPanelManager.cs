@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -76,9 +77,18 @@ public class OptionsPanelManager : ParentAwareSingleton<OptionsPanelManager>
     void setIsGodMode(bool value)
     {
         IsGodMode = value;
-        if (value)
+        var keys = PlayerData.GetIntById(PlayerData.KeysId);
+        if (IsGodMode)
         {
-            PlayerData.SetIntById(PlayerData.KeysId, 999);
+            keys += 999;
+            PlayerData.SetIntById(PlayerData.KeysId, keys);
+            AchievementManager.Instance.UnlockAllAchievements();
+        }
+        else
+        {
+            keys = math.max(keys - 999, 0);
+            PlayerData.SetIntById(PlayerData.KeysId, keys);
+            AchievementManager.Instance.ResetAllAchievements();
         }
     }
     void setIsScreenShake(bool value)
