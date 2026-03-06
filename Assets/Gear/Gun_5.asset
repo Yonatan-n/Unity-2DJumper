@@ -24,3 +24,4 @@ MonoBehaviour:
   ReloadTime: 2.3
   FireRate: 0.1
   Magazine: 20
+  fireMode: 2

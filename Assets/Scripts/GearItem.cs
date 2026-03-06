@@ -13,11 +13,20 @@ public class GearItem : ScriptableObject
     public Vector3 LocalScale = Vector3.one;
     public bool flipX = false;
     public int Price; // keys
-    public float ReloadTime; // gun only
-    public float FireRate; // gun only
-    public int Magazine; // gun only
+    // --- For Guns Only ---
+    public float ReloadTime;
+    public float FireRate;
+    public int Magazine;
+    public FireMode fireMode;
 }
 
+public enum FireMode
+{
+    Single, // 1911
+    Double, // glonk
+    SemiAndAuto, // ak
+    Triple, // mp3
+}
 
 public enum GearSlot
 {

@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e07211298d4374bb22b02d25b6da55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  moveSpeed: 36
+  moveSpeed: 80
   bulletSplit: {fileID: 6591727933921325097, guid: 92e115ceb7a7da8449b2611abf0a4247, type: 3}
 --- !u!50 &3227402428092161500
 Rigidbody2D:

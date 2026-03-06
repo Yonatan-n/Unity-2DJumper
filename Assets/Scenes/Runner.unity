@@ -10890,6 +10890,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 983832443}
     - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: fireMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037706363356857161, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: coinSound
       value: 
       objectReference: {fileID: 8300000, guid: ae9339d41d638344188e07463a6f4017, type: 3}
@@ -11017,6 +11021,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8582171879221818454, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 8598941723089098494, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -11040,6 +11048,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8175422900205222677, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8058393515401712827}
     - targetCorrespondingSourceObject: {fileID: 1685027773823372489, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2030925234}
@@ -11071,6 +11082,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5445684677815076021, guid: c9bf49db75d9f3f4dbdc285369d4d9b4, type: 3}
   m_PrefabInstance: {fileID: 8058393515401712819}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8058393515401712827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924172413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bfa3323d8632f640936441cce127ec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RifleRecoil
+  recoilKickStrength: 8
+  maxRecoilAngle: 25
+  recoverySpeed: 4
+  damping: 0.85
+  horizontalDriftStrength: 1
 --- !u!1001 &8625256042755689312
 PrefabInstance:
   m_ObjectHideFlags: 0

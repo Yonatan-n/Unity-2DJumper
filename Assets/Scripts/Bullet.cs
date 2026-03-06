@@ -34,11 +34,12 @@ public class Bullet : MonoBehaviour
             var enemy = other.GetComponent<Enemy>();
             if (enemy.TakeDamage(1))
                 Spawner.Instance.ShootObstacleRemove(other.gameObject);
+            Destroy(gameObject);
         }
         else if (!other.gameObject.CompareTag(Tags.Bullet)) // prevent bullet colliding when entering a level
         {
             Instantiate(bulletSplit, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

@@ -3,14 +3,28 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using UnityEngine.EventSystems;
+using System;
 public class Player : MonoBehaviour
 {
     [SerializeField] GameObject visual;
     public int score;
     private bool isMidAir;
     InputAction jumpAction;
+    // --- Shooting ---
     InputAction shootAction;
     bool canShoot = true;
+    bool isReloading = false;
+    private bool isTriggerHeld = false;
+
+    private const float SINGLE_FIRE_RATE = 0.2f;
+    private const float DOUBLE_SHOT_DELAY = 0.09f;
+
+    private const float DOUBLE_FIRE_RATE = 0.6f;
+    private const float AUTO_FIRE_RATE = 0.1f;
+    private const float BURST_FIRE_RATE = 0.1f;
+    private RifleRecoil _recoil;
+
     Rigidbody2D rb;
     AudioSource audioSource;
     [SerializeField] float jumpForce = 20f;
@@ -26,7 +40,6 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip AKShoot;
     [SerializeField] AudioClip MP3Shoot;
     [SerializeField] AudioClip DefaultShoot;
-    // gun
     private GearItem Gun;
     public float StartPositionX = 0f;
     Camera _camera;
@@ -35,9 +48,32 @@ public class Player : MonoBehaviour
     FlipVisual flipVisual;
     [SerializeField] GameObject doubleJumpFX;
     public bool doneLoading = false;
+
+    private void OnShootPerformed(InputAction.CallbackContext ctx)
+    {
+        isTriggerHeld = true;
+        Shoot();
+    }
+    private void OnShootCanceled(InputAction.CallbackContext ctx)
+    {
+        isTriggerHeld = false;
+    }
+
+    private void OnShootPerformed(BaseEventData data)
+    {
+        isTriggerHeld = true;
+        Shoot();
+    }
+
+    private void OnShootCanceled(BaseEventData data)
+    {
+        isTriggerHeld = false;
+    }
+
     IEnumerator Start()
     {
         Gun = PlayerData.GetEquippedGun();
+        _recoil = GetComponent<RifleRecoil>();
         _camera = Camera.main;
         SetupBindings();
         rb = GetComponent<Rigidbody2D>();
@@ -45,7 +81,16 @@ public class Player : MonoBehaviour
         playerAnimator = visual.GetComponent<Animator>();
         flipVisual = visual.GetComponent<FlipVisual>();
         JumpBtn.onClick.AddListener(Jump);
-        ShootBtn.onClick.AddListener(Shoot);
+
+        // for shoot, holding down option too
+        var _gunTrigger = ShootBtn.gameObject.AddComponent<EventTrigger>();
+        var pointerDown = new EventTrigger.Entry { eventID = EventTriggerType.PointerDown };
+        pointerDown.callback.AddListener(OnShootPerformed);
+        _gunTrigger.triggers.Add(pointerDown);
+        var pointerUp = new EventTrigger.Entry { eventID = EventTriggerType.PointerUp };
+        pointerUp.callback.AddListener(OnShootCanceled);
+        _gunTrigger.triggers.Add(pointerUp);
+
         PauseBtn.onClick.AddListener(PauseButtonHandler);
         // AudioManager need to be loaded before GameManager
         yield return new WaitUntil(() => AudioManager.Instance.IsInitialized);
@@ -81,8 +126,8 @@ public class Player : MonoBehaviour
         shootAction = new InputAction("Press", InputActionType.Button);
         shootAction.AddBinding("<Keyboard>/f");
         shootAction.Enable();
-        shootAction.performed += InputDoShoot;
-
+        shootAction.performed += OnShootPerformed;
+        shootAction.canceled += OnShootCanceled;
     }
     void PauseButtonHandler()
     {
@@ -122,8 +167,8 @@ public class Player : MonoBehaviour
         {
             GunsId.AK => ("GunAKReload", "GunFlatRecoil"),
             GunsId.MP3 => ("GunMP3Reload", "GunFlatRecoil"),
-            GunsId.VSP => ("GunVSPReload", "GunFlatRecoil"),
-            GunsId.GLONK => ("GunGlonkReload", "GunFlatRecoil"),
+            GunsId.VSP => ("GunVSPReload", "GunFlatRecoilDouble"),
+            GunsId.GLONK => ("GunGlonkReload", "GunFlatRecoilDouble"),
             _ => ("Gun1911Reload", "GunFlatRecoil")
         };
     }
@@ -162,35 +207,89 @@ public class Player : MonoBehaviour
     public void Shoot()
     {
         if (!canShoot) return;
+        if (Gun.fireMode == FireMode.Single)
+        {
+            StartCoroutine(SingleShot());
+        }
+        else if (Gun.fireMode == FireMode.Double)
+        {
+            StartCoroutine(BinaryTriggerShoot());
+        }
+        else if (Gun.fireMode == FireMode.SemiAndAuto)
+        {
+            StartCoroutine(FullAutoShoot());
+        }
+        else if (Gun.fireMode == FireMode.Triple)
+        {
+            StartCoroutine(BurstShootTriple());
+        }
+    }
+
+    IEnumerator SingleShot()
+    {
+        canShoot = false;
+        FireBullet();
+        yield return new WaitForSeconds(SINGLE_FIRE_RATE);
+        if (!isReloading) canShoot = true;
+    }
+    IEnumerator BinaryTriggerShoot()
+    {
+        canShoot = false;
+        FireBullet();
+        yield return new WaitForSeconds(DOUBLE_SHOT_DELAY);
+        // only shoot the 2nd shoot if there is ammo in the magazine
+        if (GameManager.Instance.Ammo > 0)
+        {
+            FireBullet();
+            yield return new WaitForSeconds(DOUBLE_FIRE_RATE);
+        }
+        if (!isReloading) canShoot = true;
+    }
+    IEnumerator FullAutoShoot()
+    {
+        canShoot = false;
+        FireBullet();
+        yield return new WaitForSeconds(AUTO_FIRE_RATE);
+        _recoil.ApplyRecoil();
+
+        while (isTriggerHeld)
+        {
+            FireBullet();
+            _recoil.ApplyRecoil();
+            yield return new WaitForSeconds(AUTO_FIRE_RATE);
+        }
+        _recoil.ResetRecoil();
+        if (!isReloading) canShoot = true;
+    }
+
+    IEnumerator BurstShootTriple()
+    {
+        yield return new WaitForSeconds(BURST_FIRE_RATE);
+    }
+
+    private void FireBullet()
+    {
         PlayAnimation(PlayerAction.Shoot);
         Instantiate(Bullet, BulletPos.transform.position, BulletPos.transform.rotation);
         Debug.Log("shoot: bang");
         StatsTracker.Instance.OnShoot();
+
         if (PlayerData.GetBoolById(PlayerData.IsScreenShake))
-        {
             _camera.GetComponent<CameraShake2D>().Shake();
-        }
 
         if (PlayerData.GetBoolById(PlayerData.IsEarRinging))
-        {
             GunTinnitus.Instance.TriggerTinnitus();
-        }
 
         if (!PlayerData.GetBoolById(PlayerData.isGodMode) && --GameManager.Instance.Ammo == 0)
-        {
             StartCoroutine(PerformReload());
-        }
     }
+
     IEnumerator PerformReload()
     {
         GameManager.Instance.GreyOutInAmmo(true);
         canShoot = false;
-        ShootBtn.interactable = canShoot;
-        // block icon and shoot button
-        // start to play sound 
-        // throw gun and catch
-        // after waitinf for sound and wepon catch, unblock ui, change counter
-
+        isReloading = true;
+        ShootBtn.interactable = false;
         // wait for the shoot to finish
         var waitForShotToFade = 0.8f;
         yield return new WaitForSeconds(waitForShotToFade);
@@ -200,7 +299,8 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(Gun.ReloadTime - waitForShotToFade);
         GameManager.Instance.GreyOutInAmmo(false);
         canShoot = true;
-        ShootBtn.interactable = canShoot;
+        isReloading = false;
+        ShootBtn.interactable = true;
         // Code to execute after the delay
         Debug.Log("Function executed after " + Gun.ReloadTime + " seconds!");
     }
@@ -212,8 +312,6 @@ public class Player : MonoBehaviour
         var isGodMode = PlayerData.GetBoolById(PlayerData.isGodMode);
         if (tag == Tags.Obstacle)
         {
-            // do falling glass or metal pipe thing lol
-            // maybe 3 options, metal, wood, glass for cars trees and barrels
             var obs = collision.gameObject.GetComponent<Obstacle>();
             if (obs.is_first)
                 StatsTracker.Instance.OnPlayerDiedToFirst();
@@ -223,7 +321,6 @@ public class Player : MonoBehaviour
         }
         else if (tag == Tags.Enemy || tag == Tags.FlyingEnemy)
         {
-            // change later
             PlaySound(hurt);
             Destroy(collision.gameObject);
             if (!isGodMode) GameManager.Instance.Lives--;
