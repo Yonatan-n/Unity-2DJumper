@@ -5,6 +5,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine.EventSystems;
 using System;
+
 public class Player : MonoBehaviour
 {
     [SerializeField] GameObject visual;
@@ -45,10 +46,16 @@ public class Player : MonoBehaviour
     public float StartPositionX = 0f;
     Camera _camera;
     int jumps;
-    Animator playerAnimator;
+    [SerializeField] Animator BodyAnimator;
     FlipVisual flipVisual;
     [SerializeField] GameObject doubleJumpFX;
     public bool doneLoading = false;
+    // jump align sprites
+    [SerializeField] Vector3 jumpSpriteOffset = new(0f, -0.05f, -1f);
+    [SerializeField] SpriteRenderer GlassesSpriteRenderer;
+    private Vector3 defaultOffset;
+    private Vector3 jumpOffset;
+
 
     private void OnShootPerformed(InputAction.CallbackContext ctx)
     {
@@ -74,12 +81,14 @@ public class Player : MonoBehaviour
     IEnumerator Start()
     {
         Gun = PlayerData.GetEquippedGun();
+        var Glasses = PlayerData.GetEquippedGlasses();
+        defaultOffset = Glasses.LocalOffset;
+        jumpOffset = new Vector3(jumpSpriteOffset.x, -(Mathf.Abs(defaultOffset.y) + Mathf.Abs(jumpSpriteOffset.y)), defaultOffset.z);
         _recoil = GetComponentInChildren<RifleRecoil>();
         _camera = Camera.main;
         SetupBindings();
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        playerAnimator = visual.GetComponent<Animator>();
         flipVisual = visual.GetComponent<FlipVisual>();
         JumpBtn.onClick.AddListener(Jump);
 
@@ -190,6 +199,7 @@ public class Player : MonoBehaviour
     public void Jump()
     {
         if (!PlayerData.GetBoolById(PlayerData.isGodMode) && jumps-- <= 0) return;
+        GlassesSpriteRenderer.transform.localPosition = jumpOffset;
         if (isMidAir)
         {
             // Reset vertical velocity, so that the next jump will have exactly the same force as the first one
@@ -198,7 +208,7 @@ public class Player : MonoBehaviour
             Instantiate(doubleJumpFX, transform.position, Quaternion.identity);
         }
         isMidAir = true;
-        playerAnimator.Play("PlayerJump");
+        BodyAnimator.Play("PlayerJump");
         rb.AddForceY(jumpForce, ForceMode2D.Impulse);
         rb.linearVelocityY = Mathf.Clamp(rb.linearVelocityY, -maxJumpSpeed, maxJumpSpeed);
         PlaySound(jump);
@@ -356,7 +366,8 @@ public class Player : MonoBehaviour
         }
         else if (tag == Tags.Ground)
         {
-            playerAnimator.Play("PlayerWalk");
+            GlassesSpriteRenderer.transform.localPosition = defaultOffset;
+            BodyAnimator.Play("PlayerWalk");
             resetJumps();
         }
     }

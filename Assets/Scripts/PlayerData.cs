@@ -96,6 +96,11 @@ public static class PlayerData
         return GetGearById(_gunId);
     }
 
+    public static GearItem GetEquippedGlasses()
+    {
+        var _glassesId = GetEquippedId(GearSlot.Glasses);
+        return GetGearById(_glassesId);
+    }
 
     public static void setEmptyGear(GearSlot slot)
     {

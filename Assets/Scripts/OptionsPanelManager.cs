@@ -86,7 +86,7 @@ public class OptionsPanelManager : ParentAwareSingleton<OptionsPanelManager>
         }
         else
         {
-            keys = math.max(keys - 999, 0);
+            keys = Mathf.Max(keys - 999, 0);
             PlayerData.SetIntById(PlayerData.KeysId, keys);
             AchievementManager.Instance.ResetAllAchievements();
         }

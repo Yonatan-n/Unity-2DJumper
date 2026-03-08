@@ -12,7 +12,7 @@ public class GroundMover : ParentAwareSingleton<GroundMover>
 
     public void IncreaseSpeed()
     {
-        speed = math.min(speed + step, maxSpeed);
+        speed = Mathf.Min(speed + step, maxSpeed);
     }
     void Start()
     {

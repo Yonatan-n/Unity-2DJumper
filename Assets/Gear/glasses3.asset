@@ -17,7 +17,11 @@ MonoBehaviour:
   Slot: 1
   Icon: {fileID: -3460598817795432408, guid: eb45435470a56ca42a40aeefafddd077, type: 3}
   LocalRotation: {x: 0, y: 0, z: 0}
-  LocalOffset: {x: 0.15, y: 0, z: -1}
+  LocalOffset: {x: 0.15, y: -0.05, z: -1}
   LocalScale: {x: 0.15, y: 0.15, z: 1}
   flipX: 0
   Price: 1
+  ReloadTime: 0
+  FireRate: 0
+  Magazine: 0
+  fireMode: 0
