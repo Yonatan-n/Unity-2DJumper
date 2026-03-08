@@ -12,6 +12,7 @@ public class Obstacle : MonoBehaviour
     public bool WasShotted = false;
     public bool is_first = false;
     private bool hasBeenVisible = false;
+    private Renderer cachedRenderer;
 
     private CoinsEarned MapSourceToCoin(bool isShoot)
     {
@@ -28,6 +29,7 @@ public class Obstacle : MonoBehaviour
 
     void Start()
     {
+        cachedRenderer = GetComponentInChildren<Renderer>();
     }
 
     void Update()
@@ -50,8 +52,7 @@ public class Obstacle : MonoBehaviour
     }
     private bool IsVisibleToCamera()
     {
-        Renderer renderer = GetComponent<Renderer>();
-        return renderer.isVisible;
+        return cachedRenderer.isVisible;
     }
 
     private bool IsOffLeftOrTop()
