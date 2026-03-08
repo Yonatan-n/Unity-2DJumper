@@ -90,10 +90,10 @@ public class AchievementManager : MonoBehaviour
         _unlockCallbacks[id].Add(callback);
     }
 
-    public void Unlock(string id) =>
-        ReportProgress(id, GetDefinition(id)?.progressTarget ?? 1);
+    public void Unlock(string id, bool playSound = true) =>
+        ReportProgress(id, GetDefinition(id)?.progressTarget ?? 1, playSound);
 
-    public void ReportProgress(string id, int amount = 1)
+    public void ReportProgress(string id, int amount = 1, bool playSound = true)
     {
         if (!_runtimeData.TryGetValue(id, out var data))
         {
@@ -108,7 +108,7 @@ public class AchievementManager : MonoBehaviour
         Save();
 
         if (data.progress >= def.progressTarget)
-            CompleteAchievement(id, def, data);
+            CompleteAchievement(id, def, data, playSound);
     }
 
     public AchievementData GetData(string id)
@@ -142,7 +142,7 @@ public class AchievementManager : MonoBehaviour
     //     );
     // }
 
-    private void CompleteAchievement(string id, AchievementDefinition def, AchievementData data)
+    private void CompleteAchievement(string id, AchievementDefinition def, AchievementData data, bool playSound = true)
     {
         data.isUnlocked = true;
         data.unlockDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
@@ -154,7 +154,7 @@ public class AchievementManager : MonoBehaviour
             foreach (var cb in callbacks) cb?.Invoke();
 
         popup = FindFirstObjectByType<AchievementPopup>();
-        popup.Show(def);
+        popup.Show(def, playSound);
     }
 
     private AchievementDefinition GetDefinition(string id) =>
@@ -195,7 +195,7 @@ public class AchievementManager : MonoBehaviour
     public void UnlockAllAchievements()
     {
         foreach (var def in _allDefinitions)
-            Unlock(def.id);
+            Unlock(def.id, false);
     }
 
 

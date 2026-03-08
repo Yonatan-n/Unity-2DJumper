@@ -17,14 +17,14 @@ public class AchievementPopup : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void Show(AchievementDefinition def)
+    public void Show(AchievementDefinition def, bool playSound = true)
     {
         icon.sprite = def.icon;
         nameText.text = def.displayName;
         descriptionText.text = def.description;
         animator.ResetTrigger(ShowTrigger);
         animator.SetTrigger(ShowTrigger);
-        AudioManager.Instance.AchievementUnlocked();
+        if (playSound) AudioManager.Instance.AchievementUnlocked();
     }
 }
 
