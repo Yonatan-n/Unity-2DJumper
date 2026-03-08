@@ -10,7 +10,7 @@ public class AchievementPopup : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text descriptionText;
     private Animator animator;
-    private static readonly int ShowTrigger = Animator.StringToHash("Show");
+    private static readonly string ShowPopup = "AchievementPopup";
 
     public void Awake()
     {
@@ -22,8 +22,7 @@ public class AchievementPopup : MonoBehaviour
         icon.sprite = def.icon;
         nameText.text = def.displayName;
         descriptionText.text = def.description;
-        animator.ResetTrigger(ShowTrigger);
-        animator.SetTrigger(ShowTrigger);
+        animator.Play(ShowPopup);
         if (playSound) AudioManager.Instance.AchievementUnlocked();
     }
 }
