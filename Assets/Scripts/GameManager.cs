@@ -15,6 +15,13 @@ public class GameManager : ParentAwareSingleton<GameManager>
     public GameObject AmmoCounter;
     public int coins;
     public GameObject CoinsCounter;
+    [Header("Gems earned on death")]
+    [SerializeField] int gemsPerLevel = 1000;
+    [SerializeField] int gemsPerEnemyKilled = 100;
+    [SerializeField] int gemsPerObstaclePassed = 20;
+    [SerializeField] GameObject GemsEarnedCounter;
+    public int enemiesKilledThisRun;
+    public int obstaclesPassedThisRun;
     [SerializeField] GameObject ObstaclesSpawner;
     [SerializeField] GameObject player;
     [SerializeField] PlayerEquipment playerEquipment;
@@ -94,6 +101,8 @@ public class GameManager : ParentAwareSingleton<GameManager>
         MaxAmmo = gun.Magazine;
         reloadAmmo();
         coins = 0;
+        enemiesKilledThisRun = 0;
+        obstaclesPassedThisRun = 0;
         if (PlayerData.GetBoolById(PlayerData.isGodMode))
         {
             coins = 100000;
@@ -205,6 +214,13 @@ public class GameManager : ParentAwareSingleton<GameManager>
         }
         highScoreTMP.text = "Highscore: " + highScore.ToString() + "M";
 
+        var gemsEarned = (level + 1) * gemsPerLevel
+            + enemiesKilledThisRun * gemsPerEnemyKilled
+            + obstaclesPassedThisRun * gemsPerObstaclePassed;
+        PlayerData.SetIntById(PlayerData.GemsId, gemsEarned, true);
+        if (GemsEarnedCounter != null)
+            updateCounter(GemsEarnedCounter, gemsEarned);
+
         PauseGame.Instance.Pause(PausePanel.showGameOverPanel); // stop buttons, movments for now
         // show gameover ui
     }
@@ -214,6 +230,14 @@ public class GameManager : ParentAwareSingleton<GameManager>
         AudioManager.Instance.CoinPickUp();
         Coins += earned;
         updateCoins();
+    }
+    public void EnemyKilledThisRun()
+    {
+        enemiesKilledThisRun++;
+    }
+    public void ObstaclePassedThisRun()
+    {
+        obstaclesPassedThisRun++;
     }
     public void updateCoins()
     {
@@ -368,3 +392,19 @@ public enum RewardType
 // STORY
 // wants to buy carrot in the store, he can always get it but today there is a 1+1 sale
 // getting the rabbit wife 
+
+
+
+// TODO:
+// level select, start with some money (400, 800, 1600, 3200, 4800, 6400)
+// on level select, start with a shop to buy some stuff
+// convert the keys to permanent coins/money, use them to buy the skins, guns, and permanent upgrades
+// permanent upgrade will work like gear, but no indication in the preview (+1 live, +1 jump, +3 bullets etc)
+// smash jump on holding jump, can be upgrade on level 4 maybe? (achievement jump 200 times to perma unlock)
+// smash jump have blast radius of green and brown particles, everything in that radius will break/die like was shotted
+// add oncollision obstacle white semi transparent particles, for multi lives runs
+// test level 4-5-6-7, for difficulty
+// level 7 unlocks AK
+// level 4 unlocks glonk
+// MP3 for sale always
+// VSP - need to think about a concept, maybe shoot faster then the 1911, more ammo, but very slow reload?

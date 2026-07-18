@@ -58,6 +58,9 @@ public class RewardManager : MonoBehaviour
 
     public void SpawnCoins(Vector3 worldPos, CoinsEarned source)
     {
+        if (source == CoinsEarned.Obstacle || source == CoinsEarned.JumpOver)
+            GameManager.Instance.ObstaclePassedThisRun();
+
         var (_coinCount, totalValue) = CoinRewards[source];
         if (_coinCount == 0) return; // no coins
         int valuePerCoin = totalValue / _coinCount;

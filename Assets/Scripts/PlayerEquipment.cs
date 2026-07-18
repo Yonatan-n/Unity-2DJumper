@@ -45,16 +45,16 @@ public class PlayerEquipment : MonoBehaviour
         if (PlayerData.IsOwned(item))
             return true;
 
-        int keys = PlayerData.GetIntById(PlayerData.KeysId, 0);
+        int gems = PlayerData.GetIntById(PlayerData.GemsId, 0);
 
-        if (keys < item.Price)
+        if (gems < item.Price)
         {
             AudioManager.Instance.ShopNoMoney();
             return false;
         }
 
         AudioManager.Instance.ShopYes();
-        PlayerData.SetIntById(PlayerData.KeysId, -item.Price, true);
+        PlayerData.SetIntById(PlayerData.GemsId, -item.Price, true);
         PlayerData.SetOwned(item);
         return true;
     }

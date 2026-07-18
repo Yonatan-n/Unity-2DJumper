@@ -12,7 +12,7 @@ public class GearItem : ScriptableObject
     public Vector3 LocalOffset;  // Optional alignment tweak
     public Vector3 LocalScale = Vector3.one;
     public bool flipX = false;
-    public int Price; // keys
+    public int Price; // gems
     // --- For Guns Only ---
     public float ReloadTime;
     public float FireRate;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GearPage : MonoBehaviour
@@ -9,7 +10,8 @@ public class GearPage : MonoBehaviour
     public List<Sprite> Glasses;
     public List<Sprite> Guns;
     [SerializeField] Button back;
-    [SerializeField] TextMeshProUGUI keysCount;
+    [FormerlySerializedAs("keysCount")]
+    [SerializeField] TextMeshProUGUI gemsCount;
     [SerializeField] Transform GridContainer;
     [SerializeField] GearItemButton ItemGearPrefab;
     [SerializeField] private GearDatabase database;
@@ -19,10 +21,10 @@ public class GearPage : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // PlayerData.SetIntById(PlayerData.KeysId, 300);
+        // PlayerData.SetIntById(PlayerData.GemsId, 300);
         previewEquipment.LoadFromPlayerData();
         back.onClick.AddListener(Back);
-        updateKeysCount();
+        updateGemsCount();
         BuildGrid();
     }
     private void BuildGrid()
@@ -45,7 +47,7 @@ public class GearPage : MonoBehaviour
         if (state == GearButtonState.Buyable && previewEquipment.TryBuy(item))
         {
             previewEquipment.Equip(item);
-            updateKeysCount();
+            updateGemsCount();
             if (item.Slot == GearSlot.Gun)
             {
                 StatsTracker.Instance.OnGunUnlocked();
@@ -74,9 +76,9 @@ public class GearPage : MonoBehaviour
             return GearButtonState.Unequipable;
         return GearButtonState.Equipable;
     }
-    void updateKeysCount()
+    void updateGemsCount()
     {
-        keysCount.text = "Keys: " + PlayerData.GetIntById(PlayerData.KeysId);
+        gemsCount.text = "" + PlayerData.GetIntById(PlayerData.GemsId);
     }
     void Back()
     {

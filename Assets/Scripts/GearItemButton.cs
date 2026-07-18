@@ -39,7 +39,7 @@ public class GearItemButton : MonoBehaviour
             case GearButtonState.Buyable:
                 label.text = "Buy";
                 int price = _gearItem.Price;
-                var priceStr = $"{price} {(price == 1 ? "key" : "keys")}";
+                var priceStr = $"{price} {(price == 1 ? "gem" : "gems")}";
                 priceLabel.text = priceStr;
                 Price.SetActive(true);
                 break;

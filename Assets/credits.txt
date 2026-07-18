@@ -32,6 +32,7 @@ bomb: <a href="https://www.flaticon.com/free-icons/bomb" title="bomb icons">Bomb
 another shield: <a href="https://www.flaticon.com/free-icons/warrior-shield" title="warrior-shield icons">Warrior-shield icons created by Freepik - Flaticon</a>
 Trophy: <a href="https://www.flaticon.com/free-icons/trophy" title="trophy icons">Trophy icons created by Freepik - Flaticon</a>
 piggy bank: <a href="https://www.flaticon.com/free-icons/piggy-bank" title="piggy bank icons">Piggy bank icons created by Triangle Squad - Flaticon</a>
+gem: <a href="https://www.flaticon.com/free-icons/gem" title="gem icons">Gem icons created by Magnific - Flaticon</a>
 
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6248">Pixabay</a>
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6349">Pixabay</a>

@@ -77,17 +77,17 @@ public class OptionsPanelManager : ParentAwareSingleton<OptionsPanelManager>
     void setIsGodMode(bool value)
     {
         IsGodMode = value;
-        var keys = PlayerData.GetIntById(PlayerData.KeysId);
+        var gems = PlayerData.GetIntById(PlayerData.GemsId);
         if (IsGodMode)
         {
-            keys += 999;
-            PlayerData.SetIntById(PlayerData.KeysId, keys);
+            gems += 999;
+            PlayerData.SetIntById(PlayerData.GemsId, gems);
             AchievementManager.Instance.UnlockAllAchievements();
         }
         else
         {
-            keys = Mathf.Max(keys - 999, 0);
-            PlayerData.SetIntById(PlayerData.KeysId, keys);
+            gems = Mathf.Max(gems - 999, 0);
+            PlayerData.SetIntById(PlayerData.GemsId, gems);
             AchievementManager.Instance.ResetAllAchievements();
         }
     }

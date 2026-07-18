@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using System;
 using TMPro;
 
@@ -8,7 +9,7 @@ public enum ShopItemID
     extra_jump,
     extra_life,
     magazine_plus_3, magazine_plus_5,
-    key_1, keys_2,
+    gem_1, gems_2,
     move_player_left,
 }
 
@@ -35,19 +36,21 @@ public class ShopManager : MonoBehaviour
     public ShopItemData extraLife;
     public ShopItemData extraJump;
     public ShopItemData bulletsItem;
-    public ShopItemData keyItem;
+    [FormerlySerializedAs("keyItem")]
+    public ShopItemData gemItem;
     public ShopItemData moveLeft;
-    [SerializeField] TextMeshProUGUI KeysCounter;
+    [FormerlySerializedAs("KeysCounter")]
+    [SerializeField] TextMeshProUGUI GemsCounter;
     public string GetShopItemName(ShopItemID itemId)
     {
         if (itemId == ShopItemID.magazine_plus_3)
             return "+3 bullets";
         if (itemId == ShopItemID.magazine_plus_5)
             return "+5 bullets";
-        if (itemId == ShopItemID.key_1)
-            return "1 key";
-        if (itemId == ShopItemID.keys_2)
-            return "2 keys";
+        if (itemId == ShopItemID.gem_1)
+            return "1 gem";
+        if (itemId == ShopItemID.gems_2)
+            return "2 gems";
         if (itemId == ShopItemID.move_player_left)
             return "better position";
         if (itemId == ShopItemID.extra_jump)
@@ -61,15 +64,15 @@ public class ShopManager : MonoBehaviour
     {
         BuildShop();
     }
-    void UpdateKeysCounter()
+    void UpdateGemsCounter()
     {
-        KeysCounter.text = $"Keys: {PlayerData.GetIntById(PlayerData.KeysId)}";
+        GemsCounter.text = $"{PlayerData.GetIntById(PlayerData.GemsId)}";
     }
 
     void BuildShop()
     {
         Debug.Log("build shop");
-        UpdateKeysCounter();
+        UpdateGemsCounter();
         // clear old items
         foreach (Transform child in itemContainer)
             Destroy(child.gameObject);
@@ -92,8 +95,8 @@ public class ShopManager : MonoBehaviour
             extraJump,
             ExponentialPrice(800, gm.maxJumps)
         ),
-            // Bullets / keys rotation
-            AddBulletOrKey()
+            // Bullets / gems rotation
+            AddBulletOrGem()
         };
         if (gm.MoveLeftBought < gm.MAX_MOVE_LEFT)
         {
@@ -118,17 +121,17 @@ public class ShopManager : MonoBehaviour
         return basePrice * (1 << timesBought);
     }
 
-    ShopItemInstance AddBulletOrKey()
+    ShopItemInstance AddBulletOrGem()
     {
         var gm = GameManager.Instance;
-        int keys = PlayerData.GetIntById(PlayerData.KeysId);
+        int gems = PlayerData.GetIntById(PlayerData.GemsId);
         int cycle = gm.level % 3;
         if (cycle == 0)
             return new ShopItemInstance(bulletsItem, ExponentialPrice(200, gm.extraBulletsBought));
         else if (cycle == 1)
-            return new ShopItemInstance(keyItem, ExponentialPrice(1000, keys));
+            return new ShopItemInstance(gemItem, ExponentialPrice(1000, gems));
         else
-            return new ShopItemInstance(keyItem, ExponentialPrice(1800, keys));
+            return new ShopItemInstance(gemItem, ExponentialPrice(1800, gems));
     }
 
     public bool TryBuy(ShopItemInstance item)
@@ -146,10 +149,10 @@ public class ShopManager : MonoBehaviour
         return true;
     }
 
-    void BuyKey(int amount)
+    void BuyGem(int amount)
     {
-        PlayerData.SetIntById(PlayerData.KeysId, amount, true);
-        UpdateKeysCounter();
+        PlayerData.SetIntById(PlayerData.GemsId, amount, true);
+        UpdateGemsCounter();
     }
 
     void ApplyItem(ShopItemInstance item)
@@ -160,8 +163,8 @@ public class ShopManager : MonoBehaviour
             { ShopItemID.extra_jump,        () => gm.maxJumps++ },
             { ShopItemID.magazine_plus_3,   () => gm.MaxAmmo+=3 },
             { ShopItemID.magazine_plus_5,   () => gm.MaxAmmo+=5 },
-            { ShopItemID.key_1,             () => BuyKey(1)},
-            { ShopItemID.keys_2,            () => BuyKey(2)},
+            { ShopItemID.gem_1,             () => BuyGem(1)},
+            { ShopItemID.gems_2,            () => BuyGem(2)},
             { ShopItemID.move_player_left,  () => gm.MoveLeftBought++ },
         };
 

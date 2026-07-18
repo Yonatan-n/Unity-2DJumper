@@ -68,6 +68,7 @@ public class Enemy : MonoBehaviour
         // blood fx
         Instantiate(bloodPrefab, transform);
         StatsTracker.Instance.OnEnemyKilled();
+        GameManager.Instance.EnemyKilledThisRun();
         if (gameObject.CompareTag(Tags.FlyingEnemy))
             StatsTracker.Instance.OnFlyingEnemyKilled();
     }

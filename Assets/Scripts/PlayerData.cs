@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class PlayerData
 {
-    public const string KeysId = "keys";
+    public const string GemsId = "gems";
     public const string highscoreId = "highscore";
     public const string isGodMode = "isGodMode";
     public const string IsScreenShake = "IsScreenShake";
